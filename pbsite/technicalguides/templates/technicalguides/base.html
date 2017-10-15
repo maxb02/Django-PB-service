@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{%  load i18n  %}
+<html lang="en">
+    <head>
+        <title>{% block title %}PB Service {% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+		<link rel="stylesheet" href="{% static '../static/css/bootstrap.css'%}" />
+		<link rel="stylesheet" href="{% static '../static/css/open-iconic-bootstrap.css'%}" />
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="{% static '../static/css/style.css'%}" />
+
+
+
+    </head>
+
+    <body>
+	<nav class="navbar navbar-expand-lg navbar-custom">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link text-light" href="/index">{% trans "Home" %} &nbsp;</a>
+			</li>
+            {% trans "Devices" as Devices %}
+            {% trans "Serial Check" as Serial_Check %}
+
+            {% if user.is_authenticated %}
+			<li class="nav-item dropdown">
+				<a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ Devices }}</a>
+				<div class="dropdown-menu">
+					{% for device in devices %}
+					<a class="dropdown-item text-light" href="{% url 'device' device_name=device.name %}">{{ device.name }}</a>
+					{% endfor %}
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text-light" href="/serialcheck"> {{ Serial_Check }} &nbsp;</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text-light" href="/contacts">{% trans "Contacts" %} &nbsp;</a>
+			</li>
+			{% load auth_extras %}
+			{% trans "Admin Section" as Admin_Section %}
+			{% if request.user.is_superuser or request.user|has_group:"moderator" %}
+			<li class="nav-item">
+				<a class="nav-link text-light" href="/admin/"> {{ Admin_Section }} &nbsp;</a>
+			</li>
+			{% endif %}
+			{% endif %}
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item" id="welcomelogin">
+				{% trans "Wellcome" as wellcome %}
+				{% trans " Log-out" as logout %}
+				{% trans " Log-in" as login %}
+
+				{% if user.is_authenticated %}
+				<a class="nav-link text-light" href="/admin/logout">
+					<span>
+						{{ wellcome }} {{ user.get_username }} &nbsp;
+					</span>
+					<span class = "glyphicon glyphicon-off" aria hidden="true">
+						{{ logout }}
+					</span>
+				</a>
+				{% elif user.is_anonymous %}
+				<a class="nav-link text-light" href="{% url 'login' %}?next={{ request.path }}">
+					<span class = "glyphicon glyphicon-off" aria hidden="true"> {{login}}</span>
+				</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+	{% block body %}
+
+    {% endblock %}
+
+    </body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'technicalguides/base.html' %}
+{% block title %} Home PB Service {% endblock %}
+
+
+{% block body %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static '../static/css/index.css'%}" />
+<div class="container-fluid">
+<div class='container custom'>
+{% load humanize %}
+	<div class='container custom'>
+		<h2>News:</h2>
+
+        {% for item in news %}
+		<div class="{{ item.type | safe}}" role="alert">
+			{{ item.text | safe}}
+            </div>
+         {% endfor %}
+	</div>
+	<div class='container custom'>
+		<h2>Last updates:</h2>
+
+		<div class="card-deck">
+            {% for new_guide in last_update_guides %}
+			<div class="card">
+				<img class="card-img-top" width='362' height='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
+				<div class="card-body">
+					<h4 class="card-title">{{ new_guide.title }}</h4>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted">{{ new_guide.updated_date | naturaltime }}</small>
+				</div>
+			</div>
+            {% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

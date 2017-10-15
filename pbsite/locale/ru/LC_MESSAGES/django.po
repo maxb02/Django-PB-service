@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-20 11:51+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\pbservicesite\settings.py:119
+msgid "English"
+msgstr ""
+
+#: .\pbservicesite\settings.py:120
+msgid "Russian"
+msgstr ""
+
+#: .\technicalguides\templates\technicalguides\base.html:23
+msgid "Home"
+msgstr "Главная"
+
+#: .\technicalguides\templates\technicalguides\base.html:24
+msgid "Devices"
+msgstr "Устройства"
+
+#: .\technicalguides\templates\technicalguides\base.html:25
+msgid "Serial Check"
+msgstr "Проверка серийного номера"
+
+#: .\technicalguides\templates\technicalguides\base.html:38
+msgid "Contacts"
+msgstr "Контакты"
+
+#: .\technicalguides\templates\technicalguides\base.html:39
+msgid "Registration request"
+msgstr "Запрос регистрации"
+
+#: .\technicalguides\templates\technicalguides\base.html:44
+msgid "Admin Section"
+msgstr "Администрирование"
+
+#: .\technicalguides\templates\technicalguides\base.html:54
+msgid "Wellcome"
+msgstr "Приветствую"
+
+#: .\technicalguides\templates\technicalguides\base.html:55
+msgid " Log-out"
+msgstr "Выйти"
+
+#: .\technicalguides\templates\technicalguides\base.html:56
+msgid " Log-in"
+msgstr "Войти"
+
+#: .\technicalguides\templates\technicalguides\base.html:91
+msgid "PocketBook Service webpage"
+msgstr "Сервисная страница Pocketbook"

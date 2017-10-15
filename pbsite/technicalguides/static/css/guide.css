@@ -1,0 +1,18 @@
+.container-fluid h2 {
+		padding: 0.5rem 1rem 1rem;
+		margin-bottom: 3rem;
+}
+.container-fluid h3 {
+		padding: 1rem 1rem 0;
+}
+.custom-header-bg {
+	padding: 0;
+	background-color: #00615b;
+}
+.custom-bg {
+	background-color: rgba(0, 140, 131, 0.2);
+	border: 1px solid rgba(0, 97, 91, 0.5);
+	border-radius: 0.35rem;
+	padding: 0.8rem 0;
+	margin: 1rem auto;
+}

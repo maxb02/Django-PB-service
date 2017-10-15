@@ -1,0 +1,18 @@
+{% extends 'technicalguides/base.html' %}#}
+
+{% block body %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/guide.css'%}" />
+	<div class='container-fluid'>
+		<div class='container custom-bg'>
+			<div class="custom-header-bg">
+				<h3 class='text-center text-light'>{{ guide.title }}</h3>
+				<h2 class='text-center text-light'>{{ device_name }}</h2>
+			</div>
+			<div class='container'>
+				{{ guide.text | safe}}
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
