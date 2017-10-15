@@ -16,9 +16,9 @@ class Device(models.Model):
 
 
 class Guide(models.Model):
+    title = models.CharField(max_length=200)
     device = models.ForeignKey(Device, blank=True)
     group = models.ManyToManyField(Group)
-    title = models.CharField(max_length=200)
     text = RichTextUploadingField('contents')
     published_date = models.DateTimeField(blank=True, auto_now_add=True)
     updated_date = models.DateTimeField(blank=True, auto_now=True)
@@ -40,7 +40,7 @@ class News(models.Model):
     ))
     title = models.CharField(max_length=200)
     text = RichTextUploadingField('contents')
-    published_date = models.DateTimeField(blank=True, auto_now_add=True)
+    published_date = models.DateTimeField(blank=True, auto_now=True)
 
 
 
