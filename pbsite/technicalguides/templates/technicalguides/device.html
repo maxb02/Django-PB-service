@@ -4,16 +4,23 @@
 {% block body %}
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static '../static/css/device.css'%}" />
+
+    {% load auth_extras %}
 <div class="container">
     <h2 class="text-center">{{ device.name }}</h2>
     <div class="row">
         <div class="col-sm-4"style="text-align: left">
            <ul class='list-group rounded'>
-            {% for guide in guides %}
+            {% if request.user.is_superuser or request.user|has_group:"moderator" %}
+               {% for guide in guides %}
             <li class='list-group-item'>
-                <a class='text-light' href="{% url 'guide' device_name=device.name title=guide.title  %}">{{ guide.title }}</a>
+                   {% for gr in guide.group.all %} {{ gr }} {% endfor %}
+                        <a class='text-light' href="{% url 'guide' device_name=device.name title=guide.title  %}">{{ guide.title }}</a>
             </li>
             {% endfor %}
+                {% else %}
+
+           {% endif %}
 			</ul>
         </div>
 		<div class="col-sm-2" style="text-align: center">
