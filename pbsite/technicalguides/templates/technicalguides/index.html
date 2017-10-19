@@ -21,8 +21,9 @@
 	<div class='container custom'>
 		<h2>Last updates:</h2>
 
-		<div class="card-deck">
+
             {% for new_guide in last_update_guides %}
+                <a> href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}"> <a/>
 			<div class="card">
 				<img class="card-img-top" width='362' height='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
 				<div class="card-body">

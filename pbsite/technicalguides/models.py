@@ -42,7 +42,15 @@ class News(models.Model):
     text = RichTextUploadingField('contents')
     published_date = models.DateTimeField(blank=True, auto_now=True)
 
+    def __str__(self):
+        return self.title
 
+
+class Procedure(models.Model):
+    group = models.ManyToManyField(Group)
+    title = models.CharField(max_length=200)
+    text = RichTextUploadingField('contents')
+    published_date = models.DateTimeField(blank=True, auto_now=True)
 
     def __str__(self):
         return self.title
