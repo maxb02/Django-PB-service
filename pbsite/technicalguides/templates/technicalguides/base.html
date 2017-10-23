@@ -61,10 +61,14 @@
 				{% trans " Log-in" as login %}
 
 				{% if user.is_authenticated %}
-				<a class="nav-link text-light text-lg-left" href="/admin/logout">
+				<!--- <a class="nav-link text-light text-lg-left" href="/user"> --->
 					<span>
 						<i class="fa fa-user-circle-o fa-lg" aria-hidden="true"> </i> {{ wellcome }}, {{ user.get_username }} &nbsp;
 					</span>
+				<!--- </a> --->
+			</li>
+			<li class="nav-item" id="logout">
+				<a class="nav-link text-light text-lg-left" href="/admin/logout">
 					<span>
 						<i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> {{ logout }}
 					</span>
