@@ -1,3 +1,6 @@
 .custom {
 	padding-top: 2rem;
 }
+.newslink, .newslink:hover, .newslink:visited {
+	text-decoration: none;
+}

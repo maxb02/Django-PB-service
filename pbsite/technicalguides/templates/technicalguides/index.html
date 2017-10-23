@@ -24,11 +24,17 @@
 		<div class="card-deck">
             {% for new_guide in last_update_guides %}
 			<div class="card">
-				<div class="card-header"><h4 class="card-title">{{ new_guide.title }}</h4></div>
-				<img class="card-img-top" width='362' height='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
-				<div class="card-footer">
-					<small class="text-muted">{{ new_guide.updated_date | naturaltime }}</small>
-				</div>
+				<a class="newslink" href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}">
+					<h4 class="card-title">
+						<div class="card-header">
+							{{ new_guide.title }}
+						</div>
+					</h4>
+					<img class="card-img-top" width='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
+					<div class="card-footer">
+						<small class="text-muted">{{ new_guide.updated_date | naturaltime }}</small>
+					</div>
+				</a>
 			</div>
             {% endfor %}
 		</div>
