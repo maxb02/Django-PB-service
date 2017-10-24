@@ -21,9 +21,8 @@
 	<div class='container custom'>
 		<h2>Last updates:</h2>
 
-
+		<div class="card-deck">
             {% for new_guide in last_update_guides %}
-                <a> href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}"> <a/>
 			<div class="card">
 				<a class="newslink" href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}">
 					<h4 class="card-title">
@@ -31,7 +30,7 @@
 							{{ new_guide.title }}
 						</div>
 					</h4>
-					<img class="card-img-top" width='362' height='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
+					<img class="card-img-top" width='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
 					<div class="card-footer">
 						<small class="text-muted">{{ new_guide.updated_date | naturaltime }}</small>
 					</div>
