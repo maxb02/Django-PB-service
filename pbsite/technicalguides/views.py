@@ -19,8 +19,9 @@ def index(request):
 def device(request, device_name):
     device = get_object_or_404(Device, name=device_name)
     guides = device.guide_set.all()
+    group_guides = device.guide_set.filter(group=request.user.groups.all())
 
-    return render(request, 'technicalguides/device.html', {'device': device, 'guides': guides})
+    return render(request, 'technicalguides/device.html', {'device': device, 'guides': guides, 'group_guides': group_guides})
 
 @login_required
 def guide(request, device_name, title):

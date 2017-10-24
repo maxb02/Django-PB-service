@@ -19,7 +19,11 @@
             </li>
             {% endfor %}
                 {% else %}
-
+                {% for guide in group_guides %}
+                    <li class='list-group-item'>
+                    <a class='text-light' href="{% url 'guide' device_name=device.name title=guide.title  %}">{{ guide.title }}</a>
+                    </li>
+                {% endfor %}
            {% endif %}
 			</ul>
         </div>
