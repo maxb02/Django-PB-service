@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     news = News.objects.order_by('-published_date')
     guides = (Guide.objects.order_by('-updated_date'))
-    number_of_guid= 3
+    number_of_guid= 4
     if len(guides) >=number_of_guid:
         last_update_guides = guides[:number_of_guid]
     else:
