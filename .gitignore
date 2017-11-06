@@ -9,5 +9,5 @@ venv
 .git
 /pbsite/db.sqlite3
 db.sqlite3
-
+/pbsite/pbservicesite/local_setting.py
 
