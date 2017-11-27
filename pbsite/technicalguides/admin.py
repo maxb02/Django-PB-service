@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import Device
 from .models import Guide
 from .models import News
-from .models import Procedure
 from reversion.admin import VersionAdmin
 
 class GuideAdmin(admin.ModelAdmin):
@@ -23,14 +22,5 @@ class YourModelAdmin(VersionAdmin, NewsAdmin):
     pass
 
 @admin.register(Device)
-class YourModelAdmin(VersionAdmin):
-    pass
-
-
-class ProsedureAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_date')
-    list_filter = ('published_date')
-
-@admin.register(Procedure)
 class YourModelAdmin(VersionAdmin):
     pass

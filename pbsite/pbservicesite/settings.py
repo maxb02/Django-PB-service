@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'reversion',
     'django.contrib.humanize',
+    'contacts'
     
 ]
 

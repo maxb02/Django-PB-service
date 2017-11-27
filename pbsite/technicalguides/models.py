@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import Group
-from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
-from django.utils import timezone
 
 class Device(models.Model):
     name = models.CharField(max_length=30)
@@ -38,16 +36,6 @@ class News(models.Model):
         ('alert alert-light', "light"),
         ('alert alert-dark', "dark"),
     ))
-    title = models.CharField(max_length=200)
-    text = RichTextUploadingField('contents')
-    published_date = models.DateTimeField(blank=True, auto_now=True)
-
-    def __str__(self):
-        return self.title
-
-
-class Procedure(models.Model):
-    group = models.ManyToManyField(Group)
     title = models.CharField(max_length=200)
     text = RichTextUploadingField('contents')
     published_date = models.DateTimeField(blank=True, auto_now=True)

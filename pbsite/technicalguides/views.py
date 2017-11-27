@@ -32,6 +32,5 @@ def guide(request, device_name, title):
 def serialcheck(request):
     return render(request, 'technicalguides/serialcheck.html')
 
-def contacts(request):
-    return render(request, 'technicalguides/contacts.html')
+
 
