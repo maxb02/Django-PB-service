@@ -2,8 +2,8 @@
 *~
 __pycache__
 venv
-/pbsite/static
-/pbsite/media
+/pbsite/static/
+/pbsite/media/
 .DS_Store
 .idea
 .git
