@@ -1,7 +1,7 @@
 import requests
 
 def snvalidator(sn):
-    url = 'https://1093.72.149.183/bl.php'
+    url = 'https://109.72.149.183/bl.php'
     try:
         key = requests.get(url, params={'sn': sn}, verify=False).text
     except:
