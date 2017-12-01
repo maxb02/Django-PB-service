@@ -10,6 +10,7 @@ from django.conf.urls import include
 urlpatterns = [
     url(r'', include('technicalguides.urls')),
     url(r'', include('contacts.urls')),
+    url(r'', include('sncheck.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
 

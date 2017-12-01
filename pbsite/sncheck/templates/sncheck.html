@@ -1,0 +1,14 @@
+{% extends 'technicalguides/base.html' %}
+{% block title %} Serial Check PB Service {% endblock %}
+
+
+{% block body %}
+    <p></p>
+<div>
+<form action="/check" method="get" target="_parent">
+  SN: <input type="text" name="sn"><br>
+  <input type="submit" value="Submit">
+</form>
+</div>
+
+{% endblock %}

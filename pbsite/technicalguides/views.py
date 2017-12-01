@@ -28,9 +28,7 @@ def guide(request, device_name, title):
     guide = get_object_or_404(Device, name = device_name).guide_set.get(title= title)
     return render(request, 'technicalguides/guide.html', {'guide': guide, 'device_name': device_name})
 
-@login_required
-def serialcheck(request):
-    return render(request, 'technicalguides/serialcheck.html')
+
 
 
 

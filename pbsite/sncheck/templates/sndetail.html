@@ -1,0 +1,78 @@
+{% extends 'technicalguides/base.html' %}
+{% block title %} Serial Check PB Service {% endblock %}
+
+
+{% block body %}
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+<p></p>
+<div>
+<form action="/check" method="get" target="_parent">
+  SN: <input type="text" name="sn"><br>
+  <input type="submit" value="Submit">
+</form>
+</div>
+<p></p>
+
+<table>
+<th>SN</th>
+<th>{{ seial_number }}</th>
+ <tr>
+
+    {% if is_valid == 'Erorr' %}
+        <h3 style="color:Tomato;">request from validator erorr</h3>
+        {% elif is_valid == True %}
+  <td>SN is valided</td>  <td>Yes</td>
+    {% else %}
+   <td>SN is valided</td> <td>No</td>
+    {% endif %}
+  <tr>
+   {% if info == 'Erorr' %}
+       <h3 style="color:Tomato;">request from shipments erorr</h3>
+       {% elif info == False %}
+       <th>No info in shipments</th>
+      {% else %}
+          {% for data in info %}
+              <td>model</td> <th>{{ data.model }}</th>
+              <tr>
+              <td>device</td> <th>{{ data.device }}</th>
+              <tr>
+              <td>month</td> <th>{{ data.month }}</th>
+              <tr>
+              <td>year</td> <th>{{ data.year }}</th>
+              <tr>
+              <td>countryEng</td> <th>{{ data.countryEng }}</th>
+              <tr>
+              <td>colorEng</td> <th>{{ data.colorEng }}</th>
+              <tr>
+              <td>shippingDate</td> <th>{{ data.shippingDate }}</th>
+              <tr>
+              <td>partnerCountry</td> <th>{{ data.partnerCountry }}</th>
+              <tr>
+              <td>partnerCountry</td> <th>{{ data.partnerCountry }}</th>
+{% endfor %}
+{% endif %}
+
+
+</table>
+
+</body>
+</html>
+
+{% endblock %}
