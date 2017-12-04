@@ -22,6 +22,10 @@ footer {
      text-align: center;
 }
 
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px){
      .sidenav {
