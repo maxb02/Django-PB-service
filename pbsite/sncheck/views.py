@@ -6,7 +6,7 @@ from .snvalidator import *
 @login_required
 def serialcheck(request):
     return render(request, 'sncheck/sncheck.html')
-
+@login_required
 def sndetail(request):
     seial_number = request.GET['sn']
     is_valid = snvalidator(seial_number)

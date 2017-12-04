@@ -5,14 +5,22 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def index(request):
     news = News.objects.order_by('-published_date')
-    guides = (Guide.objects.order_by('-updated_date'))
+    group_news = News.objects.order_by('-published_date').filter(group=request.user.groups.all())
+    guides = Guide.objects.order_by('-updated_date')
+    group_guides = Guide.objects.order_by('-updated_date').filter(group=request.user.groups.all())
     number_of_guid= 4
     if len(guides) >=number_of_guid:
-        last_update_guides = guides[:number_of_guid]
+        guides = guides[:number_of_guid]
+
+    if len(group_guides) >=number_of_guid:
+        last_update_guides = group_guides[:number_of_guid]
     else:
-        last_update_guides = guides
+        last_update_guides = group_guides
+
     return render(request, 'technicalguides/index.html', {'news': news,
-                                                          'last_update_guides': last_update_guides
+                                                          'group_news': group_news,
+                                                          'last_update_guides': last_update_guides,
+                                                          'guides': guides
                                                           })
 
 @login_required

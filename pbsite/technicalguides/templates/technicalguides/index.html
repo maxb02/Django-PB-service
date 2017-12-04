@@ -1,6 +1,6 @@
 {% extends 'technicalguides/base.html' %}
 {% block title %} Home PB Service {% endblock %}
-
+{% load auth_extras %}
 
 {% block body %}
 {% load staticfiles %}
@@ -8,6 +8,7 @@
 <div class="container-fluid">
 <div class='container custom'>
 {% load humanize %}
+ {% if request.user.is_superuser or request.user|has_group:"moderator" %}
 	<div class='container custom'>
 		<h2>News:</h2>
 
@@ -18,11 +19,26 @@
             </div>
          {% endfor %}
 	</div>
+
+     {% else %}
+     <div class='container custom'>
+		<h2>News:</h2>
+
+        {% for item in group_news %}
+		<div class="{{ item.type | safe}}" role="alert">
+        <h4>{{ item.title }}</h4>
+			{{ item.text | safe}}
+            </div>
+     {% endfor %}
+{% endif %}
+
+
 	<div class='container custom'>
 		<h2>Last updates:</h2>
 
+            {% if request.user.is_superuser or request.user|has_group:"moderator" %}
 		<div class="card-deck">
-            {% for new_guide in last_update_guides %}
+            {% for new_guide in guides %}
 			<div class="card">
 				<a class="newslink" href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}">
 					<h4 class="card-title">
@@ -38,6 +54,26 @@
 			</div>
             {% endfor %}
 		</div>
+                {% else %}
+                <div class="card-deck">
+                {% for new_guide in last_update_guides %}
+                <div class="card">
+				<a class="newslink" href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}">
+					<h4 class="card-title">
+						<div class="card-header">
+							{{ new_guide.title }}
+						</div>
+					</h4>
+					<img class="card-img-top" width='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
+					<div class="card-footer">
+						<small class="text-muted">{{ new_guide.updated_date | naturaltime }}</small>
+					</div>
+				</a>
+
+			</div>
+                {% endfor %}
+{% endif %}
+
 	</div>
 </div>
 
