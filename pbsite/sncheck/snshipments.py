@@ -1,4 +1,5 @@
 import requests
+import datetime
 
 def sn_shipments(sn):
     if sn:
@@ -8,6 +9,8 @@ def sn_shipments(sn):
         except:
             return 'Erorr'
         if info:
+            for element in info:
+                element['shippingDate'] = datetime.datetime.strptime(element['shippingDate'], "%Y-%m-%d %H:%M:%S")
             return info
         else:
             return False
