@@ -1,4 +1,4 @@
-{% extends 'sncheck.html' %}
+{% extends 'sncheck/sncheck.html' %}
 {% block title %} Serial Check PB Service {% endblock %}
 
 
@@ -46,29 +46,29 @@
 						<td>No info in shipments</td>
 					{% else %}
 						{% for data in info %}
-							<td>model</td> <td>{{ data.model }}</td>
+							<td>Model</td> <td>{{ data.model }}</td>
 						</tr>
 						<tr>
-							<td>device</td> <td>{{ data.device }}</td>
+							<td>Device</td> <td>{{ data.device }}</td>
 						</tr>
 						<tr>
-							<td>month</td> <td>{{ data.month }}</td>
+							<td>Month</td> <td>{{ data.month }}</td>
 						</tr>
 						<tr>
-							<td>year</td> <td>{{ data.year }}</td>
+							<td>Year</td> <td>{{ data.year }}</td>
 						</tr>
 						<tr>
-							<td>countryEng</td> <td>{{ data.countryEng }}</td>
+							<td>Region</td> <td>{{ data.countryEng }}</td>
+						</tr>
+                            <td>Country</td> <td>{{ data.partnerCountry }}</td>
 						</tr>
 						<tr>
-							<td>colorEng</td> <td>{{ data.colorEng }}</td>
+							<td>Color</td> <td>{{ data.colorEng }}</td>
 						</tr>
 						<tr>
-							<td>shippingDate</td> <td>{{ data.shippingDate }}</th>
+							<td>Shipping Date</td> <td>{{ data.shippingDate }}</th>
 						</tr>
-						<tr>
-							<td>partnerCountry</td> <td>{{ data.partnerCountry }}</td>
-						</tr>
+
 						{% endfor %}
 					{% endif %}
 				</tr>
