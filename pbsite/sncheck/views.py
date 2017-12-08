@@ -6,12 +6,13 @@ from .snvalidator import *
 @login_required
 def serialcheck(request):
     return render(request, 'sncheck/sncheck.html')
+
 @login_required
 def sndetail(request):
-    seial_number = request.GET['sn']
-    is_valid = snvalidator(seial_number)
-    info = sn_shipments(seial_number)
-    return render(request, 'sncheck/sndetail.html', {'seial_number': seial_number,
+    serial_number = request.GET['sn']
+    is_valid = snvalidator(serial_number)
+    info = sn_shipments(serial_number)
+    return render(request, 'sncheck/sndetail.html', {'serial_number': serial_number,
                                              'is_valid': is_valid,
                                              'info': info,
                                                      })

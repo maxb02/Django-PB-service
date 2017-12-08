@@ -64,6 +64,4 @@ msgstr "Выйти"
 msgid " Log-in"
 msgstr "Войти"
 
-#: .\technicalguides\templates\technicalguides\base.html:91
-msgid "PocketBook Service webpage"
-msgstr "Сервисная страница Pocketbook"
+
