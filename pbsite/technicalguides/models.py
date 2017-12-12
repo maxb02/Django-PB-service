@@ -15,7 +15,7 @@ class Device(models.Model):
 
 class Guide(models.Model):
     title = models.CharField(max_length=200)
-    device = models.ForeignKey(Device, blank=True)
+    device = models.ForeignKey(Device)
     group = models.ManyToManyField(Group)
     text = RichTextUploadingField('contents')
     published_date = models.DateTimeField(blank=True, auto_now_add=True)
