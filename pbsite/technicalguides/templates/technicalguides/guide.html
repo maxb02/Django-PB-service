@@ -2,6 +2,7 @@
 
 {% block body %}
     {% load staticfiles %}
+	<script src="{% static '../static/js/addicons.js'%}" ></script>
     <link rel="stylesheet" type="text/css" href="{% static '../static/css/guide.css'%}" />
 	<div class='container-fluid'>
 		<div class='container custom-bg'>
@@ -12,12 +13,6 @@
 			<div class='container'>
 				{{ guide.text | safe}}
 			</div>
-			<script>
-				$(".container a[href*='ftp'], [href*='zip'], [href*='7z'], [href*='rar']").prepend("<i class=\"fa fa-download\" aria-hidden=\"true\">&nbsp;");
-				$(".container a[href*='ftp'], [href*='zip'], [href*='7z'], [href*='rar']").append("</i>");
-				$(".container a[href*='http']:not([href*='zip'], [href*='7z'], [href*='rar'], :has(img))").prepend("<i class =\"fa fa-external-link-square\" aria-hidden=\"true\">&nbsp;");
-				$(".container a[href*='http']:not([href*='zip'], [href*='7z'], [href*='rar'], :has(img))").append("</i>");
-			</script>
 		</div>
 	</div>
 {% endblock %}
