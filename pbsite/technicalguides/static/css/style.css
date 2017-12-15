@@ -26,6 +26,10 @@ footer {
   display: block;
 }
 
+.container {
+	font-size: 0.8rem;
+}
+
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px){
      .sidenav {
