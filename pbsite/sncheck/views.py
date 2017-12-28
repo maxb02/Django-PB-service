@@ -9,7 +9,7 @@ def serialcheck(request):
 
 @login_required
 def sndetail(request):
-    serial_number = request.GET['sn']
+    serial_number = request.GET['sn'].strip()
     is_valid = snvalidator(serial_number)
     info = sn_shipments(serial_number)
     return render(request, 'sncheck/sndetail.html', {'serial_number': serial_number,

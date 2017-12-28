@@ -1,4 +1,4 @@
-
+local_setting_exemple.py
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
