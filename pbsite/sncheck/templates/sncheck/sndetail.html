@@ -17,7 +17,7 @@
 					<div class="form-group row">
 						<div class="input-group mb-2 mb-sm-0">
 							<div class="input-group-addon"><i class="fa fa-barcode fa-lg" aria-hidden="true"></i> &nbsp; Serial Number: </div>
-							<input class="form-control" type="text" name="sn" placeholder="sn" required >
+							<input class="form-control" type="text" name="sn" placeholder="sn" value={{ serial_number }} required >
 						</div>
 					</div>
 					<div class="form-group row">
@@ -26,10 +26,7 @@
 				</form>
 			<hr />
 		<table class="table table-striped card-text">
-			<tbody>
-				<tr>
-					<td>SN</td>
-					<td>{{ serial_number }}</td>
+			 <tbody>
 				</tr>
 				<tr>
 					{% if is_valid == 'Erorr' %}
