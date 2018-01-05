@@ -43,16 +43,16 @@
 						<td>No info in shipments</td>
 					{% else %}
 						{% for data in info %}
-							<td>Model</td> <td>{{ data.model }}</td>
-						</tr>
-						<tr>
 							<td>Device</td> <td>{{ data.device }}</td>
 						</tr>
-						<tr>
-							<td>Month</td> <td>{{ data.month }}</td>
+                         <tr>
+                            <td>Model</td> <td>{{ data.model }}</td>
 						</tr>
 						<tr>
-							<td>Year</td> <td>{{ data.year }}</td>
+							<td>Production Date</td> <td>{{ data.month }}.{{ data.year }}</td>
+						</tr>
+                         <tr>
+							<td>Shipping Date</td> <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
 						</tr>
 						<tr>
 							<td>Region</td> <td>{{ data.countryEng }}</td>
@@ -62,9 +62,7 @@
 						<tr>
 							<td>Color</td> <td>{{ data.colorEng }}</td>
 						</tr>
-						<tr>
-							<td>Shipping Date</td> <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
-						</tr>
+
 
 						{% endfor %}
 					{% endif %}
