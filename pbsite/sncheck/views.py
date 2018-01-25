@@ -12,7 +12,7 @@ def serialcheck(request):
 
 @login_required
 def sndetail(request):
-    serial_number = request.GET['sn'].strip().upper()
+    serial_number = request.POST['sn'].strip().upper()
     is_valid = snvalidator(serial_number)
     info = sn_shipments(serial_number)
     if not (request.user.groups.filter(name= 'moderator').exists() or request.user.is_superuser):

@@ -12,7 +12,8 @@
 				<b>Check Serial Number</b>
 			</div></h5>
 			<div class="card-body">
-				<form class="form-sn" action="/check" method="get" target="_parent">
+				<form class="form-sn" action="/sndetail" method="POST" target="_parent">
+                    {% csrf_token %}
 					<div class="form-group row">
 						<div class="input-group mb-2 mb-sm-0">
 							<div class="input-group-addon"><i class="fa fa-barcode fa-lg" aria-hidden="true"></i> &nbsp; Serial Number: </div>
