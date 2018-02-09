@@ -12,7 +12,7 @@ def serialcheck(request):
         serial_number = request.POST['sn'].strip().upper()
         is_valid = snvalidator(serial_number)
         info = sn_shipments(serial_number)
-        if not (request.user.groups.filter(name= 'moderator').exists() or request.user.is_superuser) or info == False or info == 'Erorr':
+        if not (request.user.groups.filter(name= 'moderator').exists() or request.user.is_superuser or info == False or info == 'Erorr'):
             for data in info:
                 if not request.user.groups.filter(name= data['countryEng']).exists():
                     regionmismatch(serial_number, data['countryEng'], request.user, list(EmailForNotifications.objects.all()))
