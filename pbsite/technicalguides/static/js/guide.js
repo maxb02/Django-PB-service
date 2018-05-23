@@ -10,13 +10,15 @@ $(document).ready( function() {
 	}
 
 	var initFavcyBoxImg = function () {
-		var img = $(".box img");
-		img.fancybox({
-			//'hideOnContentClick': true,
-			'href' : img.attr('src')
-		});
+        $(".box img").each(function () {
+            $(this).fancybox({
+                //'hideOnContentClick': true,
+                'href': $(this).attr('src')
+            });
+        });
 	}
 
 	initAddIcons();
 	initFavcyBoxImg();
+
 });
