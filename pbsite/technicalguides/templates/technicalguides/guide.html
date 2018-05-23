@@ -2,7 +2,7 @@
 
 {% block body %}
     {% load staticfiles %}
-	<script src="{% static '../static/js/addicons.js'%}" ></script>
+	<script src="{% static '../static/js/guide.js'%}" ></script>
     <link rel="stylesheet" type="text/css" href="{% static '../static/css/guide.css'%}" />
 	<div class='container-fluid'>
 		<div class='container custom-bg'>
@@ -10,7 +10,7 @@
 				<h3 class='text-center text-light'>{{ guide.title }}</h3>
 				<h2 class='text-center text-light'>{{ device_name }}</h2>
 			</div>
-			<div class='container'>
+			<div class='container box'>
 				{{ guide.text | safe}}
 			</div>
 		</div>
