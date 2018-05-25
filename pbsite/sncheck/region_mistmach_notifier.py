@@ -1,4 +1,3 @@
-from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 def regionmismatch(serial_number, device_region, user, email_for_notifications_list):
