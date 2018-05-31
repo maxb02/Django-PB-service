@@ -50,11 +50,10 @@ def region_mistmatch_notifier(serial_number, device_data, user, language):
     from_email = 'noreplay@service.pocketbook-int.com'
     to = [user.email]
     cc = list(EmailForNotifications.objects.filter(user_region=user.groups.all()).all())
-    print(language)
     if language == 'ru' or language == 'ua':
-        emai_template = 'sncheck/region_mismatch_notifier letter_ru.html'
+        emai_template = 'sncheck/region_mismatch_notifier_letter_ru.html'
     else:
-        emai_template = 'sncheck/region_mismatch_notifier letter_en.html'
+        emai_template = 'sncheck/region_mismatch_notifier_letter_en.html'
 
     html_content = get_template(emai_template).render(
         {'serial_number': serial_number,
