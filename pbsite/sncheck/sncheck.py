@@ -45,6 +45,7 @@ def region_ceker(user, device_info):
             return False
 
 
+
 def region_mistmatch_notifier(serial_number, device_data, user, language):
     subject = 'Region Mismatch {}'.format(serial_number, )
     from_email = 'noreplay@service.pocketbook-int.com'
