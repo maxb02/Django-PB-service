@@ -1,22 +1,22 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .snshipments import sn_shipments
-from .snvalidator import snvalidator
-from .region_checker import region_ceker
-from .region_mismatch_notifier import region_mistmatch_notifier
+from .sncheck import sn_shipments, sn_validator, region_ceker, region_mistmatch_notifier, serial_number_check_journal
 
 
 @login_required
 def serialcheck(request):
     if request.method == "POST":
         serial_number = request.POST['sn'].strip().upper()
-        is_valid = snvalidator(serial_number)
+        is_valid = sn_validator(serial_number)
         device_info = sn_shipments(serial_number)
-        if not region_ceker(request.user, device_info):
+        is_region_match = region_ceker(request.user, device_info)
+        user = request.user
+        serial_number_check_journal(serial_number, user, is_valid, is_region_match)
+        if not is_region_match and not (user.groups.filter(name='moderator').exists() or user.is_superuser):
             region_mistmatch_notifier(serial_number, device_info[0], request.user, request.LANGUAGE_CODE)
 
         return render(request, 'sncheck/sncheck.html', {'serial_number': serial_number,
-                                                 'is_valid': is_valid,
+                                                        'is_valid': is_valid,
                                                         'device_info': device_info,
                                                         })
     else:

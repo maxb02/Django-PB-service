@@ -1,16 +1,23 @@
-<b>Тестовое сообщение</b>
 <p>Добрый день,</p>
 
-<p>&nbsp;</p>
+<p>Через сервисный портал</p>
 
-<p>Проверялось устройство:</p>
+<p><a href="http://service.pocketbook-int.com/sncheck" target="_blank">http://service.pocketbook-int.com/sncheck</a></p>
 
-<p>{{ device_data.device }} {{ device_data.model }}</p>
+<p>Под вашей учетной записью&nbsp;{{ user.get_username }} выполнялась проверка серийного номера устройства:</p>
 
-<p>{{ serial_number }}</p>
+<p><strong>{{ device_data.device }} {{ device_data.model }}</strong></p>
 
-<p>&nbsp;</p>
+<p><strong>{{ serial_number }}</strong></p>
 
-<p>Гарантийному обслуживанию на территории Республики Беларусь НЕ подлежит.</p>
+<p>Данное устройство гарантийному обслуживанию на территории вашего региона&nbsp;{% for group in user.groups.all %} {{ group }} {% endfor %} не подлежит.</p>
 
-<p>Просим предоставить скан копии ГТ и чека.</p>
+<p>Просим предоставить скан копии заполненного гарантийного талона и чека (либо другого документа, подтверждающего покупку) на адрес <a href="mailto:warranty@pocketbook-int.com?subject=Region%20Mismatch%20{{ serial_number }}">warranty@pocketbook-int.com</a>.</p>
+
+<p>В случае необходимости, у своего сервисного координатора, вы можете запросить специальный Акт для выдачи конечному потребителю с разъяснением причин отказа.</p>
+
+<p><em>С уважением, </em></p>
+
+<p><em><strong>Команда PocketBook</strong></em></p>
+{% load staticfiles %}
+<p><em><strong><img alt="" src="{% static '../static/logo-w-bg.svg'%}" /></strong></em></p>
