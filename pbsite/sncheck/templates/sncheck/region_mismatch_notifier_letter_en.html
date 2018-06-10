@@ -1,0 +1,23 @@
+<p>Dear Partner,</p>
+
+<p>Here is the result of serial number checking out procedure, which was made upon the PocketBook service portal</p>
+
+<p><a href="http://service.pocketbook-int.com/sncheck" target="_blank">http://service.pocketbook-int.com/sncheck</a></p>
+
+<p>under your account credentials {{ user.get_username }}</p>
+
+<p>Device: <strong>{{ device_data.device }} {{ device_data.model }}&nbsp; </strong></p>
+
+<p><strong>{{ serial_number }}</strong></p>
+
+<p>Maintance of this device can <strong>NOT</strong> be fulfilled on a warranty basis within the terretory of your region {% for group in user.groups.all %} {{ group }} {% endfor %}.</p>
+
+<p>Please send the scan-copy of customers POP (proof of purchse) to&nbsp;<a href="mailto:warranty@pocketbook-int.com?subject=Region%20Mismatch%20{{ serial_number }}">warranty@pocketbook-int.com</a>.</p>
+
+<p>Please contact your service coordinator, if needed, in order to get special Document for clarifuing reasons for the warranty refusal to the end user (Customer).</p>
+
+<p>Sincerly yours,</p>
+
+<p><em><strong>PocketBook Team</strong></em></p>
+{% load staticfiles %}
+<p><em><strong><img alt="" src="{% static '../static/logo-w-bg.svg'%}" /></strong></em></p>

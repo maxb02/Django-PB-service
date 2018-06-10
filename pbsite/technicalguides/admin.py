@@ -4,23 +4,17 @@ from .models import Guide
 from .models import News
 from reversion.admin import VersionAdmin
 
-class GuideAdmin(admin.ModelAdmin):
+@admin.register(Guide)
+class GuideAdmin(VersionAdmin):
     list_display = ('title', 'device', 'updated_date')
     list_filter = ('device', 'updated_date', )
 
-@admin.register(Guide)
-class YourModelAdmin(VersionAdmin, GuideAdmin):
-    pass
-
-
-class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title','type', 'published_date')
-    list_filter = ('type', 'published_date')
 
 @admin.register(News)
-class YourModelAdmin(VersionAdmin, NewsAdmin):
-    pass
+class YourModelAdmin(VersionAdmin):
+    list_display = ('title', 'type', 'published_date')
+    list_filter = ('type', 'published_date')
 
 @admin.register(Device)
-class YourModelAdmin(VersionAdmin):
+class DeviceAdmin(VersionAdmin):
     pass

@@ -6,32 +6,22 @@ from .models import Email
 from .models import Link
 
 
-class PhoneNumberAdmin(admin.ModelAdmin):
+@admin.register(PhoneNumber)
+class PhoneNumberlAdmin(VersionAdmin):
     list_display = ('number', 'country',)
     list_filter = ('country',)
 
-@admin.register(PhoneNumber)
-class YourModelAdmin(VersionAdmin, PhoneNumberAdmin):
-    pass
-
-class CountryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
 
 @admin.register(Country)
-class YourModelAdmin(VersionAdmin, CountryAdmin):
-    pass
+class CountryAdmin(VersionAdmin):
+    list_display = ('name',)
 
-class EmailAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email')
 
 @admin.register(Email)
-class YourModelAdmin(VersionAdmin, EmailAdmin):
-    pass
+class EmailAdmin(VersionAdmin):
+    list_display = ('name', 'email')
 
-class LinkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url')
 
 @admin.register(Link)
-class YourModelAdmin(VersionAdmin, LinkAdmin):
-    pass
-
+class LinkAdmin(VersionAdmin):
+    list_display = ('name', 'url')
