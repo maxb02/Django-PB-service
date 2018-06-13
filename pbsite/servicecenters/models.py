@@ -19,4 +19,4 @@ class ServiceCenter(models.Model):
     ))
 
     def __str__(self):
-        return '{}, {}, {}'.format(self.company_name, self.country, self.city)
+        return self.company_name
