@@ -8,6 +8,7 @@ from django.conf.urls import include
 
 
 urlpatterns = [
+    url(r'', include('main.urls')),
     url(r'', include('technicalguides.urls')),
     url(r'', include('contacts.urls')),
     url(r'', include('sncheck.urls')),

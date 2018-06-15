@@ -1,4 +1,4 @@
-{% extends 'technicalguides/base.html' %}
+{% extends 'main/base.html' %}
 {% block title %} Home PB Service {% endblock %}
 {% load auth_extras %}
 
@@ -36,19 +36,19 @@
 	<div class='container custom'>
 		<h2>Last updates:</h2>
 
-            {% if request.user.is_superuser or request.user|has_group:"moderator" %}
+            {% if request.user|has_group:"moderator" %}
 		<div class="card-deck">
-            {% for new_guide in guides %}
+            {% for nguide in guides|slice:"4" %}
 			<div class="card">
-				<a class="newslink" href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}">
+				<a class="newslink" href="{% url 'guide' device_name=nguide.device.name title=nguide.title  %}">
 					<h4 class="card-title">
 						<div class="card-header">
-							{{ new_guide.title }}
+							{{ nguide.title }}
 						</div>
 					</h4>
-					<img class="card-img-top" width='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
+					<img class="card-img-top" width='362' src="{{ nguide.device.img.url }}" alt="Card image cap">
 					<div class="card-footer">
-						<small class="text-muted">{{ new_guide.updated_date | naturaltime }}</small>
+						<small class="text-muted">{{ nguide.updated_date | naturaltime }}</small>
 					</div>
 				</a>
 			</div>
@@ -56,17 +56,17 @@
 		</div>
                 {% else %}
                 <div class="card-deck">
-                {% for new_guide in last_update_guides %}
+                {% for guide in   groups_guides|slice:"4" %}
                 <div class="card">
-				<a class="newslink" href="{% url 'guide' device_name=new_guide.device.name title=new_guide.title  %}">
+				<a class="newslink" href="{% url 'guide' device_name=guide.device.name title=guide.title  %}">
 					<h4 class="card-title">
 						<div class="card-header">
-							{{ new_guide.title }}
+							{{ guide.title }}
 						</div>
 					</h4>
-					<img class="card-img-top" width='362' src="{{ new_guide.device.img.url }}" alt="Card image cap">
+					<img class="card-img-top" width='362' src="{{ guide.device.img.url }}" alt="Card image cap">
 					<div class="card-footer">
-						<small class="text-muted">{{ new_guide.updated_date | naturaltime }}</small>
+						<small class="text-muted">{{ guide.updated_date | naturaltime }}</small>
 					</div>
 				</a>
 
