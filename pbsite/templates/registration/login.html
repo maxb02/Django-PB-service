@@ -1,10 +1,61 @@
-{% block title %}Login{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
 
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static '../static/css/bootstrap.css'%}" />
+	<link rel="stylesheet" href="{% static '../static/css/font-awesome.min.css'%}" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static '../static/css/login.css'%}" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700&amp;subset=cyrillic-ext,latin-ext">
+
+</head>
+
+<body>
+
+<div class="container logo">
+	<img src="{% static '../static/logo-w-bg.svg'%}" width="400">
+	<p class="logo-s text-right">Service</p>
+</div>
+<div class='container'>
+	<div class="card custom-bg">
+		<h5 class="card-title">
+			<div class="card-header custom-header-bg text-light">
+				<i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> Sign in:
+			</div>
+		</h5>
+		<div class="card-body">
+
+			<form class="form-signin" method="POST" action="/login/" >
+			{% csrf_token %}
+    <div class="form-group row">
+      <div class="input-group mb-2 mb-sm-0">
+		<div class="input-group-addon"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i></div>
+		<input type="text" class="form-control" name="username"  placeholder="Login" required="" autofocus="" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="input-group mb-2 mb-sm-0">
+		<div class="input-group-addon"><i class="fa fa-key fa-lg" aria-hidden="true"></i></div>
+        <input type="password" class="form-control" name="password" placeholder="Password"  required="" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <button type="submit" class="btn btn-lg btn-block custom-header-bg text-light">Sign in</button>
+        {% if form.errors %}
+        <p>Invalid user or password</p>
+        {% endif %}
+    </div>
   </form>
-{% endblock %}
+
+		</div>
+		<div class="card-footer custom-header-bg text-light"></div>
+	</div>
+</div>
+</body>
+</html>
