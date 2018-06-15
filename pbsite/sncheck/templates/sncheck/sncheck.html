@@ -64,8 +64,7 @@
 						<tr>
 							<td>Color</td> <td>{{ data.colorEng }}</td>
 						</tr>
-                            {% load auth_extras %}
-                            {% if request.user.is_superuser or request.user|has_group:"moderator" %}
+                            {% if request.user.is_staff %}
                          <tr>
                             <td>Manufacturer</td> <td>{{ data.manufacturer }}</td>
                          </tr>

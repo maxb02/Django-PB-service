@@ -61,9 +61,8 @@
 			<li class="nav-item">
 				<a class="nav-link text-light text-lg-left" href="/contacts"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i> {% trans "Contacts" %} &nbsp;</a>
 			</li>
-			{% load auth_extras %}
 			{% trans "Admin Section" as Admin_Section %}
-			{% if request.user.is_superuser or request.user|has_group:"moderator" %}
+			{% if request.user.is_staff %}
 			<li class="nav-item">
 				<a class="nav-link text-light text-lg-left" href="/admin/"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i> {{ Admin_Section }} &nbsp;</a>
 			</li>

@@ -1,5 +1,5 @@
 {% extends 'technicalguides/../../../main/templates/main/base.html' %}#}
-
+{% block title %} {{ device_name }}|{{ guide.title }} {% endblock %}
 {% block body %}
     {% load staticfiles %}
 	<script src="{% static '../static/js/guide.js'%}" ></script>

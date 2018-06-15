@@ -1,6 +1,5 @@
 {% extends 'main/base.html' %}
 {% block title %} Home PB Service {% endblock %}
-{% load auth_extras %}
 
 {% block body %}
 {% load staticfiles %}
@@ -8,7 +7,7 @@
 <div class="container-fluid">
 <div class='container custom'>
 {% load humanize %}
- {% if request.user.is_superuser or request.user|has_group:"moderator" %}
+ {% if request.user.is_staff %}
 	<div class='container custom'>
 		<h2>News:</h2>
 
@@ -36,7 +35,7 @@
 	<div class='container custom'>
 		<h2>Last updates:</h2>
 
-            {% if request.user|has_group:"moderator" %}
+            {% if request.user.is_staff %}
 		<div class="card-deck">
             {% for nguide in guides|slice:"4" %}
 			<div class="card">
