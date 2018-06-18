@@ -1,6 +1,12 @@
 {% extends 'technicalguides/../../../main/templates/main/base.html' %}
 {% block title %} Serial Check PB Service {% endblock %}
 
+{%  load i18n  %}
+
+
+{% trans "Submit" as Submit %}
+
+
 
 {% block body %}
 {% load staticfiles %}
@@ -10,12 +16,12 @@
 	<div class='container custom'>
 		<div class="card custom-bg">
 			<h5><div class="card-header text-center text-light custom-header-bg">
-				<b>Check Serial Number</b>
+				<b>{% trans 'Serial Check' %}</b>
 			</div></h5>
 			<div class="card-body">
 				<form class="form-sn" action="/sncheck" method="POST" target="_parent">
                     {% csrf_token %}
-					<div class="form-group row">
+                    <div class="form-group row">
 						<div class="input-group mb-2 mb-sm-0">
 							<div class="input-group-addon"><i class="fa fa-barcode fa-lg" aria-hidden="true"></i> &nbsp; Serial Number: </div>
 							<input class="form-control" type="text" name="sn" placeholder="sn" required value={{ serial_number }}  >
@@ -24,9 +30,15 @@
 					<div class="form-group row">
 						<button type="submit" class="btn btn-block custom-header-bg text-light" type="submit" value="Submit"><strong>Submit</strong></button>
 					</div>
+
 				</form>
 			<hr />
             {% if serial_number %}
+
+
+
+
+
 		<table class="table table-striped card-text">
 			 <tbody>
 				</tr>
@@ -34,9 +46,9 @@
 					{% if is_valid == 'Erorr' %}
 						<td colspan="2" class="table-danger text-center text-danger rounded"><h3>Request from validator erorr</h3><td>
 					{% elif is_valid == True %}
-						<td>SN is valided</td>  <td>Yes</td>
+						<td>{% trans 'SN is valided'%}</td>  <td>{% trans 'Yes' %}</td>
 					{% else %}
-						<td>SN is valided</td> <td>No</td>
+						<td>{% trans 'SN is valided'%}</td> <td>{% trans 'No' %}</td>
 					{% endif %}
 					<tr>
 					{% if device_info == 'Erorr' %}
@@ -45,28 +57,28 @@
 						<td>No info in shipments</td>
 					{% else %}
 						{% for data in device_info %}
-							<td>Device</td> <td>{{ data.device }}</td>
+							<td>{% trans 'Device' %}</td> <td>{{ data.device }}</td>
 						</tr>
                          <tr>
-                            <td>Model</td> <td>{{ data.model }}</td>
+                            <td>{% trans 'Model' %}</td> <td>{{ data.model }}</td>
 						</tr>
 						<tr>
-							<td>Production Date</td> <td>{{ data.month }}.{{ data.year }}</td>
+							<td>{% trans 'Production Date' %}</td> <td>{{ data.month }}.{{ data.year }}</td>
 						</tr>
                          <tr>
-							<td>Shipping Date</td> <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
+							<td>{% trans 'Shipping Date' %}</td> <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
 						</tr>
 						<tr>
-							<td>Region</td> <td>{{ data.countryEng }}</td>
+							<td>{% trans 'Region' %}</td> <td>{{ data.countryEng }}</td>
 						</tr>
-                            <td>Country</td> <td>{{ data.partnerCountry }}</td>
+                            <td>{% trans 'Country' %}</td> <td>{{ data.partnerCountry }}</td>
 						</tr>
 						<tr>
-							<td>Color</td> <td>{{ data.colorEng }}</td>
+							<td>{% trans 'Color' %}</td> <td>{{ data.colorEng }}</td>
 						</tr>
                             {% if request.user.is_staff %}
                          <tr>
-                            <td>Manufacturer</td> <td>{{ data.manufacturer }}</td>
+                            <td>{% trans 'Manufacturer' %}</td> <td>{{ data.manufacturer }}</td>
                          </tr>
                             {% endif %}
 

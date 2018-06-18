@@ -1,79 +1,93 @@
 {% extends 'main/base.html' %}
 {% block title %} Home PB Service {% endblock %}
 
+{% load i18n %}
+
+
+
 {% block body %}
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static '../static/css/index.css'%}" />
-<div class="container-fluid">
-<div class='container custom'>
-{% load humanize %}
- {% if request.user.is_staff %}
-	<div class='container custom'>
-		<h2>News:</h2>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/index.css' %}"/>
+    <div class="container-fluid">
+        <div class='container custom'>
+            {% load humanize %}
 
-        {% for item in news %}
-		<div class="{{ item.type | safe}}" role="alert">
-        <h4>{{ item.title }}</h4>
-			{{ item.text | safe}}
-            </div>
-         {% endfor %}
-	</div>
+            {% trans "News" as News %}
+            {% trans "Last updates" as Last_updates %}
+            {% trans "Devices" as Devices %}
 
-     {% else %}
-     <div class='container custom'>
-		<h2>News:</h2>
-
-        {% for item in group_news %}
-		<div class="{{ item.type | safe}}" role="alert">
-        <h4>{{ item.title }}</h4>
-			{{ item.text | safe}}
-            </div>
-     {% endfor %}
-{% endif %}
+            <h2>{{ News }}:</h2>
+            <div class='container custom'>
+                {% if request.user.is_staff %}
 
 
-	<div class='container custom'>
-		<h2>Last updates:</h2>
 
-            {% if request.user.is_staff %}
-		<div class="card-deck">
-            {% for nguide in guides|slice:"4" %}
-			<div class="card">
-				<a class="newslink" href="{% url 'guide' device_name=nguide.device.name title=nguide.title  %}">
-					<h4 class="card-title">
-						<div class="card-header">
-							{{ nguide.title }}
-						</div>
-					</h4>
-					<img class="card-img-top" width='362' src="{{ nguide.device.img.url }}" alt="Card image cap">
-					<div class="card-footer">
-						<small class="text-muted">{{ nguide.updated_date | naturaltime }}</small>
-					</div>
-				</a>
-			</div>
-            {% endfor %}
-		</div>
+                    {% for item in news %}
+                        <div class="{{ item.type | safe }}" role="alert">
+                            <h4>{{ item.title }}</h4>
+                            {{ item.text | safe }}
+                        </div>
+                    {% endfor %}
+                    </div>
+
                 {% else %}
-                <div class="card-deck">
-                {% for guide in   groups_guides|slice:"4" %}
-                <div class="card">
-				<a class="newslink" href="{% url 'guide' device_name=guide.device.name title=guide.title  %}">
-					<h4 class="card-title">
-						<div class="card-header">
-							{{ guide.title }}
-						</div>
-					</h4>
-					<img class="card-img-top" width='362' src="{{ guide.device.img.url }}" alt="Card image cap">
-					<div class="card-footer">
-						<small class="text-muted">{{ guide.updated_date | naturaltime }}</small>
-					</div>
-				</a>
 
-			</div>
-                {% endfor %}
-{% endif %}
 
-	</div>
-</div>
+                    {% for item in group_news %}
+                        <div class="{{ item.type | safe }}" role="alert">
+                        <h4>{{ item.title }}</h4>
+                        {{ item.text | safe }}
+
+                    {% endfor %}
+                {% endif %}
+                </div>
+
+            <div class='container custom'>
+                <h2>{{ Last_updates }}:</h2>
+
+                {% if request.user.is_staff %}
+                    <div class="card-deck">
+                        {% for guide in guides|slice:"4" %}
+                            <div class="card">
+                                <a class="newslink"
+                                   href="{% url 'guide' device_name=guide.device.name title=guide.title %}">
+                                    <h4 class="card-title">
+                                        <div class="card-header">
+                                            {{ guide.title }}
+                                        </div>
+                                    </h4>
+                                    <img class="card-img-top" width='362' src="{{ guide.device.img.url }}"
+                                         alt="Card image cap">
+                                    <div class="card-footer">
+                                        <small class="text-muted">{{ guide.updated_date | naturaltime }}</small>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="card-deck">
+                    {% for guide in   groups_guides|slice:"4" %}
+                        <div class="card">
+                            <a class="newslink"
+                               href="{% url 'guide' device_name=guide.device.name title=guide.title %}">
+                                <h4 class="card-title">
+                                    <div class="card-header">
+                                        {{ guide.title }}
+                                    </div>
+                                </h4>
+                                <img class="card-img-top" width='362' src="{{ guide.device.img.url }}"
+                                     alt="Card image cap">
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ guide.updated_date | naturaltime }}</small>
+                                </div>
+                            </a>
+
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                </div>
+            </div>
 
 {% endblock %}

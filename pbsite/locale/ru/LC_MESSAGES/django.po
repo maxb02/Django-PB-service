@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-20 11:51+0300\n"
+"POT-Creation-Date: 2018-06-18 11:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,48 +20,108 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\pbservicesite\settings.py:119
-msgid "English"
-msgstr ""
-
-#: .\pbservicesite\settings.py:120
-msgid "Russian"
-msgstr ""
-
-#: .\technicalguides\templates\technicalguides\base.html:23
+#: main/templates/main/base.html:44
 msgid "Home"
 msgstr "Главная"
 
-#: .\technicalguides\templates\technicalguides\base.html:24
+#: main/templates/main/base.html:46 main/templates/main/index.html:17
 msgid "Devices"
 msgstr "Устройства"
 
-#: .\technicalguides\templates\technicalguides\base.html:25
+#: main/templates/main/base.html:47 sncheck/templates/sncheck/sncheck.html:5
 msgid "Serial Check"
 msgstr "Проверка серийного номера"
 
-#: .\technicalguides\templates\technicalguides\base.html:38
+#: main/templates/main/base.html:62
 msgid "Contacts"
 msgstr "Контакты"
 
-#: .\technicalguides\templates\technicalguides\base.html:39
-msgid "Registration request"
-msgstr "Запрос регистрации"
-
-#: .\technicalguides\templates\technicalguides\base.html:44
+#: main/templates/main/base.html:64
 msgid "Admin Section"
 msgstr "Администрирование"
 
-#: .\technicalguides\templates\technicalguides\base.html:54
+#: main/templates/main/base.html:75
 msgid "Wellcome"
 msgstr "Приветствую"
 
-#: .\technicalguides\templates\technicalguides\base.html:55
+#: main/templates/main/base.html:76
 msgid " Log-out"
 msgstr "Выйти"
 
-#: .\technicalguides\templates\technicalguides\base.html:56
+#: main/templates/main/base.html:77
 msgid " Log-in"
 msgstr "Войти"
 
+#: main/templates/main/index.html:15
+msgid "News"
+msgstr "Новости"
 
+#: main/templates/main/index.html:16
+msgid "Last updates"
+msgstr "Последние обновления"
+
+#: pbservicesite/settings.py:106
+msgid "English"
+msgstr "Английский"
+
+#: pbservicesite/settings.py:107
+msgid "Russian"
+msgstr "Русский"
+
+#: sncheck/templates/sncheck/sncheck.html:6
+#, fuzzy
+#| msgid "Serial Check"
+msgid "Serial Number"
+msgstr "Серийный Номер"
+
+#: sncheck/templates/sncheck/sncheck.html:7
+msgid "Submit"
+msgstr "Отправить"
+
+#: sncheck/templates/sncheck/sncheck.html:48
+#: sncheck/templates/sncheck/sncheck.html:50
+msgid "SN is valided"
+msgstr "Серийный номер валидный"
+
+#: sncheck/templates/sncheck/sncheck.html:48
+msgid "Yes"
+msgstr "Да"
+
+#: sncheck/templates/sncheck/sncheck.html:50
+msgid "No"
+msgstr "Нет"
+
+#: sncheck/templates/sncheck/sncheck.html:59
+msgid "Device"
+msgstr "Устройство"
+
+#: sncheck/templates/sncheck/sncheck.html:62
+msgid "Model"
+msgstr "Модель"
+
+#: sncheck/templates/sncheck/sncheck.html:65
+msgid "Production Date"
+msgstr "Дата производства"
+
+#: sncheck/templates/sncheck/sncheck.html:68
+msgid "Shipping Date"
+msgstr "Дата отгрузки"
+
+#: sncheck/templates/sncheck/sncheck.html:71
+msgid "Region"
+msgstr "Регион"
+
+#: sncheck/templates/sncheck/sncheck.html:73
+msgid "Country"
+msgstr "Страна"
+
+#: sncheck/templates/sncheck/sncheck.html:76
+msgid "Color"
+msgstr "Цвет"
+
+#: sncheck/templates/sncheck/sncheck.html:80
+msgid "Manufacturer"
+msgstr "Производитель"
+
+#~ msgid "Registration request"
+#~ msgstr "Запрос регистрации"
