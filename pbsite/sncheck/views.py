@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .sncheck import sn_shipments, sn_validator, region_ceker, region_mistmatch_notifier, serial_number_check_journal
@@ -21,3 +22,26 @@ def serialcheck(request):
                                                         })
     else:
         return render(request, 'sncheck/sncheck.html')
+
+
+@login_required
+def snchecklist(request):
+    if request.method == 'POST':
+        serial_numbers = request.POST['serial_numbers'].replace(' ', '')
+        serial_numbers_list = serial_numbers.strip().upper().splitlines()
+        devices_info_list = []
+        for serial_number in serial_numbers_list:
+            is_valid = sn_validator(serial_number)
+            device_info = sn_shipments(serial_number)
+            devices_info_list.append({
+                'serial_number': serial_number,
+                'is_valid': is_valid,
+                'device_info': device_info,
+            })
+
+        return render(request, 'sncheck/snchecklist.html', {'devices_info_list': devices_info_list,
+                                                            'serial_numbers': serial_numbers})
+
+    return render(request, 'sncheck/snchecklist.html')
+
+

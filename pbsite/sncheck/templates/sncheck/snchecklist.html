@@ -1,0 +1,81 @@
+{% extends 'technicalguides/../../../main/templates/main/base.html' %}
+{% block title %} Serial Check PB Service {% endblock %}
+{% block body %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static '../static/css/sncheck.css'%}" />
+
+<div class="container-fluid">
+	<div class='container custom'>
+		<div class="card custom-bg">
+			<h5><div class="card-header text-center text-light custom-header-bg">
+				<b>Serial Numbers List Check</b>
+			</div></h5>
+			<div class="card-body">
+				<form class="form-sn" action="/snchecklist" method="POST" target="_parent">
+                    {% csrf_token %}
+                    <div class="form-group row">
+						<div class="input-group mb-2 mb-sm-0">
+							<div class="input-group-addon"><i class="fa fa-barcode fa-lg" aria-hidden="true"></i> &nbsp; Serial Numbers: </div>
+							<textarea class="form-control" name="serial_numbers" id="exampleFormControlTextarea1" rows="10 ">{{ serial_numbers }}</textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<button type="submit" class="btn btn-block custom-header-bg text-light" type="submit" value="Submit"><strong>Submit</strong></button>
+					</div>
+
+				</form>
+            </div>
+        {% if serial_numbers %}
+<table class="table table-striped card-text">
+     <tbody>
+        </tr>
+        <tr>
+            <th>Serial Number</th>
+            <th>Is Valid</th>
+            <th>Device</th>
+            <th>Production Date</th>
+            <th>Shipping Date</th>
+            <th>Region</th>
+            <th>Country</th>
+            <th>Color</th>
+            <th>Manufacturer</th>
+        </tr>
+        {% for info in devices_info_list %}
+                <tr>
+                {% if info.device_info == False %}
+                     <td>{{ info.serial_number }}</td>
+                            {% if info.is_valid == True %}
+                                <td>Yes</td>
+                            {% elif info.is_valid == False %}
+                                <td>No</td>
+                                {% endif %}
+                    <td colspan="7">No info in shipments</td>
+                    {% else %}
+                        {% for data in info.device_info %}
+                            <td>{{ info.serial_number }}</td>
+                            {% if info.is_valid == True %}
+                                <td>Yes</td>
+                            {% elif info.is_valid == True %}
+                                <td>No</td>
+                            {% endif %}
+                            <td>{{ data.device }}</td>
+                            <td>{{ data.month }}.{{ data.year }}</td>
+                            <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
+                            <td>{{ data.countryEng }}</td>
+                            <td>{{ data.partnerCountry }}</td>
+                            <td>{{ data.colorEng }}</td>
+                            <td>{{ data.manufacturer }}</td>
+                        {% endfor %}
+                {% endif %}
+                </td>
+
+        {% endfor %}
+</tr>
+			</tbody>
+		</table>
+        {% endif %}
+			<div class="card-footer custom-header-bg"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}

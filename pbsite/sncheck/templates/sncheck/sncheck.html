@@ -31,12 +31,12 @@
 						<button type="submit" class="btn btn-block custom-header-bg text-light" type="submit" value="Submit"><strong>Submit</strong></button>
 					</div>
 
+{% if request.user.is_staff %}
+<a href="/snchecklist" class="btn btn-success" role="button">Check List of SN</a>
+{% endif %}
 				</form>
 			<hr />
             {% if serial_number %}
-
-
-
 
 
 		<table class="table table-striped card-text">
