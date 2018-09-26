@@ -1,23 +1,22 @@
 <p>Dear Partner,</p>
 
-<p>Here is the result of serial number checking out procedure, which was made upon the PocketBook service portal</p>
+Here is the result of serial number checking out procedure, which was made upon the PocketBook service portal<br>
 
-<p><a href="http://service.pocketbook-int.com/sncheck" target="_blank">http://service.pocketbook-int.com/sncheck</a></p>
+<a href="http://service.pocketbook-int.com/sncheck" target="_blank">http://service.pocketbook-int.com/sncheck</a><br>
 
-<p>under your account credentials {{ user.get_username }}</p>
+under your account credentials {{ user.get_username }}<br>
 
-<p>Device: <strong>{{ device_data.device }} {{ device_data.model }}&nbsp; </strong></p>
+Device: <strong>{{ device_data.device }} {{ device_data.model }}&nbsp; </strong><br>
 
-<p><strong>{{ serial_number }}</strong></p>
+<strong>{{ serial_number }}</strong><br>
 
-<p>Maintance of this device can <strong>NOT</strong> be fulfilled on a warranty basis within the terretory of your region {% for group in user.groups.all %} {{ group }} {% endfor %}.</p>
+Maintance of this device can <strong>NOT</strong> be fulfilled on a warranty basis within the terretory of your region {% for group in user.groups.all %} {{ group }} {% endfor %}.<br>
 
-<p>Please send the scan-copy of customers POP (proof of purchse) to&nbsp;<a href="mailto:warranty@pocketbook-int.com?subject=Region%20Mismatch%20{{ serial_number }}">warranty@pocketbook-int.com</a>.</p>
+Please send the scan-copy of customers POP (proof of purchse) to&nbsp;<a href="mailto:warranty@pocketbook-int.com?subject=Region%20Mismatch%20{{ serial_number }}">warranty@pocketbook-int.com</a>.<br>
 
-<p>Please contact your service coordinator, if needed, in order to get special Document for clarifuing reasons for the warranty refusal to the end user (Customer).</p>
+Please contact your service coordinator, if needed, in order to get special Document for clarifuing reasons for the warranty refusal to the end user (Customer).<br>
 
 <p>Sincerly yours,</p>
 
-<p><em><strong>PocketBook Team</strong></em></p>
-{% load staticfiles %}
-<p><em><strong><img alt="" src="{% static '../static/logo-w-bg.svg'%}" /></strong></em></p>
+><em><strong>PocketBook Team</strong></em><br>
+

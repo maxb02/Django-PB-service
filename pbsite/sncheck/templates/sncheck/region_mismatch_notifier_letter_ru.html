@@ -1,23 +1,21 @@
 <p>Добрый день,</p>
 
-<p>Через сервисный портал</p>
+Через сервисный портал<br>
 
-<p><a href="http://service.pocketbook-int.com/sncheck" target="_blank">http://service.pocketbook-int.com/sncheck</a></p>
+<a href="http://service.pocketbook-int.com/sncheck" target="_blank">http://service.pocketbook-int.com/sncheck</a><br>
 
-<p>Под вашей учетной записью&nbsp;{{ user.get_username }} выполнялась проверка серийного номера устройства:</p>
+Под вашей учетной записью&nbsp;{{ user.get_username }} выполнялась проверка серийного номера устройства:<br>
 
-<p><strong>{{ device_data.device }} {{ device_data.model }}</strong></p>
+<strong>{{ device_data.device }} {{ device_data.model }}</strong><br>
 
-<p><strong>{{ serial_number }}</strong></p>
+<strong>{{ serial_number }}</strong><br>
 
-<p>Данное устройство гарантийному обслуживанию на территории вашего региона&nbsp;{% for group in user.groups.all %} {{ group }} {% endfor %} не подлежит.</p>
+Данное устройство гарантийному обслуживанию на территории вашего региона&nbsp;{% for group in user.groups.all %} {{ group }} {% endfor %} не подлежит.<br>
 
-<p>Просим предоставить скан копии заполненного гарантийного талона и чека (либо другого документа, подтверждающего покупку) на адрес <a href="mailto:warranty@pocketbook-int.com?subject=Region%20Mismatch%20{{ serial_number }}">warranty@pocketbook-int.com</a>.</p>
+Просим предоставить скан копии заполненного гарантийного талона и чека (либо другого документа, подтверждающего покупку) на адрес <a href="mailto:warranty@pocketbook-int.com?subject=Region%20Mismatch%20{{ serial_number }}">warranty@pocketbook-int.com</a>.<br>
 
-<p>В случае необходимости, у своего сервисного координатора, вы можете запросить специальный Акт для выдачи конечному потребителю с разъяснением причин отказа.</p>
+В случае необходимости, у своего сервисного координатора, вы можете запросить специальный Акт для выдачи конечному потребителю с разъяснением причин отказа.<br>
 
 <p><em>С уважением, </em></p>
 
-<p><em><strong>Команда PocketBook</strong></em></p>
-{% load staticfiles %}
-<p><em><strong><img alt="" src="{% static '../static/logo-w-bg.svg'%}" /></strong></em></p>
+<em><strong>Команда PocketBook</strong></em>
