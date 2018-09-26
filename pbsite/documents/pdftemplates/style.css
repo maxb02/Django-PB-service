@@ -1,0 +1,29 @@
+.document{
+	font-size: 9pt;
+	font-family: 'Times New Roman'
+}
+
+.title{
+	text-align: center;
+}
+
+table{
+	font-size: 9pt;
+	font-family: 'Times New Roman'
+}
+.logo{
+	float: left;
+	width: auto;
+	height: 45px;
+}
+
+.servicename{
+	text-align: right;
+	/*float: right;*/
+}
+
+
+
+.personalinfo{
+	text-align: right;
+}

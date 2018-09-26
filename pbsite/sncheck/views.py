@@ -1,4 +1,4 @@
-import re
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .sncheck import sn_shipments, sn_validator, region_ceker, region_mistmatch_notifier, serial_number_check_journal
