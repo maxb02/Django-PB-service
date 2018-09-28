@@ -1,24 +1,38 @@
 from django.db import models
+from django.conf import settings
+import datetime
+
+def upload_path_handler(self, filename):
+    return "document/{serial_number}/{date}/{file}".format(serial_number=self.serial_number,
+                                                         date=datetime.datetime.now().strftime ("%Y.%m.%d"),
+                                                         file=filename)
 
 class Act(models.Model):
     serial_number = models.CharField(max_length=50, verbose_name ='Serial Number')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name ='User Name')
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name ='User Name')
     filling_date = models.DateTimeField(blank=True, auto_now_add=True)
     purchase_date = models.DateTimeField(verbose_name ='Purchase Date')
     received_date = models.DateTimeField(verbose_name ='Received Date')
-    conclusion_date = models.DateTimeField(null=True, verbose_name='Conclusion Date')
-    is_presale = models.BooleanField(verbose_name='It is presale')
-    photo = models.ImageField(null=True, blank=True)
+    conclusion_date = models.DateTimeField(null=True, blank=True, verbose_name='Conclusion Date')
+    is_presale = models.BooleanField(verbose_name='It is presale?')
+    document_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler, verbose_name='Photo of warranty card or receipt')
+    screen_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler, verbose_name='Photo of screen')
+    defect_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler, verbose_name='Photo of defect')
     client_name = models.CharField(max_length=50, verbose_name ='Client Name')
     seller_name= models.CharField(max_length=50, verbose_name='Seller Name')
-    type = models.CharField(max_length=100, verbose_name='Type',choices=(
-                                                        ('MBD', 'Money Back Document'),
-                                                        ('OOW', 'Out of Warranty'),
-                                                        ('NFF', 'No Fault Found'),
-                                                        ('RM', 'Region Mismatch')
+    document_type = models.CharField(max_length=100, verbose_name='Type',choices=(
+                                                        ('money_back_document', 'Money Back Document'),
+                                                        ('out_of_warranty', 'Out of Warranty'),
+                                                        ('no_fault_found', 'No Fault Found'),
+                                                        ('region_mismatch', 'Region Mismatch')
                                                     ))
     status = models.CharField(max_length=50, verbose_name='Status',choices=(
                                                         ('in_process', 'In Process'),
                                                         ('confirmed', 'Confirmed'),
                                                         ('rejected', 'Rejected'),
                                                     ))
+
+    def save_model(self, request, obj, form, change):
+        obj.added_by = request.user
+        super().save_model(request, obj, form, change)
+
