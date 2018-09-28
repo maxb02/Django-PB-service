@@ -19,11 +19,16 @@ table{
 
 .servicename{
 	text-align: right;
-	/*float: right;*/
+
+}
+
+.bottom{
+	/*position: relative: bottom;*/
 }
 
 
 
-.personalinfo{
-	text-align: right;
-}
+/*.personalinfo{*/
+	/*text-align: right;*/
+/*}*/
+
