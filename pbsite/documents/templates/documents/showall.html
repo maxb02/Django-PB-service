@@ -1,0 +1,15 @@
+<table border="1">
+    <tr>
+         <th>Service</th><Type><th>Status</th><th>Serial Number</th><th>Purchase Date</th><th>Received Date</th><th>Presale</th><th>Customers Claim</th><th>Identified Malfunction</th>
+    </tr>
+    {% for act in acts %}
+    <tr>
+       <td>{{ act.created_by.service_center }}</td><td>{{ act.status }}</td>
+
+
+        <td><a href="/documents/act/{{ act.id }}" style="display:block;">&nbsp;"{{ act.serial_number }}</a></td>
+        <td>{{ act.purchase_date }}</td><td>{{ act.received_date }}</td>
+        <td>{{ act.is_presale }}</td><td>{{ act.customers_claim }}</td><td>{{ act.identified_malfunction }}</td>
+    </tr>
+    {% endfor %}
+</table>

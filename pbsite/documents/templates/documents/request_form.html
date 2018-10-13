@@ -1,14 +1,12 @@
-{#{% extends 'technicalguides/../../../main/templates/main/base.html' %}#}
 
 
-{% block content %}
 
-<form action="" method="post">
+ <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
     {{ form.as_p}}
+        <input type="submit" value="Submit" />
     </table>
-    <input type="submit" value="Submit" />
+
 
 </form>
-{% endblock %}

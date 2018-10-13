@@ -9,8 +9,9 @@ def upload_path_handler(self, filename):
 
 class Act(models.Model):
     serial_number = models.CharField(max_length=20, verbose_name ='Serial Number')
-    added_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name ='User Name')
-    filling_date = models.DateTimeField(blank=True, auto_now_add=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True,related_name='created_by', verbose_name ='User Name')
+    accepted_or_declined_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,blank=True,related_name='accepted_or_declined_by', verbose_name ='Accepted or declined by')
+    filling_date = models.DateTimeField( auto_now_add=True)
     purchase_date = models.DateField(verbose_name ='Purchase Date')
     received_date = models.DateField(verbose_name ='Received Date')
     conclusion_date = models.DateTimeField(null=True, blank=True, verbose_name='Conclusion Date')
@@ -33,17 +34,23 @@ class Act(models.Model):
                                                         ('no_fault_found', 'No Fault Found'),
                                                         ('region_mismatch', 'Region Mismatch')
                                                     ))
-    status = models.CharField(max_length=50, verbose_name='Status',choices=(
+    status = models.CharField(max_length=50, verbose_name='Status', default='in_process',choices=(
                                                         ('in_process', 'In Process'),
                                                         ('confirmed', 'Confirmed'),
                                                         ('rejected', 'Rejected'),
                                                     ))
 
-    comment_of_engineer =
+    comment_of_engineer = models.TextField(max_length=140, null=True, blank=True, verbose_name='Comment of Engineer')
+    comment_of_manager = models.TextField(max_length=140, null=True, blank=True,verbose_name='Comment of Manager')
+
+    def __str__(self):
+        return self.serial_number
 
 
+class SerialNumberPrefix(models.Model):
+    model = models.CharField(max_length=50, verbose_name='Device name')
+    prefix= models.CharField(max_length=3, verbose_name='Serial Number Prefix')
 
-    def save_model(self, request, obj, form, change):
-        obj.added_by = request.user
-        super().save_model(request, obj, form, change)
+    def __str__(self):
+        return self.prefix
 

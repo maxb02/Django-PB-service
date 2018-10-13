@@ -7,7 +7,7 @@ class ActRequestForm(ModelForm):
     class Meta:
         model = Act
         fields = ('serial_number', 'received_date', 'purchase_date', 'is_presale', 'customers_claim', 'identified_malfunction', 'document_type',
-                  'client_name', 'seller_name', 'warranty_card_photo', 'receipt_photo', 'screen_photo', 'defect_photo')
+                  'client_name', 'seller_name', 'warranty_card_photo', 'receipt_photo', 'screen_photo', 'defect_photo', 'comment_of_engineer', )
         widgets = {
             'received_date': forms.DateInput(format=('%d/%m/%Y'),
                                              attrs={'class': 'form-control', 'placeholder': 'Select a date',
