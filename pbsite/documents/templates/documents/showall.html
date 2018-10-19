@@ -10,6 +10,9 @@
         <td><a href="/documents/act/{{ act.id }}" style="display:block;">&nbsp;"{{ act.serial_number }}</a></td>
         <td>{{ act.purchase_date }}</td><td>{{ act.received_date }}</td>
         <td>{{ act.is_presale }}</td><td>{{ act.customers_claim }}</td><td>{{ act.identified_malfunction }}</td>
+    {% if act.status == 'confirmed' %}
+        <td><a href="/documents/pdf/{{ act.id }}" style="display:block;">&nbsp;link</a><td/>
+    {% endif %}
     </tr>
     {% endfor %}
 </table>

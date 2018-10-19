@@ -11,8 +11,10 @@
     </tr>
 </table>
 
+
+
 {% if request.user.is_staff %}
-    <form method="POST" class="post-form">
+    <form method="POST" class="post-form" action='/documents/act/{{ act.id }}'>
         {% csrf_token %}
 
          <button name="accept" type="submit" value="accept">Accept</button>

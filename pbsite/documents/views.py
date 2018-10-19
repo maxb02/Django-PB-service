@@ -38,10 +38,24 @@ def showall(request):
 @login_required
 def act(request, id):
     act = Act.objects.get(id=id)
+    if request.method == 'POST':
+        if 'accept' in request.POST:
+            act.status = 'confirmed'
+            act.save()
+            return redirect('showall')
+        elif 'reject' in request.POST:
+            act.status = 'rejected'
+            act.save()
+            return redirect('showall')
     if request.user.is_staff:
-        return render(request, 'documents/act.html', {'act': act,})
+        return render(request, 'documents/act.html', {'act': act})
 
     elif act.created_by == request.user:
         return render(request, 'documents/act.html', {'act': act})
+
+def getpdf(request, id):
+    act = Act.objects.get(id=id)
+    if act.status == 'confirmed':
+        return render(request, 'documents/pdftemplates/outofwaranty.html')
 
 
