@@ -30,12 +30,13 @@
 					<div class="form-group row">
 						<button type="submit" class="btn btn-block custom-header-bg text-light" type="submit" value="Submit"><strong>Submit</strong></button>
 					</div>
+                </form>
 
 {% if request.user.is_staff %}
 <a href="/snchecklist" class="btn btn-success" role="button">Check List of SN</a>
 {% endif %}
-				</form>
-			<hr />
+
+			<hr>
             {% if serial_number %}
 
 

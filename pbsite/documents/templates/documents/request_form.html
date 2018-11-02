@@ -1,12 +1,27 @@
+{% extends 'main/base.html' %}
+{%  load i18n  %}
+{% block title %}{% trans 'Request Document' %}{% endblock %}
 
+{% block body %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/sncheck.css' %}"/>
 
+    <div class="container-fluid">
+        <div class='container custom'>
+            <div class="card custom-bg">
+                <h5>
+                    <div class="card-header text-center text-light custom-header-bg">
+                        <b>{% trans 'Input device info' %}</b>
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
 
- <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table>
-    {{ form.as_p}}
-        <input type="submit" value="Submit" />
-    </table>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
+                                    value="Submit"><strong>{% trans 'Send request' %}</strong></button>
+                        </form>
 
-
-</form>
+{% endblock %}

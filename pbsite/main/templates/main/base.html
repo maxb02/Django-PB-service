@@ -45,7 +45,7 @@
 			</li>
             {% trans "Devices" as Devices %}
             {% trans "Serial Check" as Serial_Check %}
-
+            {% trans "Documents" as Documents %}
             {% if user.is_authenticated %}
 			<li class="nav-item dropdown">
 				<a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-tablet fa-lg" aria-hidden="true"></i> {{ Devices }}</a>
@@ -58,6 +58,11 @@
 			<li class="nav-item">
 				<a class="nav-link text-light text-lg-left" href="/sncheck"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i> {{ Serial_Check }} &nbsp;</a>
 			</li>
+                {% if request.user.service_center or request.user.is_staff %}
+                <li>
+                <a class="nav-link text-light text-lg-left" href="/documents/showall"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ Documents }} &nbsp;</a>
+                </li>
+                    {% endif %}
 			<li class="nav-item">
 				<a class="nav-link text-light text-lg-left" href="/contacts"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i> {% trans "Contacts" %} &nbsp;</a>
 			</li>

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'reversion',
     'ckeditor_uploader',
+    'easy_pdf',
     'users',
     'servicecenters',
     'main',

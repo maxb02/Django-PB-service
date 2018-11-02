@@ -1,0 +1,61 @@
+    @font-face {
+            font-family: ClearSans;
+            src: url("/static/fonts/clearsans.ttf");
+        font-style: normal;
+        }
+    @font-face {
+        font-family: ClearSans;
+        src: url("/static/fonts/clearsansbold.ttf");
+        font-style: normal;
+        font-weight: bold;
+        }
+
+        html {
+            font-family: ClearSans;
+            font-size: 9pt;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.title{
+	text-align: center;
+}
+
+.logo{
+	float: left;
+	width: auto;
+	/*height: 45px;*/
+}
+
+.servicename{
+	text-align: right;
+
+}
+
+/*.bottom{*/
+  /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+/*}*/
+
+th, td{
+    text-align: left;
+}
+
+/*.personalinfo{*/
+	/*text-align: right;*/
+/*}*/
+
