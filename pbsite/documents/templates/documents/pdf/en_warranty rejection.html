@@ -40,8 +40,15 @@
         <b>Customer's claim:</b><br>
         {{ act.customers_claim }}
         <br>
-        <b>Visual inspection:</b><br>
-        {{ act.visual_defect }}
+         <b>Visual inspection:</b><br>
+        {% for visual_defect in act.visual_defect.all %}
+            {{ visual_defect }},
+        {% endfor %}
+        <br>
+        <b>Accessories:</b><br>
+        {% for accessories in act.accessories.all %}
+            {{ accessories }},
+        {% endfor %}
         <br>
         <b>Conclusion: :</b><br>
         {{ act.conclusion }}

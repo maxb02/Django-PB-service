@@ -27,7 +27,7 @@
     <div>
         <div class="title">
 
-            <p><b> STATEMENT OF  MANUFACTURER DEFECT ACCEPTENCE {{ act.get_number }} </b></p>
+            <p><b> STATEMENT OF MANUFACTURER DEFECT ACCEPTENCE {{ act.get_number }} </b></p>
             <br>
         </div>
         <p><b>Number of claim protocol: </b> {{ act.protocol_number }} </p>
@@ -41,8 +41,14 @@
         {{ act.customers_claim }}
         <br>
         <b>Visual inspection:</b><br>
-        {{ act.visual_defect }}
+        {% for visual_defect in act.visual_defect.all %}
+            {{ visual_defect }},
+        {% endfor %}
         <br>
+        <b>Accessories:</b><br>
+        {% for accessories in act.accessories.all %}
+            {{ accessories }},
+        {% endfor %}
         <b>Conclusion: :</b><br>
         {{ act.conclusion }}
         <br>

@@ -14,7 +14,7 @@ class Accessory(models.Model):
     item = models.CharField(max_length=20)
 
     def __str__(self):
-        self.itemgit
+        return self.item
 
 class VisualDefect(models.Model):
     defect = models.CharField(max_length=20)
@@ -63,8 +63,8 @@ class Act(models.Model):
     client_name = models.CharField(max_length=50, verbose_name =_('Client Name'))
     document_type = models.CharField(max_length=100, verbose_name='Type',choices=DOCUMENT_TYPE_CHOICES)
     status = models.CharField(max_length=50, verbose_name='Status', default='in_process',choices=STATUS_CHOICES)
-    accessories = models.ManyToManyField('Accessory', null=True, blank=True)
-    visual_defect = models.ManyToManyField('VisualDefect', null=True, blank=True)
+    accessories = models.ManyToManyField('Accessory', )
+    visual_defect = models.ManyToManyField('VisualDefect',)
     comment_of_engineer = models.TextField(max_length=140, null=True, blank=True, verbose_name=_('Comment of Engineer'))
     comment_of_manager = models.TextField(max_length=140, null=True, blank=True,verbose_name=_('Comment of Manager'))
 
@@ -77,6 +77,5 @@ class Act(models.Model):
 
     def get_model(self):
         return SerialNumberPrefix.objects.filter(prefix=self.serial_number[:3]).first()
-
 
 
