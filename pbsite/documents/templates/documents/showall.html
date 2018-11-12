@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-{%  load i18n  %}
+{% load i18n %}
 {% block title %} {% trans "Documents" %} {% endblock %}
 
 {% block body %}
@@ -21,13 +21,14 @@
                             {% if request.user.is_staff %}
                                 <th>{% trans 'Service' %}</th>
                             {% endif %}
-                        <th>{% trans 'Serial Number' %}</th>
+                            <th>{% trans 'Device' %}</th>
+                            <th>{% trans 'Serial Number' %}</th>
                             <th>{% trans 'Type' %}</th>
 
                             <th>{% trans 'Purchase Date' %}</th>
                             <th>{% trans 'Received Date' %}</th>
                             <th>{% trans 'Status' %}</th>
-                            <td>{% trans 'Detail' %}</td>
+                            <th>{% trans 'Detail' %}</th>
                         </tr>
                         {% for act in acts %}
                             <tr>
@@ -35,23 +36,28 @@
                                     <td>{{ act.created_by.service_center }}</td>
                                 {% endif %}
 
-                              <td>{{ act.serial_number }}</td>
-
-                                <td>{{ act.document_type }}</td>
-
-
+                                <td>{{ act.get_model }}</td>
+                                <td>{{ act.serial_number }}</td>
+                                {% if act.document_type == 'warranty_rejection' %}
+                                    <td>{% trans 'Warranty rejection' %}</td>
+                                {% elif act.document_type == 'technical_inspection' %}
+                                    <td>{% trans 'Technical inspection' %}</td>
+                                {% elif act.document_type == 'defect_acceptance' %}
+                                    <td>{% trans 'Defect acceptance' %}</td>
+                                {% endif %}
                                 <td>{{ act.purchase_date }}</td>
                                 <td>{{ act.received_date }}</td>
 
-                             {% if act.status == 'in_process' %}
+                                {% if act.status == 'in_process' %}
                                     <td>{% trans 'In Process' %}<i class="fa fa-refresh fa-spin fa-fw"></i></td>
                                 {% elif act.status == 'confirmed' %}
-                                    <td><a href="/documents/pdf/{{ act.id }}" style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
+                                    <td><a href="/documents/pdf/{{ act.id }}"
+                                           style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
                                             class="fa fa-download"></i></a></td>
                                 {% elif act.status == 'rejected' %}
                                     <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i></td>
                                 {% endif %}
-                                        <td><a href="/documents/act/{{ act.id }}"><i class="fa fa-info"></i></a></td>
+                                <td><a href="/documents/act/{{ act.id }}"><i class="fa fa-info"></i></a></td>
 
                             </tr>
                         {% endfor %}

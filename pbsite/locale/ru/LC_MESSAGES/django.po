@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-01 12:42+0200\n"
+"POT-Creation-Date: 2018-11-12 16:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,35 +29,31 @@ msgid "Statement of manufacturer technical inspection"
 msgstr "Акт технической экспертизы устройства"
 
 #: documents/models.py:36
-msgid "Statement of  manufacturer defect acceptence"
+msgid "Statement of  manufacturer defect acceptance"
 msgstr "Акт списания устройства"
 
-#: documents/models.py:39 documents/templates/documents/showall.html:47
+#: documents/models.py:39 documents/templates/documents/showall.html:52
 msgid "In Process"
 msgstr "Обрабатывается"
 
-#: documents/models.py:40 documents/templates/documents/showall.html:49
+#: documents/models.py:40 documents/templates/documents/showall.html:55
 msgid "Confirmed"
 msgstr "Подтвержден"
 
-#: documents/models.py:41 documents/templates/documents/showall.html:52
+#: documents/models.py:41 documents/templates/documents/showall.html:58
 msgid "Rejected"
 msgstr "Отклонен"
 
 #: documents/models.py:44 documents/templates/documents/act.html:34
-#: documents/templates/documents/showall.html:24
+#: documents/templates/documents/showall.html:25
 msgid "Serial Number"
 msgstr "Серийный Номер"
 
 #: documents/models.py:45
-#, fuzzy
-#| msgid "Serial Number"
 msgid "Protocol Number"
 msgstr "Серийный Номер"
 
 #: documents/models.py:46
-#, fuzzy
-#| msgid "User"
 msgid "User Name"
 msgstr "Пользователь"
 
@@ -66,24 +62,20 @@ msgid "Accepted or declined by"
 msgstr "Подтвердил или отклонил"
 
 #: documents/models.py:49 documents/templates/documents/act.html:37
-#: documents/templates/documents/showall.html:27
+#: documents/templates/documents/showall.html:28
 msgid "Purchase Date"
 msgstr "Дата продажи"
 
 #: documents/models.py:50 documents/templates/documents/act.html:40
-#: documents/templates/documents/showall.html:28
+#: documents/templates/documents/showall.html:29
 msgid "Received Date"
 msgstr "Дата получения"
 
 #: documents/models.py:51
-#, fuzzy
-#| msgid "Production Date"
 msgid "Conclusion Date"
-msgstr "Дата производства"
+msgstr "Дата заключения"
 
 #: documents/models.py:52
-#, fuzzy
-#| msgid "Presale"
 msgid "It is presale"
 msgstr "Предпродажный"
 
@@ -97,36 +89,50 @@ msgstr "Заявленные дефекты (со слов Потребител�
 
 #: documents/models.py:56
 msgid "Conclusion"
-msgstr ""
+msgstr "Заключение"
 
 #: documents/models.py:57
 msgid "Photo of warranty card"
-msgstr ""
+msgstr "Фото гарантийного талона"
 
 #: documents/models.py:58
 msgid "Photo of receipt"
-msgstr ""
+msgstr "Фото чека"
 
 #: documents/models.py:59
 msgid "Photo of screen"
-msgstr ""
+msgstr "Фото экрана"
 
 #: documents/models.py:60
 msgid "Photo of defect"
-msgstr ""
+msgstr "Фото дефекта"
 
 #: documents/models.py:63
-#| msgid "User"
 msgid "Client Name"
 msgstr "Имя клиента"
+
+#: documents/models.py:64 documents/templates/documents/showall.html:26
+msgid "Type"
+msgstr "Тип"
+
+#: documents/models.py:65
+#| msgid "Status"
+msgid "Satatus"
+msgstr "Статус"
+
+#: documents/models.py:66
+msgid "Accessory"
+msgstr "Аксессуары"
+
+#: documents/models.py:67
+msgid "Visual Defect"
+msgstr "Косметические дефекты"
 
 #: documents/models.py:68
 msgid "Comment of Engineer"
 msgstr "Комментарии инженера"
 
 #: documents/models.py:69
-#, fuzzy
-#| msgid "Comment of Engineer"
 msgid "Comment of Manager"
 msgstr "Комментарии инженера"
 
@@ -136,14 +142,14 @@ msgid "Document"
 msgstr "Документ"
 
 #: documents/templates/documents/act.html:20
-#: documents/templates/documents/showall.html:29
+#: documents/templates/documents/showall.html:30
 msgid "Status"
 msgstr "Статус"
 
 #: documents/templates/documents/act.html:23
 #: documents/templates/documents/showall.html:22
 msgid "Service"
-msgstr "Устройство"
+msgstr "Сервисный центр"
 
 #: documents/templates/documents/act.html:26
 msgid "User"
@@ -186,15 +192,28 @@ msgstr "Документы"
 msgid "All Your Documents"
 msgstr "Все ваши документы"
 
-#: documents/templates/documents/showall.html:25
-msgid "Type"
-msgstr "Тип"
+#: documents/templates/documents/showall.html:24
+#: sncheck/templates/sncheck/sncheck.html:61
+msgid "Device"
+msgstr "Устройство"
 
-#: documents/templates/documents/showall.html:30
+#: documents/templates/documents/showall.html:31
 msgid "Detail"
 msgstr "Подробно"
 
-#: documents/templates/documents/showall.html:61
+#: documents/templates/documents/showall.html:42
+msgid "Warranty rejection"
+msgstr "Отказ в ГО"
+
+#: documents/templates/documents/showall.html:44
+msgid "Technical inspection"
+msgstr "Техническая экспертиза"
+
+#: documents/templates/documents/showall.html:46
+msgid "Defect acceptance"
+msgstr "Списание"
+
+#: documents/templates/documents/showall.html:67
 msgid "Request Document Form"
 msgstr "Форма запроса документа"
 
@@ -210,23 +229,23 @@ msgstr "Устройства"
 msgid "Serial Check"
 msgstr "Проверка серийного номера"
 
-#: main/templates/main/base.html:65
+#: main/templates/main/base.html:67
 msgid "Contacts"
 msgstr "Контакты"
 
-#: main/templates/main/base.html:67
+#: main/templates/main/base.html:69
 msgid "Admin Section"
 msgstr "Администрирование"
 
-#: main/templates/main/base.html:78
+#: main/templates/main/base.html:80
 msgid "Wellcome"
 msgstr "Приветствую"
 
-#: main/templates/main/base.html:79
+#: main/templates/main/base.html:81
 msgid " Log-out"
 msgstr "Выйти"
 
-#: main/templates/main/base.html:80
+#: main/templates/main/base.html:82
 msgid " Log-in"
 msgstr "Войти"
 
@@ -238,11 +257,11 @@ msgstr "Новости"
 msgid "Last updates"
 msgstr "Последние обновления"
 
-#: pbservicesite/settings.py:108
+#: pbservicesite/settings.py:109
 msgid "English"
 msgstr "Английский"
 
-#: pbservicesite/settings.py:109
+#: pbservicesite/settings.py:110
 msgid "Russian"
 msgstr "Русский"
 
@@ -262,10 +281,6 @@ msgstr "Да"
 #: sncheck/templates/sncheck/sncheck.html:52
 msgid "No"
 msgstr "Нет"
-
-#: sncheck/templates/sncheck/sncheck.html:61
-msgid "Device"
-msgstr "Устройство"
 
 #: sncheck/templates/sncheck/sncheck.html:64
 msgid "Model"

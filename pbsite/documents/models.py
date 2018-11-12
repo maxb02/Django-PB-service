@@ -33,7 +33,7 @@ class Act(models.Model):
     DOCUMENT_TYPE_CHOICES = (
                     ('warranty_rejection', _('Statement of manufacturer warranty rejection')),
                     ('technical_inspection', _('Statement of manufacturer technical inspection')),
-                    ('defect_acceptence', _('Statement of  manufacturer defect acceptence')),
+                    ('defect_acceptance', _('Statement of  manufacturer defect acceptance')),
                     )
     STATUS_CHOICES = (
                                                         ('in_process', _('In Process')),
@@ -53,7 +53,7 @@ class Act(models.Model):
 
     customers_claim = models.CharField(max_length = 50, verbose_name =_('Customers Claim'))
     identified_malfunction = models.CharField(max_length = 50, verbose_name =_('Identified Malfunction'))
-    conclusion = models.CharField(max_length = 240, null=True, verbose_name =_('Conclusion'))
+    conclusion = models.TextField(max_length = 240, null=True, verbose_name =_('Conclusion'))
     warranty_card_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler, verbose_name=_('Photo of warranty card'))
     receipt_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler,verbose_name=_('Photo of receipt'))
     screen_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler, verbose_name=_('Photo of screen'))
@@ -61,10 +61,10 @@ class Act(models.Model):
 
 
     client_name = models.CharField(max_length=50, verbose_name =_('Client Name'))
-    document_type = models.CharField(max_length=100, verbose_name='Type',choices=DOCUMENT_TYPE_CHOICES)
-    status = models.CharField(max_length=50, verbose_name='Status', default='in_process',choices=STATUS_CHOICES)
-    accessories = models.ManyToManyField('Accessory', )
-    visual_defect = models.ManyToManyField('VisualDefect',)
+    document_type = models.CharField(max_length=100, verbose_name=_('Type'),choices=DOCUMENT_TYPE_CHOICES)
+    status = models.CharField(max_length=50, verbose_name=_('Satatus'), default='in_process',choices=STATUS_CHOICES)
+    accessories = models.ManyToManyField('Accessory', blank=True, verbose_name=_('Accessory'))
+    visual_defect = models.ManyToManyField('VisualDefect', blank=True, verbose_name=_('Visual Defect'))
     comment_of_engineer = models.TextField(max_length=140, null=True, blank=True, verbose_name=_('Comment of Engineer'))
     comment_of_manager = models.TextField(max_length=140, null=True, blank=True,verbose_name=_('Comment of Manager'))
 
