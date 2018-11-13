@@ -51,7 +51,7 @@ msgstr "Серийный Номер"
 
 #: documents/models.py:45
 msgid "Protocol Number"
-msgstr "Серийный Номер"
+msgstr "Номер протокола"
 
 #: documents/models.py:46
 msgid "User Name"

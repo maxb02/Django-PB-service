@@ -52,8 +52,7 @@
                                     <td>{% trans 'In Process' %}<i class="fa fa-refresh fa-spin fa-fw"></i></td>
                                 {% elif act.status == 'confirmed' %}
                                     <td><a href="/documents/pdf/{{ act.id }}"
-                                           style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
-                                            class="fa fa-download"></i></a></td>
+                                           style="display:block;">&nbsp;{% trans 'Confirmed' %} <i class="fa fa-download"></i></a></td>
                                 {% elif act.status == 'rejected' %}
                                     <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i></td>
                                 {% endif %}
