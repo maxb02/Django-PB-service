@@ -85,7 +85,7 @@ msgstr "Жалоба потребителя"
 
 #: documents/models.py:55 documents/templates/documents/act.html:49
 msgid "Identified Malfunction"
-msgstr "Заявленные дефекты (со слов Потребителя)"
+msgstr "Результат диагностики (выявленные дефекты)"
 
 #: documents/models.py:56
 msgid "Conclusion"
@@ -177,7 +177,7 @@ msgstr "Запросить документ"
 
 #: documents/templates/documents/request_form.html:14
 msgid "Input device info"
-msgstr "Введите информацыю о устройстве"
+msgstr "Введите необходимые данные"
 
 #: documents/templates/documents/request_form.html:24
 msgid "Send request"

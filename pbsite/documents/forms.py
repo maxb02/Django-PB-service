@@ -6,8 +6,8 @@ from .models import Act
 class ActRequestForm(ModelForm):
     class Meta:
         model = Act
-        fields = ('serial_number', 'client_name', 'protocol_number', 'received_date', 'purchase_date', 'is_presale',
-                  'customers_claim', 'identified_malfunction', 'document_type', 'conclusion',
+        fields = ('document_type','serial_number', 'client_name', 'protocol_number', 'received_date', 'purchase_date', 'is_presale',
+                  'customers_claim', 'identified_malfunction',  'conclusion',
                   'accessories', 'visual_defect', 'comment_of_engineer', 'warranty_card_photo', 'receipt_photo',
                   'screen_photo', 'defect_photo',  )
         widgets = {
