@@ -59,7 +59,7 @@ def act(request, id):
 
     elif act.created_by == request.user:
         return render(request, 'documents/act.html', {'act': act})
-
+@login_required
 def getpdf(request, id):
     act = Act.objects.get(id=id)
     if act.status == 'confirmed' and (act.created_by.service_center == request.user.service_center or request.user.is_staff):
