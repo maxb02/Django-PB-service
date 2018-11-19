@@ -28,6 +28,7 @@ def sn_shipments(sn):
         if device_info:
             for element in device_info:
                 element['shippingDate'] = datetime.datetime.strptime(element['shippingDate'], "%Y-%m-%d %H:%M:%S")
+                element['productionDate'] = datetime.datetime.strptime(element['month'] + element['year'], '%m%Y')
             return device_info
         else:
             return False
@@ -72,3 +73,11 @@ def serial_number_check_journal(serial_number, user, is_valid, is_region_match):
     if is_region_match == 'Erorr':
         is_region_match = None
     SerialNumberCheckJournal.objects.create(serial_number= serial_number, user= user, is_valid = is_valid, is_region_match= is_region_match)
+
+def is_not_old_device(device_info):
+    # return true if the device is not older than 900 days from product and shipping dates
+    for element in device_info:
+        if (datetime.datetime.today() - element['shippingDate']).days > 900 or (
+                datetime.datetime.today() - element['productionDate']).days > 900:
+            return False
+    return True

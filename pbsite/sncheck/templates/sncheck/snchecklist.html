@@ -39,6 +39,7 @@
             <th>Country</th>
             <th>Color</th>
             <th>Manufacturer</th>
+            <th>Checked by</th>
         </tr>
         {% for info in devices_info_list %}
                 <tr>
@@ -49,7 +50,7 @@
                             {% elif info.is_valid == False %}
                                 <td>No</td>
                                 {% endif %}
-                    <td colspan="7">No info in shipments</td>
+                    <td colspan="8">No info in shipments</td>
                     {% else %}
                         {% for data in info.device_info %}
                             <td>{{ info.serial_number }}</td>
@@ -59,13 +60,23 @@
                                 <td>No</td>
                             {% endif %}
                             <td>{{ data.device }}</td>
-                            <td>{{ data.month }}.{{ data.year }}</td>
+                            <td>{{ data.productionDate | date:"m.Y" }}</td>
                             <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
                             <td>{{ data.countryEng }}</td>
                             <td>{{ data.partnerCountry }}</td>
                             <td>{{ data.colorEng }}</td>
                             <td>{{ data.manufacturer }}</td>
-                        {% endfor %}
+
+
+                            {% endfor %}
+                             <td> {% if info.serial_number_journal.all %}
+                                        {% for journal in info.serial_number_journal.all %}
+                                            {{ journal.user.service_center }} {{ journal.user.get_full_name }},
+                                        {% endfor %}
+                                 {% else %}
+                                          -
+                                    {% endif %}
+                            </td>
                 {% endif %}
                 </td>
 

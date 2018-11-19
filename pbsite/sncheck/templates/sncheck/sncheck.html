@@ -32,9 +32,6 @@
 					</div>
                 </form>
 
-{% if request.user.is_staff %}
-<a href="/snchecklist" class="btn btn-success" role="button">Check List of SN</a>
-{% endif %}
 
 			<hr>
             {% if serial_number %}
@@ -64,10 +61,10 @@
                             <td>{% trans 'Model' %}</td> <td>{{ data.model }}</td>
 						</tr>
 						<tr>
-							<td>{% trans 'Production Date' %}</td> <td>{{ data.month }}.{{ data.year }}</td>
+							<td>{% trans 'Production Date' %}</td> <td>{{ data.productionDate | date:"m.Y" }} ({{ data.productionDate | timesince }})</td>
 						</tr>
                          <tr>
-							<td>{% trans 'Shipping Date' %}</td> <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
+							<td>{% trans 'Shipping Date' %}</td> <td>{{ data.shippingDate | date:"d.m.Y" }} ({{ data.shippingDate | timesince }})</td>
 						</tr>
 						<tr>
 							<td>{% trans 'Region' %}</td> <td>{{ data.countryEng }}</td>
