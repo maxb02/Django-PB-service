@@ -41,14 +41,22 @@
         {{ act.customers_claim }}
         <br>
         <b>Внешний осмотр:</b><br>
+        {% if act.visual_defect.all %}
         {% for visual_defect in act.visual_defect.all %}
             {{ visual_defect }},
         {% endfor %}
+        {% else %}
+        -
+        {% endif %}
         <br>
         <b>Комплектность:</b><br>
-        {% for accessories in act.accessories.all %}
-            {{ accessories }},
+        {% if act.scope_of_supply.all %}
+        {% for item in act.scope_of_supply.all %}
+            {{ item }},
         {% endfor %}
+        {% else %}
+        -
+        {% endif %}
         <br>
         <b>Причина выдачи:</b><br>
         {{ act.conclusion }}

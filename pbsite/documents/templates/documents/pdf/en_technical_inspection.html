@@ -40,8 +40,22 @@
         {{ act.customers_claim }}
         <br>
         <b>Visual inspection:</b><br>
-        {{ act.visual_defect }}
+        {% if act.visual_defect.all %}
+        {% for visual_defect in act.visual_defect.all %}
+            {{ visual_defect }},
+        {% endfor %}
+        {% else %}
+        -
+        {% endif %}
         <br>
+        <b>Scope of supply:</b><br>
+        {% if act.scope_of_supply %}
+        {% for item in act.scope_of_supply.all %}
+            {{ item }},
+        {% endfor %}
+        {% else %}
+        -
+        {% endif %}
         <b>Conclusion: :</b><br>
         {{ act.conclusion }}
         <br>
