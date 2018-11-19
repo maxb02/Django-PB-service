@@ -11,13 +11,13 @@ def upload_path_handler(self, filename):
 
 
 class ScopeOfSupply(models.Model):
-    item = models.CharField(max_length=20)
+    item = models.CharField(max_length=50)
 
     def __str__(self):
         return self.item
 
 class VisualDefect(models.Model):
-    defect = models.CharField(max_length=20)
+    defect = models.CharField(max_length=50)
 
     def __str__(self):
         return self.defect
