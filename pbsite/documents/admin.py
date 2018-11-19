@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from .models import Act, SerialNumberPrefix, VisualDefect, Accessory
+from .models import Act, SerialNumberPrefix, VisualDefect, ScopeOfSupply
 
 @admin.register(Act)
 class ActAdmin(admin.ModelAdmin):
@@ -12,9 +12,9 @@ class SerialNumberPrefixAdmin(admin.ModelAdmin):
     pass
 
 
-class AccessoryAdmin(TranslationAdmin):
+class ScopeOfSupplyAdmin(TranslationAdmin):
     pass
-admin.site.register(Accessory, AccessoryAdmin)
+admin.site.register(ScopeOfSupply, ScopeOfSupplyAdmin)
 
 class VisualDefectAdmin(TranslationAdmin):
     pass

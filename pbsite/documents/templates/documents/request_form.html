@@ -1,10 +1,12 @@
 {% extends 'main/base.html' %}
 {%  load i18n  %}
+{% load bootstrap3 %}
+
 {% block title %}{% trans 'Request Document' %}{% endblock %}
 
 {% block body %}
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static '../static/css/sncheck.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/documents.css' %}"/>
 
     <div class="container-fluid">
         <div class='container custom'>
@@ -16,14 +18,19 @@
                 </h5>
                 <div class="card-body">
                     <div class="form-group row">
+                        <div class="form-position">
 
                         <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <div class="form-group">
-                            {{ form.as_p }}
+{#                            {{ form.as_p }}#}
+{#                                {% bootstrap_form form  layout='horizontal' label_class = 'control-label' %}#}
+
+                                {% bootstrap_form form  %}
+
                             <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
                                     value="Submit"><strong>{% trans 'Send request' %}</strong></button>
-                            </div>
                         </form>
+                        </div>
+                        <script>
 
 {% endblock %}

@@ -10,7 +10,7 @@ def upload_path_handler(self, filename):
                                                          file=filename)
 
 
-class Accessory(models.Model):
+class ScopeOfSupply(models.Model):
     item = models.CharField(max_length=20)
 
     def __str__(self):
@@ -36,10 +36,10 @@ class Act(models.Model):
                     ('defect_acceptance', _('Statement of  manufacturer defect acceptance')),
                     )
     STATUS_CHOICES = (
-                                                        ('in_process', _('In Process')),
-                                                        ('confirmed', _('Confirmed')),
-                                                        ('rejected', _('Rejected')),
-                                                    )
+        ('in_process', _('In Process')),
+        ('confirmed', _('Confirmed')),
+        ('rejected', _('Rejected')),
+    )
 
     serial_number = models.CharField(max_length=20, verbose_name =_('Serial Number'))
     protocol_number = models.CharField(max_length=10, null=True, verbose_name =_('Protocol Number'))
@@ -49,9 +49,9 @@ class Act(models.Model):
     purchase_date = models.DateField(verbose_name =_('Purchase Date'))
     received_date = models.DateField(verbose_name =_('Received Date'))
     conclusion_date = models.DateTimeField(null=True, blank=True, verbose_name=_('Conclusion Date'))
-    is_presale = models.BooleanField(verbose_name=_('It is presale'))
+    is_presale = models.BooleanField(verbose_name=_('Presale'))
 
-    customers_claim = models.CharField(max_length = 50, verbose_name =_('Customers Claim'))
+    customers_claim = models.CharField(max_length = 50, verbose_name =_('Customer Claim'))
     identified_malfunction = models.CharField(max_length = 50, verbose_name =_('Identified Malfunction'))
     conclusion = models.TextField(max_length = 240, null=True, verbose_name =_('Conclusion'))
     warranty_card_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler, verbose_name=_('Photo of warranty card'))
@@ -61,11 +61,11 @@ class Act(models.Model):
 
 
     client_name = models.CharField(max_length=50, verbose_name =_('Client Name'))
-    document_type = models.CharField(max_length=100, verbose_name=_('Type'),choices=DOCUMENT_TYPE_CHOICES)
-    status = models.CharField(max_length=50, verbose_name=_('Satatus'), default='in_process',choices=STATUS_CHOICES)
-    accessories = models.ManyToManyField('Accessory', blank=True, verbose_name=_('Accessory'))
-    visual_defect = models.ManyToManyField('VisualDefect', blank=True, verbose_name=_('Visual Defect'))
-    comment_of_engineer = models.TextField(max_length=140, null=True, blank=True, verbose_name=_('Comment of Engineer'))
+    document_type = models.CharField(max_length=100, verbose_name=_('Document type'),choices=DOCUMENT_TYPE_CHOICES)
+    status = models.CharField(max_length=50, verbose_name=_('Satatus'), default='in_process', choices=STATUS_CHOICES)
+    scope_of_supply = models.ManyToManyField('ScopeOfSupply', blank=True, verbose_name=_('Scope of Supply'))
+    visual_defect = models.ManyToManyField('VisualDefect', blank=True, verbose_name=_('Visual (cosmetic) Defects:'))
+    comment_of_engineer = models.TextField(max_length=140, null=True, blank=True, verbose_name=_('Comments (for PocketBook)'))
     comment_of_manager = models.TextField(max_length=140, null=True, blank=True,verbose_name=_('Comment of Manager'))
 
     def __str__(self):

@@ -16,7 +16,17 @@
                     </div>
                 </h5>
                 <div class="card-body">
-                    <table class="table table-striped card-text">
+                    <table class="table">
+                        <tr>
+                            <th>{% trans 'Document type' %}</th>
+                            {% if act.document_type == 'warranty_rejection' %}
+                                    <td>{% trans 'Statement of manufacturer warranty rejection' %}</td>
+                                {% elif act.document_type == 'technical_inspection' %}
+                                    <td>{% trans 'Statement of manufacturer technical inspection' %}</td>
+                                {% elif act.document_type == 'defect_acceptance' %}
+                                    <td>{% trans 'Statement of  manufacturer defect acceptance' %}</td>
+                                {% endif %}
+                        </tr>
 
                         <tr>
                             <th>{% trans 'Status' %}</th>
@@ -25,43 +35,40 @@
                             {% elif act.status == 'confirmed' %}
                                 <td><a href="/documents/pdf/{{ act.id }}"
                                        style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
-                                        class="fa fa-download"></i></a></td>
+                                        class="fa fa-download"></i></a> {{ act.conclusion_date | date:'d.m.Y' }} ({{ act.conclusion_date | timesince}}) </td>
                             {% elif act.status == 'rejected' %}
-                                <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i></td>
+                                <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i> {{ act.conclusion_date | date:'d.m.Y' }} ({{ act.conclusion_date | timesince}})</td>
                             {% endif %}
                         </tr>
-                        <tr>
-                            <th>{% trans 'Service' %}</th>
-                            <td>{{ act.created_by.service_center }}</td>
-                        </tr>
-                        <tr>
-                            <th>{% trans 'User' %}</th>
-                            <td>{{ act.created_by }}</td>
-                        </tr>
-                        {% if request.user.is_staff %}
-                            <tr>
-                                <th>{% trans 'Accepted or declined by' %}</th>
-                                <td>{{ act.accepted_or_declined_by }}</td>
-                            </tr>
-                        {% endif %}
+                        <th>{% trans 'Device' %}</th> <td>{{ act.get_model }}</td>
                         <tr>
                             <th>{% trans 'Serial Number' %}</th>
                             <td>{{ act.serial_number }}</td>
                         </tr>
                         <tr>
+                            <th>{% trans 'Service' %}</th>
+                            <td>{{ act.created_by.service_center }}, {{ act.created_by.service_center.city }}, {{ act.created_by.get_full_name }}</td>
+                        </tr>
+                        {% if request.user.is_staff %}
+                        {% endif %}
+                        <tr>
+                            <th>{% trans 'Fill Date' %}</th><td>{{ act.filling_date | date:'d.m.Y' }} ({{ act.filling_date | timesince }})</td>
+                        </tr>
+
+                        <tr>
                             <th>{% trans 'Purchase Date' %}</th>
                             {% if not act.is_presale %}
-                            <td>{{ act.purchase_date }} ({{ act.purchase_date | timesince }})</td>
+                            <td>{{ act.purchase_date | date:'d.m.Y' }} ({{ act.purchase_date | timesince }})</td>
                             {% else %}
                             <td>{% trans 'Presale' %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <th>{% trans 'Received Date' %}</th>
-                            <td>{{ act.received_date }} ({{ act.received_date | timesince }})</td>
+                            <td>{{ act.received_date | date:'d.m.Y' }} ({{ act.received_date | timesince }})</td>
                         </tr>
                         <tr>
-                            <th>{% trans 'Customers Claim' %}</th>
+                            <th>{% trans 'Customer Claim' %}</th>
                             <td>{{ act.customers_claim }}</td>
                         </tr>
                         <tr>

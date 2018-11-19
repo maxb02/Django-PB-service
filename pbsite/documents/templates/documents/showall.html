@@ -24,16 +24,16 @@
                             <th>{% trans 'Device' %}</th>
                             <th>{% trans 'Serial Number' %}</th>
                             <th>{% trans 'Type' %}</th>
-
-                            <th>{% trans 'Purchase Date' %}</th>
+                            <th>{% trans 'Fill Date' %}</th>
                             <th>{% trans 'Received Date' %}</th>
+                            <th>{% trans 'Purchase Date' %}</th>
                             <th>{% trans 'Status' %}</th>
                             <th>{% trans 'Detail' %}</th>
                         </tr>
                         {% for act in acts %}
                             <tr>
                                 {% if request.user.is_staff %}
-                                    <td>{{ act.created_by.service_center }}</td>
+                                    <td>{{ act.created_by.service_center }}, {{ act.created_by.service_center.region }}</td>
                                 {% endif %}
 
                                 <td>{{ act.get_model }}</td>
@@ -45,8 +45,10 @@
                                 {% elif act.document_type == 'defect_acceptance' %}
                                     <td>{% trans 'Defect acceptance' %}</td>
                                 {% endif %}
-                                <td>{{ act.purchase_date }}</td>
-                                <td>{{ act.received_date }}</td>
+                                <td>{{ act.filling_date | date:"d.m.Y" }}</td>
+                                <td>{{ act.received_date | date:"d.m.Y" }}</td>
+                                <td>{{ act.purchase_date | date:"d.m.Y" }}</td>
+
 
                                 {% if act.status == 'in_process' %}
                                     <td>{% trans 'In Process' %}<i class="fa fa-refresh fa-spin fa-fw"></i></td>

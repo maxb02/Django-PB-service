@@ -31,7 +31,7 @@ def requestform(request):
 @login_required
 def showall(request):
     if request.user.is_staff:
-        acts = Act.objects.all()
+        acts = Act.objects.all().order_by('filling_date')
         return render(request, 'documents/showall.html', {'acts' : acts})
     else:
         acts = Act.objects.filter(created_by__service_center = request.user.service_center)

@@ -1,9 +1,9 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import Accessory, VisualDefect
+from .models import ScopeOfSupply, VisualDefect
 
 
-@register(Accessory)
-class AccessoryTranslationOptions(TranslationOptions):
+@register(ScopeOfSupply)
+class ScopeOfSupplyTranslationOptions(TranslationOptions):
     fields = ('item',)
 
 @register(VisualDefect)
