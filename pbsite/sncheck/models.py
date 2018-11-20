@@ -27,5 +27,5 @@ class SerialNumberCheckJournal(models.Model):
     def __str__(self):
         return self.serial_number
 
-
-
+    def get_user_full_name(self):
+        return self.user.get_full_name

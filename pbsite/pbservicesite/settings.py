@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_view_permission',
+    # 'admin_view_permission',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'contacts',
     'sncheck',
     'documents',
+    'import_export'
 
 ]
 
