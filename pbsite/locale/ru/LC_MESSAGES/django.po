@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-19 13:56+0200\n"
+"POT-Creation-Date: 2018-11-22 15:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,7 +150,7 @@ msgstr "Статус"
 
 #: documents/templates/documents/act.html:43
 #: documents/templates/documents/showall.html:24
-#: sncheck/templates/sncheck/sncheck.html:61
+#: sncheck/templates/sncheck/sncheck.html:58
 msgid "Device"
 msgstr "Устройство"
 
@@ -189,7 +189,7 @@ msgid "Send request"
 msgstr "Отправить запрос"
 
 #: documents/templates/documents/showall.html:3
-#: main/templates/main/base.html:48
+#: main/templates/main/base.html:57
 msgid "Documents"
 msgstr "Документы"
 
@@ -221,35 +221,35 @@ msgstr "Списание"
 msgid "Request Document Form"
 msgstr "Форма запроса документа"
 
-#: main/templates/main/base.html:44
+#: main/templates/main/base.html:52
 msgid "Home"
 msgstr "Главная"
 
-#: main/templates/main/base.html:46 main/templates/main/index.html:17
+#: main/templates/main/base.html:55 main/templates/main/index.html:17
 msgid "Devices"
 msgstr "Устройства"
 
-#: main/templates/main/base.html:47 sncheck/templates/sncheck/sncheck.html:19
+#: main/templates/main/base.html:56 sncheck/templates/sncheck/sncheck.html:19
 msgid "Serial Check"
 msgstr "Проверка серийного номера"
 
-#: main/templates/main/base.html:67
+#: main/templates/main/base.html:102
 msgid "Contacts"
 msgstr "Контакты"
 
-#: main/templates/main/base.html:69
+#: main/templates/main/base.html:105
 msgid "Admin Section"
 msgstr "Администрирование"
 
-#: main/templates/main/base.html:80
+#: main/templates/main/base.html:117
 msgid "Wellcome"
 msgstr "Приветствую"
 
-#: main/templates/main/base.html:81
+#: main/templates/main/base.html:118
 msgid " Log-out"
 msgstr "Выйти"
 
-#: main/templates/main/base.html:82
+#: main/templates/main/base.html:119
 msgid " Log-in"
 msgstr "Войти"
 
@@ -261,11 +261,11 @@ msgstr "Новости"
 msgid "Last updates"
 msgstr "Последние обновления"
 
-#: pbservicesite/settings.py:110
+#: pbservicesite/settings.py:111
 msgid "English"
 msgstr "Английский"
 
-#: pbservicesite/settings.py:111
+#: pbservicesite/settings.py:112
 msgid "Russian"
 msgstr "Русский"
 
@@ -273,42 +273,46 @@ msgstr "Русский"
 msgid "Submit"
 msgstr "Отправить"
 
-#: sncheck/templates/sncheck/sncheck.html:50
-#: sncheck/templates/sncheck/sncheck.html:52
+#: sncheck/templates/sncheck/sncheck.html:47
+#: sncheck/templates/sncheck/sncheck.html:49
 msgid "SN is valided"
 msgstr "Серийный номер валидный"
 
-#: sncheck/templates/sncheck/sncheck.html:50
+#: sncheck/templates/sncheck/sncheck.html:47
 msgid "Yes"
 msgstr "Да"
 
-#: sncheck/templates/sncheck/sncheck.html:52
+#: sncheck/templates/sncheck/sncheck.html:49
 msgid "No"
 msgstr "Нет"
 
-#: sncheck/templates/sncheck/sncheck.html:64
+#: sncheck/templates/sncheck/sncheck.html:61
 msgid "Model"
 msgstr "Модель"
 
-#: sncheck/templates/sncheck/sncheck.html:67
+#: sncheck/templates/sncheck/sncheck.html:64
 msgid "Production Date"
 msgstr "Дата производства"
 
-#: sncheck/templates/sncheck/sncheck.html:70
+#: sncheck/templates/sncheck/sncheck.html:67
 msgid "Shipping Date"
 msgstr "Дата отгрузки"
 
-#: sncheck/templates/sncheck/sncheck.html:73
+#: sncheck/templates/sncheck/sncheck.html:70
 msgid "Region"
 msgstr "Регион"
 
-#: sncheck/templates/sncheck/sncheck.html:75
+#: sncheck/templates/sncheck/sncheck.html:72
 msgid "Country"
 msgstr "Страна"
 
-#: sncheck/templates/sncheck/sncheck.html:78
+#: sncheck/templates/sncheck/sncheck.html:75
 msgid "Color"
 msgstr "Цвет"
+
+#: sncheck/templates/sncheck/sncheck.html:79
+msgid "Partner"
+msgstr "Партнер"
 
 #: sncheck/templates/sncheck/sncheck.html:82
 msgid "Manufacturer"

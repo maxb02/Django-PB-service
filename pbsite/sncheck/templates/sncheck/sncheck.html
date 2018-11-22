@@ -75,6 +75,9 @@
 							<td>{% trans 'Color' %}</td> <td>{{ data.colorEng }}</td>
 						</tr>
                             {% if request.user.is_staff %}
+                                <tr>
+                                <td>{% trans 'Partner' %}</td><td>{{ data.partner }}</td>
+                                </tr>
                          <tr>
                             <td>{% trans 'Manufacturer' %}</td> <td>{{ data.manufacturer }}</td>
                          </tr>
