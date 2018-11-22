@@ -4,6 +4,8 @@
 
     <title>{{ act.get_number }}</title>
     {% load static %}
+    {% load i18n %}
+    {% language 'ru' %}
     <link rel="stylesheet" href="{% static '/css/pdf.css' %}">
 
 </head>
@@ -109,7 +111,7 @@
         *Претензии по Заключению рассматриваются только в оговоренный период.
 
     </div>
-
+{% endlanguage %}
 
 </body>
 </html>

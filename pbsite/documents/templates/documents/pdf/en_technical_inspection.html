@@ -4,6 +4,8 @@
 
     <title>{{ act.get_number }}</title>
     {% load static %}
+      {% load i18n %}
+    {% language 'en' %}
     <link rel="stylesheet" href="{% static '/css/pdf.css' %}">
 
 </head>
@@ -102,6 +104,6 @@
 
     </div>
 
-
+{% endlanguage %}
 </body>
 </html>

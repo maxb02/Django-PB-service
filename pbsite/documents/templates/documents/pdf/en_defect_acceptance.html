@@ -4,6 +4,8 @@
 
     <title>{{ act.get_number }}</title>
     {% load static %}
+      {% load i18n %}
+    {% language 'en' %}
     <link rel="stylesheet" href="{% static '/css/pdf.css' %}">
 
 </head>
@@ -110,7 +112,7 @@
         *The Conclusion is accepted for consideration by the Manufacturer within 90 days from the date of obtaining.
 
     </div>
-
+{% endlanguage %}
 
 </body>
 </html>
