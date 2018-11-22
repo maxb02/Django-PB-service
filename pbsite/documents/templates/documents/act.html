@@ -35,9 +35,9 @@
                             {% elif act.status == 'confirmed' %}
                                 <td><a href="/documents/pdf/{{ act.id }}"
                                        style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
-                                        class="fa fa-download"></i></a> {{ act.conclusion_date | date:'d.m.Y' }} ({{ act.conclusion_date | timesince}}) </td>
+                                        class="fa fa-download"></i></a> {{ act.conclusion_date | date:'d.m.Y' }} ({{ act.conclusion_date | timesince}}) {% if request.user.is_staff %} {{ act.accepted_or_declined_by.get_full_name }} {% endif %} </td>
                             {% elif act.status == 'rejected' %}
-                                <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i> {{ act.conclusion_date | date:'d.m.Y' }} ({{ act.conclusion_date | timesince}})</td>
+                                <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i> {{ act.conclusion_date | date:'d.m.Y' }} ({{ act.conclusion_date | timesince}}) {% if request.user.is_staff %} {{ act.accepted_or_declined_by.get_full_name }} {% endif %}</td>
                             {% endif %}
                         </tr>
                         <th>{% trans 'Device' %}</th> <td>{{ act.get_model }}</td>
@@ -75,6 +75,9 @@
                             <th>{% trans 'Identified Malfunction' %}</th>
                             <td>{{ act.identified_malfunction }}</td>
                         </tr>
+                    <tr>
+                        <th>{% trans 'Conclusion' %}</th><td>{{ act.conclusion }}</td>
+                    </tr>
                         <tr>
                             <th>{% trans 'Comments' %}</th>
                             <td>{{ act.comment_of_engineer }}</td>
@@ -89,16 +92,16 @@
                     </table>
 
                     {% if act.warranty_card_photo %}
-                        <img src="{{ act.warranty_card_photo.url }}" class="img-rounded" width="120">
+                        <a href="{{ act.warranty_card_photo.url }}" target="_blank"><img src="{{ act.warranty_card_photo.url }}" class="img-rounded" width="120"></a>
                     {% endif %}
                     {% if act.receipt_photo %}
-                        <img src="{{ act.receipt_photo.url }}" class="img-rounded" width="120">
+                        <a href="{{ act.receipt_photo.url }}" target="_blank"><img src="{{ act.receipt_photo.url }}" class="img-rounded" width="120"></a>
                     {% endif %}
                     {% if act.screen_photo %}
-                        <img src="{{ act.screen_photo.url }}" class="img-rounded" width="120">
+                        <a href="{{ act.screen_photo.url }}" target="_blank"><img src="{{ act.screen_photo.url }}" class="img-rounded" width="120"></a>
                     {% endif %}
                     {% if  act.screen_photo %}
-                        <img src="{{ act.defect_photo.url }}" class="img-rounded" width="120">
+                        <a href="{{ act.defect_photo.url }}" target="_blank"></a><img src="{{ act.defect_photo.url }}" class="img-rounded" width="120">
                     {% endif %}
 
                     {% if request.user.is_staff %}
@@ -117,5 +120,7 @@
                             </div>
                         </form>
                     {% endif %}
+
+
 
 {% endblock %}
