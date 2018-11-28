@@ -65,8 +65,8 @@ class Act(models.Model):
     status = models.CharField(max_length=50, verbose_name=_('Satatus'), default='in_process', choices=STATUS_CHOICES)
     scope_of_supply = models.ManyToManyField('ScopeOfSupply', blank=True, verbose_name=_('Scope of Supply'))
     visual_defect = models.ManyToManyField('VisualDefect', blank=True, verbose_name=_('Visual (cosmetic) Defects:'))
-    comment_of_engineer = models.TextField(max_length=140, null=True, blank=True, verbose_name=_('Comments (for PocketBook)'))
-    comment_of_manager = models.TextField(max_length=140, null=True, blank=True,verbose_name=_('Comment of Manager'))
+    comment_of_engineer = models.TextField(max_length=500, null=True, blank=True, verbose_name=_('Comments (for PocketBook)'))
+    comment_of_manager = models.TextField(max_length=500, null=True, blank=True,verbose_name=_('Comment of Manager'))
 
     def __str__(self):
         return self.serial_number
