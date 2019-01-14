@@ -5,7 +5,9 @@ from django.conf.urls.static import url, static
 from django.conf import settings
 from django.conf.urls import include
 
-
+admin.site.site_header = "Pocketbook Service Portal Admin"
+admin.site.site_title = "PB Service Admin Portal"
+admin.site.index_title = "Welcome to Pocketbook Service Portall"
 
 urlpatterns = [
     url(r'', include('main.urls')),
