@@ -45,7 +45,7 @@ class Act(models.Model):
     protocol_number = models.CharField(max_length=10, null=True, verbose_name =_('Protocol Number'))
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True,related_name='created_by', verbose_name =_('User Name'))
     accepted_or_declined_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,blank=True,related_name='accepted_or_declined_by', verbose_name =_('Accepted or declined by'))
-    filling_date = models.DateTimeField( auto_now_add=True)
+    filling_date = models.DateTimeField( auto_now_add=True, verbose_name = _('Fill Date') )
     purchase_date = models.DateField(verbose_name =_('Purchase Date'))
     received_date = models.DateField(verbose_name =_('Received Date'))
     conclusion_date = models.DateTimeField(null=True, blank=True, verbose_name=_('Conclusion Date'))
@@ -72,10 +72,24 @@ class Act(models.Model):
         return self.serial_number
 
 
+    # return the document number
     def get_number(self):
         return '{}{}{}{}'.format(self.serial_number[:5], self.id, self.created_by.id, self.created_by.service_center.id)
+    get_number.short_description = _('Document Number')
 
+    # return the model of the device based on serial number and SN prefix
     def get_model(self):
         return SerialNumberPrefix.objects.filter(prefix=self.serial_number[:3]).first()
+    get_model.short_description = _('Model')
+
+    # return the service center name of the user who created the document
+    def get_service(self):
+        return self.created_by.service_center
+    get_service.short_description = _('Service')
+
+    # return the region of service center who created document
+    def get_region(self):
+        return  self.created_by.service_center.region
+    get_region.short_description = _('Region')
 
 
