@@ -94,6 +94,7 @@
             <li>
                 <a class="nav-link text-light text-lg-left" href="/documents/showall"><i class="fa fa-file-text-o"
                                                                                          aria-hidden="true"></i> {{ Documents }}
+                    <span>{% if documents_in_process and request.user.is_staff %}({{ documents_in_process }}) {% endif %}</span>
                     &nbsp;</a>
             </li>
         {% endif %}

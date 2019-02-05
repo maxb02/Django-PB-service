@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'technicalguides.context_processors.devices_menu',
                 'django.template.context_processors.i18n',
+                'documents.context_processors.documents_in_process'
             ],
         },
     },
