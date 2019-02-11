@@ -12,24 +12,17 @@ a {
     border-radius: 0;
     background-color: #00615b;
 }
-    /* Set white background color, white text and some padding */
 
-}
-
-.dropdown:hover  {
+.dropdown:hover> .dropdown-menu {
   display: block;
     background-color: #00615b;
     color: #00615b;
 
 }
 
-.dropdown-item:hover{
-    background-color: #00998e;
+.dropdown-item:hover, .dropdown-item:focus{
+    background-color: #008c83;
 }
-.dropdown-menu{
-    background-color: #00615b;
-}
-
 
 .container {
 	font-size: 0.8rem;
