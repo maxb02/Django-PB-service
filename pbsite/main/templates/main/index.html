@@ -1,22 +1,21 @@
 {% extends 'main/base.html' %}
-{% block title %} Home PB Service {% endblock %}
 
 {% load i18n %}
+{% load humanize %}
 
+{% block title %} {{ block.super }} {% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}"/>
+{% endblock %}
 
 
 {% block body %}
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static '../static/css/index.css' %}"/>
+
     <div class="container-fluid">
         <div class='container custom'>
-            {% load humanize %}
-
-            {% trans "News" as News %}
-            {% trans "Last updates" as Last_updates %}
-            {% trans "Devices" as Devices %}
-
-            <h2>{{ News }}:</h2>
+            <h2>{% trans "News"%}:</h2>
             <div class='container custom'>
                 {% if request.user.is_staff %}
 
@@ -43,7 +42,7 @@
                 </div>
 
             <div class='container custom'>
-                <h2>{{ Last_updates }}:</h2>
+                <h2>{% trans "Last updates"%}:</h2>
 
                 {% if request.user.is_staff %}
                     <div class="card-deck">

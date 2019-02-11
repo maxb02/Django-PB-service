@@ -4,27 +4,32 @@ body {
         background: white url("../back.jpg");
 		font-family:'Roboto',sans-serif;
 }
+a {
+    color: #00615b;
+}
 .navbar-custom {
     margin-bottom: 0;
     border-radius: 0;
     background-color: #00615b;
 }
     /* Set white background color, white text and some padding */
-footer {
-     background-color: #00615b;
-     color: white;
-     padding: 10px;
-     position: fixed;
-     height: 50px;
-     bottom: 0;
-     width: 100%;
-     align-content: center;
-     text-align: center;
+
 }
 
-.dropdown:hover>.dropdown-menu {
+.dropdown:hover  {
   display: block;
+    background-color: #00615b;
+    color: #00615b;
+
 }
+
+.dropdown-item:hover{
+    background-color: #00998e;
+}
+.dropdown-menu{
+    background-color: #00615b;
+}
+
 
 .container {
 	font-size: 0.8rem;
@@ -37,3 +42,7 @@ footer {
      padding: 15px;  }
      .row.content {height:auto;}
     }
+
+.text-muted {
+  color: #263f38;
+}
