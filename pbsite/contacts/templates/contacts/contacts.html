@@ -1,10 +1,10 @@
-{% extends 'technicalguides/../../../main/templates/main/base.html' %}
-{% block title %} Contacts PB Service {% endblock %}
+{% extends 'main/base.html' %}
+{% block title %} Contacts - {{ block.super }} {% endblock %}
 
 
 {% block body %}
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static '../static/css/contacts.css'%}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css'%}" />
 
 <div class="container" style="width: 65%">
 	<p></p>
