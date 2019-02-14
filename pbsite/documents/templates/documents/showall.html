@@ -1,10 +1,11 @@
 {% extends 'main/base.html' %}
 {% load i18n %}
-{% block title %} {% trans "Documents" %} {% endblock %}
+{% block title %} {% trans "Documents" %} {{ block.super }} {% endblock %}
 
 {% block body %}
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static '../static/css/documents.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/documents.css' %}"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 
     <div class="container-fluid">
         <div class='container custom'>
@@ -14,29 +15,42 @@
                         {% trans 'All Your Documents' %}
                     </div>
                 </h5>
-                <div class="card-body">
 
-                    <table class="table table-striped card-text">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <a class="btn   pull-left" href="/documents/request">
+                            <i class="fas fa-file-signature"></i> {% trans 'Request Document Form' %}</a>
+                    </div>
+
+                    <table id="documents_table" class="table  table-striped table-responsive-xl">
+                    <thead class="custom-header-bg text-light">
                         <tr>
                             {% if request.user.is_staff %}
+                                <th>{% trans 'Region' %}</th>
                                 <th>{% trans 'Service' %}</th>
+
+
                             {% endif %}
                             <th>{% trans 'Device' %}</th>
+                            <th>{% trans 'Document' %}</th>
                             <th>{% trans 'Serial Number' %}</th>
                             <th>{% trans 'Type' %}</th>
                             <th>{% trans 'Fill Date' %}</th>
                             <th>{% trans 'Received Date' %}</th>
                             <th>{% trans 'Purchase Date' %}</th>
                             <th>{% trans 'Status' %}</th>
-                            <th>{% trans 'Detail' %}</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         {% for act in acts %}
                             <tr>
                                 {% if request.user.is_staff %}
-                                    <td>{{ act.created_by.service_center }}, {{ act.created_by.service_center.region }}</td>
+                                    <td>{{ act.created_by.service_center.region }}</td>
+                                    <td>{{ act.created_by.service_center }}</td>
                                 {% endif %}
 
                                 <td>{{ act.get_model }}</td>
+                                <td><a href="/documents/act/{{ act.id }}" target="_blank">{{ act.get_number }}</a></td>
                                 <td>{{ act.serial_number }}</td>
                                 {% if act.document_type == 'warranty_rejection' %}
                                     <td>{% trans 'Warranty rejection' %}</td>
@@ -54,22 +68,24 @@
                                     <td>{% trans 'In Process' %}<i class="fa fa-refresh fa-spin fa-fw"></i></td>
                                 {% elif act.status == 'confirmed' %}
                                     <td><a href="/documents/pdf/{{ act.id }}"
-                                           style="display:block;">&nbsp;{% trans 'Confirmed' %} <i class="fa fa-download"></i></a></td>
+                                           style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
+                                            class="fa fa-download"></i></a></td>
                                 {% elif act.status == 'rejected' %}
                                     <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i></td>
                                 {% endif %}
-                                <td><a href="/documents/act/{{ act.id }}"  target="_blank" ><i class="fa fa-info" ></i></a></td>
 
                             </tr>
                         {% endfor %}
+                    </tbody>
                     </table>
-                    <div class="form-group row">
-                        <a class="btn btn-block custom-header-bg text-light" href="/documents/request">
-                            <strong>{% trans 'Request Document Form' %}</strong></a>
-                    </div>
                 </div>
             </div>
         </div>
 
 
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="{% static "js/documents_table.js" %}"></script>
 {% endblock %}
