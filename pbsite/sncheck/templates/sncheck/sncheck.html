@@ -1,16 +1,14 @@
-{% extends 'technicalguides/../../../main/templates/main/base.html' %}
-{% block title %} Serial Check PB Service {% endblock %}
+{% extends 'main/base.html' %}
+{% block title %} Serial Number Check {{ block.super }} {% endblock %}
 
 {%  load i18n  %}
-
-
-{% trans "Submit" as Submit %}
-
-
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/sncheck.css'%}" />
+{% endblock %}
 
 {% block body %}
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static '../static/css/sncheck.css'%}" />
+
 
 <div class="container-fluid">
 	<div class='container custom'>
