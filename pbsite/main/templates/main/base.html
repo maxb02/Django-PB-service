@@ -51,8 +51,8 @@
         {% if request.user.is_staff %}
             <li class="nav-item dropdown">
                 <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"
-                   role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-check-square-o fa-lg"
-                                                                               aria-hidden="true"></i> {% trans "Serial Check" %}
+                   role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-clipboard-check fa-lg"></i>
+                    {% trans "Serial Check" %}
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-light text-lg-left" href="/sncheck"><i class="fa fa-check"
@@ -71,8 +71,7 @@
         {% endif %}
         {% if request.user.service_center or request.user.is_staff %}
             <li>
-                <a class="nav-link text-light text-lg-left" href="/documents/showall"><i class="fa fa-file-text-o"
-                                                                                         aria-hidden="true"></i> {% trans "Documents" %}
+                <a class="nav-link text-light text-lg-left" href="/documents/showall"><i class="fas fa-file-alt fa-lg"></i> {% trans "Documents" %}
                     <span>{% if documents_in_process and request.user.is_staff %}({{ documents_in_process }}
                         ) {% endif %}</span>
                     &nbsp;</a>

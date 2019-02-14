@@ -65,7 +65,7 @@
 
 
                                 {% if act.status == 'in_process' %}
-                                    <td>{% trans 'In Process' %}<i class="fa fa-refresh fa-spin fa-fw"></i></td>
+                                    <td>{% trans 'In Process' %}<i class="fas fa-sync"></i></td>
                                 {% elif act.status == 'confirmed' %}
                                     <td><a href="/documents/pdf/{{ act.id }}"
                                            style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
