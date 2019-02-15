@@ -34,6 +34,8 @@ class Act(models.Model):
                     ('warranty_rejection', _('Statement of manufacturer warranty rejection')),
                     ('technical_inspection', _('Statement of manufacturer technical inspection')),
                     ('defect_acceptance', _('Statement of  manufacturer defect acceptance')),
+                    ('discount_voucher_50', 'Statement of  manufacturer defect acceptance and 50% discount voucher'),
+                    ('discount_voucher_20', 'Statement of  manufacturer defect acceptance and 20% discount voucher'),
                     )
     STATUS_CHOICES = (
         ('in_process', _('In Process')),
