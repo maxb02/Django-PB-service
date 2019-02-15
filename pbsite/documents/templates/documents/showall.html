@@ -63,8 +63,7 @@
                                     {% elif act.document_type == 'discount_voucher_20' %}
                                     <td>Discount 20%</td>
                                     {% else %}
-{#                                        <td>{{ act.document_type }}</td>#}
-                                    <td>тест</td>
+                                        <td>{{ act.document_type }}</td>
                                 {% endif %}
                                 <td>{{ act.filling_date | date:"d.m.Y" }}</td>
                                 <td>{{ act.received_date | date:"d.m.Y" }}</td>
