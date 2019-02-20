@@ -25,6 +25,10 @@
                                     <td>{% trans 'Statement of manufacturer technical inspection' %}</td>
                                 {% elif act.document_type == 'defect_acceptance' %}
                                     <td>{% trans 'Statement of  manufacturer defect acceptance' %}</td>
+                                 {% elif act.document_type == 'discount_voucher_50' %}
+                                    <td>Discount 50%</td>
+                                    {% elif act.document_type == 'discount_voucher_20' %}
+                                    <td>Discount 20%</td>
                                 {% endif %}
                         </tr>
 
