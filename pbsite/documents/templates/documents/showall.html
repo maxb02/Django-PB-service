@@ -74,7 +74,7 @@
                                 {% if act.status == 'in_process' %}
                                     <td>{% trans 'In Process' %}<i class="fas fa-sync"></i></td>
                                 {% elif act.status == 'confirmed' %}
-                                    <td><a href="/documents/pdf/{{ act.id }}"
+                                    <td><a target="_blank" rel="noopener noreferrer" href="/documents/pdf/{{ act.id }}"
                                            style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
                                             class="fa fa-download"></i></a></td>
                                 {% elif act.status == 'rejected' %}
