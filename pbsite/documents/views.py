@@ -1,7 +1,7 @@
 from datetime import datetime
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from easy_pdf.rendering import render_to_pdf_response
 from .forms import ActRequestForm, ActComentForm
 from .models import Act
@@ -39,7 +39,7 @@ def showall(request):
 
 @login_required
 def act(request, id):
-    act = Act.objects.get(id=id)
+    act = get_object_or_404(Act, id=id)
     form = ActComentForm(request.POST,instance=act)
     if request.method == 'POST':
         if 'accept' in request.POST:
@@ -57,15 +57,19 @@ def act(request, id):
         form = ActComentForm(instance=act)
         return render(request, 'documents/act.html', {'act': act, 'form': form})
 
-    elif act.created_by == request.user:
+    elif act.created_by.service_center == request.user.service_center:
         return render(request, 'documents/act.html', {'act': act})
+    else:
+        raise PermissionDenied
 
 @login_required
 def getpdf(request, id):
-    act = Act.objects.get(id=id)
+    act = get_object_or_404(Act, id=id)
     if act.status == 'confirmed' and (act.created_by.service_center == request.user.service_center or request.user.is_staff):
         language = act.created_by.service_center.language
         template = act.document_type
         context = {'act': act,}
         return render_to_pdf_response(request, 'documents/pdf/{}_{}.html'.format(language, template), context,)
+    else:
+        raise PermissionDenied
 
