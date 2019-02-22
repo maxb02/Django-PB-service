@@ -6,10 +6,12 @@ from .models import Device
 @login_required
 def device(request, device_name):
     device = get_object_or_404(Device, name=device_name)
-    guides = device.guide_set.order_by('title').all()
-    group_guides = device.guide_set.order_by('title').filter(group=request.user.groups.all())
+    if request.user.is_staff:
+        guides = device.guide_set.order_by('title').all()
+    else:
+        guides = device.guide_set.filter(group__in=request.user.groups.all()).order_by('-published_date')
 
-    return render(request, 'technicalguides/device.html', {'device': device, 'guides': guides, 'group_guides': group_guides})
+    return render(request, 'technicalguides/device.html', {'device': device, 'guides': guides,})
 
 @login_required
 def guide(request, device_name, title):
