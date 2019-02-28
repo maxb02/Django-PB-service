@@ -26,21 +26,25 @@
 				</form>
             </div>
         {% if serial_numbers %}
-<table class="table table-striped card-text">
-     <tbody>
-        </tr>
-        <tr>
+<table class="table table-bordered table-hover card-text">
+    <thead class="text-center">
+    <tr>
+            <div class="text-center">
             <th>Serial Number</th>
             <th>Is Valid</th>
             <th>Device</th>
             <th>Production Date</th>
-            <th>Shipping Date</th>
+            <th colspan="2">Shipping Date</th>
             <th>Region</th>
             <th>Country</th>
             <th>Color</th>
             <th>Manufacturer</th>
             <th>Checked by</th>
+                </div>
         </tr>
+</thead>
+     <tbody class="text-center">
+
         {% for info in devices_info_list %}
                 <tr>
                 {% if info.device_info == False %}
@@ -62,6 +66,7 @@
                             <td>{{ data.device }}</td>
                             <td>{{ data.productionDate | date:"m.Y" }}</td>
                             <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
+                            <td>{{ data.shippingDate | timesince }}</td>
                             <td>{{ data.countryEng }}</td>
                             <td>{{ data.partnerCountry }}</td>
                             <td>{{ data.colorEng }}</td>
