@@ -6,7 +6,6 @@ from easy_pdf.rendering import render_to_pdf_response
 from .forms import ActRequestForm, ActComentForm
 from .models import Act
 from django.http import HttpResponse
-from sncheck.sncheck import sn_shipments
 
 
 @login_required

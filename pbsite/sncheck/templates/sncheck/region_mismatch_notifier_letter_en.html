@@ -8,7 +8,7 @@ under your account credentials {{ user.get_username }}<br>
 
 Device: <strong>{{ device_data.device }} {{ device_data.model }}&nbsp; </strong><br>
 
-<strong>{{ serial_number }}</strong><br>
+<strong>{{ device_data.sserialNumber }}</strong><br>
 
 Maintance of this device can <strong>NOT</strong> be fulfilled on a warranty basis within the terretory of your region {% for group in user.groups.all %} {{ group }} {% endfor %}.<br>
 

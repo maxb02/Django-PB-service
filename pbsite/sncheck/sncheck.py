@@ -6,10 +6,12 @@ from django.template.loader import get_template
 from .models import EmailForNotifications, AllowedDeviceRegion, SerialNumberCheckJournal
 
 
-def sn_validator(sn):
-    if sn:
+def validate_serial_number(serial_number):
+    '''Check the serial number for valid'''
+
+    if serial_number:
         try:
-            key = requests.get(settings.SERIAL_NUMBER_VALIDATOR_URL, params={'sn': sn}, verify=False).text
+            key = requests.get(settings.SERIAL_NUMBER_VALIDATOR_URL, params={'sn': serial_number}, verify=False).text
         except:
             return 'Erorr'
         if key == ' No such key':
@@ -18,37 +20,39 @@ def sn_validator(sn):
             return True
 
 
-def sn_shipments(sn):
-    if sn:
+def get_device_info_from_shipments(serial_number):
+    '''Request device info from shipments.
+    Converting into datetime shippingDate & productionDate.
+    Because shipments database can store several records for one serial number this returns the list of dictionaries.
+    '''
+    if serial_number:
         try:
-            device_info = requests.get(settings.SERIAL_NUMBER_SHIPMENTS_URL, params={'sn': sn}, verify=False).json()
-            # device_info = [{"shippingDate":"2015-03-21 12:00:00","manufacturer":"Yitoa","partner":"PB Readers","partnerCountry":"Germany","device":"PocketBook Touch Lux 2","model":"PB626","year":"2015","month":"01","country":"\u0412\u0435\u0441\u044c \u043c\u0438\u0440","color":"\u0411\u0435\u043b\u044b\u0439","countryEng":"CIS","colorEng":"White"}]
+            device_info = requests.get(settings.SERIAL_NUMBER_SHIPMENTS_URL, params={'sn': serial_number},
+                                       verify=False).json()
         except:
             return 'Erorr'
         if device_info:
-            for element in device_info:
-                element['shippingDate'] = datetime.datetime.strptime(element['shippingDate'], "%Y-%m-%d %H:%M:%S")
-                element['productionDate'] = datetime.datetime.strptime(element['month'] + element['year'], '%m%Y')
+            for record in device_info:
+                record['shippingDate'] = datetime.datetime.strptime(record['shippingDate'], "%Y-%m-%d %H:%M:%S")
+                record['productionDate'] = datetime.datetime.strptime(record['month'] + record['year'], '%m%Y')
+                record['serialNumber'] = serial_number
             return device_info
         else:
             return False
 
 
-def region_ceker(user, device_info):
-    if not device_info or device_info == 'Erorr':
-        return 'Erorr'
-
-    for device_data in device_info:
-        if AllowedDeviceRegion.objects.filter(
-                user_region=user.groups.all(), device_region=device_data['countryEng']).exists():
+def check_device_and_user_allowed_regions(user, device_info):
+    '''Compare user allowed region with the device region'''
+    for record in device_info:
+        if AllowedDeviceRegion.objects.filter(user_region__in=user.groups.all(), device_region=record['countryEng']).exists():
             return True
         else:
             return False
 
 
-
-def region_mistmatch_notifier(serial_number, device_data, user, language):
-    subject = 'Region Mismatch {}'.format(serial_number, )
+def send_region_mismatch_letter(device_data, user, language):
+    '''Send the region mismatch letter to user and service center manager if it exists'''
+    subject = 'Region Mismatch {}'.format(device_data['serialNumber'], )
     from_email = 'noreplay@service.pocketbook-int.com'
     to = [user.email]
     cc = list(EmailForNotifications.objects.filter(user_region=user.groups.all()).all())
@@ -58,26 +62,28 @@ def region_mistmatch_notifier(serial_number, device_data, user, language):
         emai_template = 'sncheck/region_mismatch_notifier_letter_en.html'
 
     html_content = get_template(emai_template).render(
-        {'serial_number': serial_number,
-         'device_data': device_data,
-         'user' : user,
-         })
-    msg = EmailMessage(subject, html_content, from_email, to, cc=cc,)
+        {
+            'device_data': device_data,
+            'user': user,
+        })
+    msg = EmailMessage(subject, html_content, from_email, to, cc=cc, )
     msg.content_subtype = "html"  # Main content is now text/html
     msg.send()
 
 
-def serial_number_check_journal(serial_number, user, is_valid, is_region_match):
+def add_record_to_serial_number_check_journal(serial_number, user, is_valid, is_region_match):
+    '''Add the record to journal'''
     if is_valid == "Erorr":
         is_valid = None
     if is_region_match == 'Erorr':
         is_region_match = None
-    SerialNumberCheckJournal.objects.create(serial_number= serial_number, user= user, is_valid = is_valid, is_region_match= is_region_match)
+    SerialNumberCheckJournal.objects.create(serial_number=serial_number, user=user, is_valid=is_valid, is_region_match=is_valid)
+
 
 def is_not_old_device(device_info):
-    # return true if the device is not older than 900 days from product and shipping dates
-    for element in device_info:
-        if (datetime.datetime.today() - element['shippingDate']).days > 900 or (
-                datetime.datetime.today() - element['productionDate']).days > 900:
+    '''Return true if the device is not older than 900 days from product and shipping dates'''
+    for record in device_info:
+        if (datetime.datetime.today() - record['shippingDate']).days > 900 or (
+                datetime.datetime.today() - record['productionDate']).days > 900:
             return False
     return True

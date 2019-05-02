@@ -8,7 +8,7 @@
 
 <strong>{{ device_data.device }} {{ device_data.model }}</strong><br>
 
-<strong>{{ serial_number }}</strong><br>
+<strong>{{ device_data.serialNumber }}</strong><br>
 
 Данное устройство гарантийному обслуживанию на территории вашего региона&nbsp;{% for group in user.groups.all %} {{ group }} {% endfor %} не подлежит.<br>
 
