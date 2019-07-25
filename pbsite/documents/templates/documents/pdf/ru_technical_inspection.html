@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 
-    <title>{{ act.get_number }}</title>
+    <title>{{ document.number }}</title>
     {% load static %}
     {% load i18n %}
     {% language 'ru' %}
@@ -19,7 +19,7 @@
 
     <div class="servicename">
         <b>Авторизованный Сервисный Центр (АСЦ)<br>
-            {{ act.created_by.service_center.company_name }} </b><br>
+            {{ document.created_by.service_center.company_name }} </b><br>
         <link rel="stylesheet" type="text/css" href="http://www.pocketbook-int.com/support/service-centers"
               title="http://www.pocketbook-int.com/support/service-centers">
         <a href="http://www.pocketbook-int.com/support/service-centers">
@@ -29,22 +29,22 @@
     <div>
         <div class="title">
 
-            <p><b> Акт технической проверки устройства {{ act.get_number }} </b></p>
+            <p><b> Акт технической проверки устройства {{ document.get_number }} </b></p>
             <br>
         </div>
-        <p><b>Номер обращения: </b> {{ act.protocol_number }} </p>
-        <p><b>Дата обращения: </b> {{ act.received_date | date:"d.m.Y" }}</p>
-        <p><b>Модель: </b> {{ act.get_model }}</p>
-        <p><b>Серийный номер: </b> {{ act.serial_number }}</p>
-        <p><b>Дата продажи: </b>{% if act.is_presale %} Предпродажный {% else %} {{ act.purchase_date | date:"d.m.Y" }} {% endif %}</p>
+        <p><b>Номер обращения: </b> {{ document.protocol_number }} </p>
+        <p><b>Дата обращения: </b> {{ document.received_date | date:"d.m.Y" }}</p>
+        <p><b>Модель: </b> {{ document.get_model }}</p>
+        <p><b>Серийный номер: </b> {{ document.serial_number }}</p>
+        <p><b>Дата продажи: </b>{% if document.is_presale %} Предпродажный {% else %} {{ document.purchase_date | date:"d.m.Y" }} {% endif %}</p>
         <br>
 
         <b>Заявленные дефекты (со слов Потребителя):</b><br>
-        {{ act.customers_claim }}
+        {{ document.customers_claim }}
         <br>
         <b>Внешний осмотр:</b><br>
-        {% if act.visual_defect.all %}
-        {% for visual_defect in act.visual_defect.all %}
+        {% if document.visual_defect.all %}
+        {% for visual_defect in document.visual_defect.all %}
             {{ visual_defect }},
         {% endfor %}
         {% else %}
@@ -52,8 +52,8 @@
         {% endif %}
         <br>
         <b>Комплектность:</b><br>
-        {% if act.scope_of_supply.all %}
-        {% for item in act.scope_of_supply.all %}
+        {% if document.scope_of_supply.all %}
+        {% for item in document.scope_of_supply.all %}
             {{ item }},
         {% endfor %}
         {% else %}
@@ -61,7 +61,7 @@
         {% endif %}
         <br>
         <b>Причина выдачи:</b><br>
-        {{ act.conclusion }}
+        {{ document.conclusion }}
         <br>
         <br>
         <br>
@@ -83,19 +83,19 @@
             <table>
                 <tr>
                     <td><b>Юридическое наименование АСЦ:</b></td>
-                    <td>{{ act.created_by.service_center.company_name }}</td>
+                    <td>{{ document.created_by.service_center.company_name }}</td>
                 </tr>
                 <tr>
-                    <th>Инженер АСЦ:</th><td>{{ act.created_by.get_full_name }}</td><td>__________________________</td>
+                    <th>Инженер АСЦ:</th><td>{{ document.created_by.get_full_name }}</td><td>__________________________</td>
                 </tr>
                 <tr>
-                    <th>Руководитель АСЦ:</th><td>{{ act.created_by.service_center.manager_name }}</td><td>__________________________</td>
+                    <th>Руководитель АСЦ:</th><td>{{ document.created_by.service_center.manager_name }}</td><td>__________________________</td>
                 </tr>
                 <tr>
-                    <td><b>Дата составления заключения:</b></td><td>{{ act.conclusion_date | date:"d.m.Y" }}</td>
+                    <td><b>Дата составления заключения:</b></td><td>{{ document.conclusion_date | date:"d.m.Y" }}</td>
                 </tr>
                 <tr>
-                    <td><b>Потребитель/Юридическое лицо:</b></td><td>{{ act.client_name }}</td>
+                    <td><b>Потребитель/Юридическое лицо:</b></td><td>{{ document.client_name }}</td>
                 </tr>
                 <tr>
                     <td><b>Подпись Потребителя/Представителя юридического лица:</b></td><td>___________________________</td>

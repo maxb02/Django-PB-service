@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% block title %} Serial Number Info {{ block.super }} {% endblock %}
+
+{%  load i18n  %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/sncheck.css'%}" />
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container-fluid">
+	<div class='container custom'>
+		<div class="card custom-bg">
+			<h5><div class="card-header text-center text-light custom-header-bg">
+				<b>{% trans 'Serial Number Info' %}</b>
+			</div></h5>
+			<div class="card-body">
+			<hr>
+            {% if serial_number %}
+                {% include 'sncheck/includes/serial_number_info_table.html' %}
+            {% endif %}
+			</div>
+			<div class="card-footer custom-header-bg"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}

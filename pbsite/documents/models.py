@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.shortcuts import reverse
 from django.utils.translation import gettext_lazy as _
 import datetime
 
@@ -43,7 +44,10 @@ class Act(models.Model):
         ('rejected', _('Rejected')),
     )
 
-    serial_number = models.CharField(max_length=20, verbose_name =_('Serial Number'))
+    class Meta:
+        ordering = ['-filling_date']
+
+    serial_number = models.CharField(max_length=20, verbose_name =_('Serial Number'), db_index=True)
     protocol_number = models.CharField(max_length=10, null=True, verbose_name =_('Protocol Number'))
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True,related_name='created_by', verbose_name =_('User Name'))
     accepted_or_declined_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,blank=True,related_name='accepted_or_declined_by', verbose_name =_('Accepted or declined by'))
@@ -69,15 +73,21 @@ class Act(models.Model):
     visual_defect = models.ManyToManyField('VisualDefect', blank=True, verbose_name=_('Visual (cosmetic) Defects:'))
     comment_of_engineer = models.TextField(max_length=500, null=True, blank=True, verbose_name=_('Comments (for PocketBook)'))
     comment_of_manager = models.TextField(max_length=500, null=True, blank=True,verbose_name=_('Comment of Manager'))
+    number = models.CharField(max_length=50, verbose_name=_('Document Number'), db_index=True, null=True, blank=True)
 
     def __str__(self):
         return self.serial_number
 
+    def save(self, *args, **kwargs):
+        if not self.number:
+            self.number = '{}{}{}{}'.format(self.serial_number[:5], self.id, self.created_by.id, self.created_by.service_center.id)
+        super().save(*args, **kwargs)
 
-    # return the document number
-    def get_number(self):
-        return '{}{}{}{}'.format(self.serial_number[:5], self.id, self.created_by.id, self.created_by.service_center.id)
-    get_number.short_description = _('Document Number')
+    def get_absolute_url(self):
+        return reverse('document_detail_url', kwargs={'number' : self.number})
+
+    def get_pdf_url(self):
+        return reverse('document_generate_pdf_url', kwargs={'number': self.number})
 
     # return the model of the device based on serial number and SN prefix
     def get_model(self):

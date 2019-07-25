@@ -57,11 +57,11 @@ def send_region_mismatch_letter(device_data, user, language):
     to = [user.email]
     cc = list(EmailForNotifications.objects.filter(user_region=user.groups.all()).all())
     if language == 'ru' or language == 'ua':
-        emai_template = 'sncheck/region_mismatch_notifier_letter_ru.html'
+        email_template = 'sncheck/letters/region_mismatch_notifier_letter_ru.html'
     else:
-        emai_template = 'sncheck/region_mismatch_notifier_letter_en.html'
+        email_template = 'sncheck/letters/region_mismatch_notifier_letter_en.html'
 
-    html_content = get_template(emai_template).render(
+    html_content = get_template(email_template).render(
         {
             'device_data': device_data,
             'user': user,

@@ -1,74 +1,72 @@
 from datetime import datetime
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from easy_pdf.rendering import render_to_pdf_response
 from .forms import ActRequestForm, ActComentForm
 from .models import Act
 from django.http import HttpResponse
 
 
-@login_required
-def requestform(request):
-    if request.method == 'POST':
+class DocumentRequest(LoginRequiredMixin, View):
+    def post(self, request):
         form = ActRequestForm(request.POST, request.FILES)
         if form.is_valid():
             new_act = form.save(commit=False)
             new_act.created_by = request.user
             form.save()
-
-            return redirect('showall')
+            return redirect('document_list_url')
 
         else:
-            return HttpResponse('Form not valid')
+            return render(request, 'documents/document_request_form.html', {'form': form})
 
-    else:
+    def get(self, request):
         form = ActRequestForm
-        return render(request, 'documents/request_form.html', {'form': form})
+        return render(request, 'documents/document_request_form.html', {'form': form})
 
 
 @login_required
-def showall(request):
-    acts = Act.objects.all().order_by('-filling_date')
-    if request.user.is_staff:
-        return render(request, 'documents/showall.html', {'acts' : acts})
-    else:
-        acts = acts.filter(created_by__service_center = request.user.service_center)
-        return render(request, 'documents/showall.html', {'acts': acts})
+def document_list(request):
+    documents = Act.objects.all()
+    if not request.user.is_staff:
+        documents = documents.filter(created_by__service_center=request.user.service_center)
+    return render(request, 'documents/document_list.html', {'documents': documents})
 
-@login_required
-def act(request, id):
-    act = get_object_or_404(Act, id=id)
-    form = ActComentForm(request.POST,instance=act)
-    if request.method == 'POST':
+
+class DocumentDetail(LoginRequiredMixin, View):
+    def post(self, request, number):
+        document = get_object_or_404(Act, number=number)
+        form = ActComentForm(request.POST, instance=document)
         if 'accept' in request.POST:
-            act.status = 'confirmed'
+            document.status = 'confirmed'
         elif 'reject' in request.POST:
-            act.status = 'rejected'
-        act.accepted_or_declined_by = request.user
-        act.conclusion_date = datetime.now()
-        act.accepted_or_declined_by = request.user
+            document.status = 'rejected'
+        document.accepted_or_declined_by = request.user
+        document.conclusion_date = datetime.now()
         if form.is_valid():
-            act.save()
-        return redirect('showall')
+            document.save()
+        return redirect('document_list_url')
 
-    if request.user.is_staff:
-        form = ActComentForm(instance=act)
-        return render(request, 'documents/act.html', {'act': act, 'form': form})
+    def get(self, request, number):
+        document = get_object_or_404(Act, number=number)
+        if request.user.is_staff:
+            form = ActComentForm(instance=document)
+            return render(request, 'documents/document_detail.html', {'document': document, 'form': form})
+        elif document.created_by.service_center != request.user.service_center:
+            raise PermissionDenied
+        return render(request, 'documents/document_detail.html', {'document': document, })
 
-    elif act.created_by.service_center == request.user.service_center:
-        return render(request, 'documents/act.html', {'act': act})
-    else:
-        raise PermissionDenied
 
 @login_required
-def getpdf(request, id):
-    act = get_object_or_404(Act, id=id)
-    if act.status == 'confirmed' and (act.created_by.service_center == request.user.service_center or request.user.is_staff):
-        language = act.created_by.service_center.language
-        template = act.document_type
-        context = {'act': act,}
-        return render_to_pdf_response(request, 'documents/pdf/{}_{}.html'.format(language, template), context,)
+def generate_pdf(request, number):
+    document = get_object_or_404(Act, number=number)
+    if document.status == 'confirmed' and (
+            document.created_by.service_center == request.user.service_center or request.user.is_staff):
+        language = document.created_by.service_center.language
+        template = document.document_type
+        context = {'document': document, }
+        return render_to_pdf_response(request, 'documents/pdf/{}_{}.html'.format(language, template), context, )
     else:
         raise PermissionDenied
-

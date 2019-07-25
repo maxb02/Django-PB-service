@@ -71,7 +71,7 @@
         {% endif %}
         {% if request.user.service_center or request.user.is_staff %}
             <li>
-                <a class="nav-link text-light text-lg-left" href="/documents/showall"><i class="fas fa-file-alt fa-lg"></i> {% trans "Documents" %}
+                <a class="nav-link text-light text-lg-left" href="{% url 'document_list_url' %}"><i class="fas fa-file-alt fa-lg"></i> {% trans "Documents" %}
                     <span>{% if documents_in_process and request.user.is_staff %}({{ documents_in_process }}
                         ) {% endif %}</span>
                     &nbsp;</a>

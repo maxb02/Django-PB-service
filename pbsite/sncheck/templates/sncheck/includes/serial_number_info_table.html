@@ -1,0 +1,64 @@
+{%  load i18n  %}
+<table class="table table-striped card-text">
+    <tbody>
+    </tr>
+    <tr>
+        {% if is_valid == 'Erorr' %}
+            <td colspan="2" class="table-danger text-center text-danger rounded"><h3>Request from validator erorr</h3>
+            <td>
+                {% elif is_valid == True %}
+            <td>{% trans 'SN is valided' %}</td>
+            <td>{% trans 'Yes' %}</td>
+        {% else %}
+            <td>{% trans 'SN is valided' %}</td>
+            <td>{% trans 'No' %}</td>
+        {% endif %}
+    <tr>
+        {% if device_info == 'Erorr' %}
+            <td colspan="2" class="table-danger text-center text-danger rounded"><h3>Request from shipments erorr</h3>
+            </td>
+        {% elif device_info == False %}
+            <td>No info in shipments</td>
+        {% else %}
+            {% for data in device_info %}
+                <td>{% trans 'Device' %}</td>
+                <td>{{ data.device }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Model' %}</td>
+                    <td>{{ data.model }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Production Date' %}</td>
+                    <td>{{ data.productionDate | date:"m.Y" }} ({{ data.productionDate | timesince }})</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Shipping Date' %}</td>
+                    <td>{{ data.shippingDate | date:"d.m.Y" }} ({{ data.shippingDate | timesince }})</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Region' %}</td>
+                    <td>{{ data.countryEng }}</td>
+                </tr>
+                <td>{% trans 'Country' %}</td>
+                <td>{{ data.partnerCountry }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Color' %}</td>
+                    <td>{{ data.colorEng }}</td>
+                </tr>
+                {% if request.user.is_staff %}
+                    <tr>
+                        <td>{% trans 'Partner' %}</td>
+                        <td>{{ data.partner }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Manufacturer' %}</td>
+                        <td>{{ data.manufacturer }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </tr>
+    </tbody>
+</table>

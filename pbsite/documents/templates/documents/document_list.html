@@ -19,7 +19,7 @@
 
                 <div class="card-body">
                     <div class="form-group row">
-                        <a class="btn   pull-left" href="/documents/request">
+                        <a class="btn   pull-left" href="{% url 'document_request_url' %}">
                             <i class="fas fa-file-signature"></i> {% trans 'Request Document Form' %}</a>
                     </div>
 
@@ -43,43 +43,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for act in acts %}
+                        {% for document in documents %}
                             <tr>
                                 {% if request.user.is_staff %}
-                                    <td>{{ act.created_by.service_center.region }}</td>
-                                    <td>{{ act.created_by.service_center }}</td>
+                                    <td>{{ document.created_by.service_center.region }}</td>
+                                    <td>{{ document.created_by.service_center }}</td>
                                 {% endif %}
 
-                                <td>{{ act.get_model }}</td>
-                                <td><a href="/documents/act/{{ act.id }}" target="_blank">{{ act.get_number }}</a></td>
-                                <td>{{ act.serial_number }}</td>
-                                {% if act.document_type == 'warranty_rejection' %}
+                                <td>{{ document.get_model }}</td>
+                                <td><a href="{{ document.get_absolute_url }}" target="_blank">{{ document.number }}</a></td>
+                                <td><a href="{% url 'serial_number_info_url' serial_number=document.serial_number %}">{{ document.serial_number }}</a></td>
+                                {% if document.document_type == 'warranty_rejection' %}
                                     <td>{% trans 'Warranty rejection' %}</td>
-                                {% elif act.document_type == 'technical_inspection' %}
+                                {% elif document.document_type == 'technical_inspection' %}
                                     <td>{% trans 'Technical inspection' %}</td>
-                                {% elif act.document_type == 'defect_acceptance' %}
+                                {% elif document.document_type == 'defect_acceptance' %}
                                     <td>{% trans 'Defect acceptance' %}</td>
-                                    {% elif act.document_type == 'discount_voucher_50' %}
+                                    {% elif document.document_type == 'discount_voucher_50' %}
                                     <td>Discount 50%</td>
-                                    {% elif act.document_type == 'discount_voucher_20' %}
+                                    {% elif document.document_type == 'discount_voucher_20' %}
                                     <td>Discount 20%</td>
                                     {% else %}
-                                        <td>{{ act.document_type }}</td>
+                                        <td>{{ document.document_type }}</td>
                                 {% endif %}
-                                <td>{{ act.filling_date | date:"Y/m/d" }}</td>
-                                <td>{{ act.received_date | date:"Y/m/d" }}</td>
-                                <td>{{ act.purchase_date | date:"Y/m/d" }}</td>
+                                <td>{{ document.filling_date | date:"Y/m/d" }}</td>
+                                <td>{{ document.received_date | date:"Y/m/d" }}</td>
+                                <td>{{ document.purchase_date | date:"Y/m/d" }}</td>
 
 
-                                {% if act.status == 'in_process' %}
+                                {% if document.status == 'in_process' %}
                                     <td>{% trans 'In Process' %}<i class="fas fa-sync"></i></td>
-                                {% elif act.status == 'confirmed' %}
-                                    <td><a target="_blank" rel="noopener noreferrer" href="/documents/pdf/{{ act.id }}"
+                                {% elif document.status == 'confirmed' %}
+                                    <td><a target="_blank" rel="noopener noreferrer" href="{{ document.get_pdf_url  }}"
                                            style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
                                             class="fa fa-download"></i></a></td>
-                                {% elif act.status == 'rejected' %}
+                                {% elif document.status == 'rejected' %}
                                     <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i></td>
-                                    {% else %} <td>{{ act.status }}</td>
+                                    {% else %} <td>{{ document.status }}</td>
                                 {% endif %}
 
                             </tr>
