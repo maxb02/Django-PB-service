@@ -7,6 +7,7 @@ from .sncheck import get_device_info_from_shipments, validate_serial_number, che
     send_region_mismatch_letter, add_record_to_serial_number_check_journal, \
     is_not_old_device
 from .models import SerialNumberCheckJournal
+from documents.models import Act
 
 
 class SerialNumberCheck(LoginRequiredMixin, View):
@@ -41,10 +42,11 @@ class SerialNumberInfo(LoginRequiredMixin, View):
         if serial_number:
             is_valid = validate_serial_number(serial_number)
             device_info = get_device_info_from_shipments(serial_number)
-            user = request.user
+            documents = Act.objects.filter(serial_number=serial_number).all()
             return render(request, 'sncheck/serial_number_info.html', {'serial_number': serial_number,
                                                                        'is_valid': is_valid,
                                                                        'device_info': device_info,
+                                                                       'documents': documents
                                                                        })
         else:
             raise Http404

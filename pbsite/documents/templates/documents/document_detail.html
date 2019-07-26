@@ -47,7 +47,7 @@
                         <th>{% trans 'Device' %}</th> <td>{{ document.get_model }}</td>
                         <tr>
                             <th>{% trans 'Serial Number' %}</th>
-                            <td>{{ document.serial_number }}</td>
+                            <td><a href="{% url 'serial_number_info_url' serial_number=document.serial_number %}">{{ document.serial_number }}</a></td>
                         </tr>
                         <tr>
                             <th>{% trans 'Service' %}</th>
