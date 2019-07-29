@@ -43,11 +43,12 @@ def get_device_info_from_shipments(serial_number):
 
 def check_device_and_user_allowed_regions(user, device_info):
     '''Compare user allowed region with the device region'''
-    for record in device_info:
-        if AllowedDeviceRegion.objects.filter(user_region__in=user.groups.all(), device_region=record['countryEng']).exists():
-            return True
-        else:
-            return False
+    if device_info:
+        for record in device_info:
+            if AllowedDeviceRegion.objects.filter(user_region__in=user.groups.all(), device_region=record['countryEng']).exists():
+                return True
+            else:
+                return False
 
 
 def send_region_mismatch_letter(device_data, user, language):
