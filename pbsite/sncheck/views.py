@@ -16,6 +16,7 @@ class SerialNumberCheck(LoginRequiredMixin, View):
     def post(self, request):
         serial_number = request.POST.get('sn', '').strip().upper()
         is_valid = validate_serial_number(serial_number)
+
         device_info = get_device_info_from_shipments(serial_number)
         user = request.user
         is_region_match = check_device_and_user_allowed_regions(user, device_info)
