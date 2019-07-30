@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello, Celery</h1>
+
+
+<form action='{% url 'build_url' %}' method='post'>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+
+    <h3>{{ serial_number }}</h3>
+</form>
+<table>
+    {% for build in builds %}
+    <tr>
+        <td><a href="#">{{ build.id }}</a></td><td>{{ build.status }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Build {{ build.id }}</title>
+
+    <table border="1">
+        <tr>
+            <th>Serial Number</th>
+            <td>{{ build.serial_number }}</td>
+        </tr>
+        <tr>
+            <th>SDSN</th>
+            <td>{{ build.sdsn }}</td>
+        </tr>
+        <tr>
+            <th>Waveform</th>
+            <td>{{ build.waveform }}</td>
+        </tr>
+        <tr>
+            <th>VCOM</th>
+            <td>{{ build.vcom }}</td>
+        </tr>
+        <tr>
+            <th>User</th>
+            <td>{{ build.user }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ build.status }}</td>
+        </tr>
+                <tr>
+            <th>Code</th>
+            <td>{{ build.returned_code }}</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th>stdout</th>
+        </tr>
+        <tr>
+            <td>
+                <pre>{{ build.stdout }}</pre>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th>stderr</th>
+        </tr>
+        <tr>
+            <td>
+                <pre>{{ build.stderr }}</pre>
+            </td>
+        </tr>
+    </table>
+</head>
+<body>
+
+</body>
+</html>
