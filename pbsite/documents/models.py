@@ -78,11 +78,6 @@ class Act(models.Model):
     def __str__(self):
         return self.serial_number
 
-    def save(self, *args, **kwargs):
-        if not self.number:
-            self.number = '{}{}{}{}'.format(self.serial_number[:5], self.id, self.created_by.id, self.created_by.service_center.id)
-        super().save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse('document_detail_url', kwargs={'number' : self.number})
 
@@ -103,5 +98,9 @@ class Act(models.Model):
     def get_region(self):
         return  self.created_by.service_center.region
     get_region.short_description = _('Region')
+
+    def add_number(self):
+        self.number = '{}{}{}{}'.format(self.serial_number[:5], self.created_by.id, self.created_by.service_center.id)
+        return self.number
 
 

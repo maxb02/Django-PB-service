@@ -47,6 +47,7 @@ class DocumentDetail(LoginRequiredMixin, View):
         document.conclusion_date = datetime.now()
         if form.is_valid():
             document.save()
+            document.add_number()
         return redirect('document_list_url')
 
     def get(self, request, number):
