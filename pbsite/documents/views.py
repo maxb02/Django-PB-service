@@ -17,6 +17,7 @@ class DocumentRequest(LoginRequiredMixin, View):
             new_act = form.save(commit=False)
             new_act.created_by = request.user
             form.save()
+            new_act.add_number()
             return redirect('document_list_url')
 
         else:
@@ -47,7 +48,6 @@ class DocumentDetail(LoginRequiredMixin, View):
         document.conclusion_date = datetime.now()
         if form.is_valid():
             document.save()
-            document.add_number()
         return redirect('document_list_url')
 
     def get(self, request, number):

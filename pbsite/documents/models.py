@@ -100,7 +100,8 @@ class Act(models.Model):
     get_region.short_description = _('Region')
 
     def add_number(self):
-        self.number = '{}{}{}{}'.format(self.serial_number[:5], self.created_by.id, self.created_by.service_center.id)
+        self.number = '{}{}{}{}'.format(self.serial_number[:5], self.id, self.created_by.id, self.created_by.service_center.id)
+        self.save()
         return self.number
 
 
