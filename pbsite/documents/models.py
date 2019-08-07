@@ -57,7 +57,7 @@ class Act(models.Model):
     conclusion_date = models.DateTimeField(null=True, blank=True, verbose_name=_('Conclusion Date'))
     is_presale = models.BooleanField(verbose_name=_('Presale'))
 
-    customers_claim = models.CharField(max_length = 50, verbose_name =_('Customer Claim'))
+    customers_claim = models.CharField(max_length = 300, verbose_name =_('Customer Claim'))
     identified_malfunction = models.CharField(max_length = 50, verbose_name =_('Identified Malfunction'))
     conclusion = models.TextField(max_length = 240, null=True, verbose_name =_('Conclusion'))
     warranty_card_photo = models.ImageField(null=True, blank=True, upload_to=upload_path_handler, verbose_name=_('Photo of warranty card'))
