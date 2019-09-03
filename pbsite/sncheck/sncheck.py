@@ -83,8 +83,9 @@ def add_record_to_serial_number_check_journal(serial_number, user, is_valid, is_
 
 def is_not_old_device(device_info):
     '''Return true if the device is not older than 900 days from product and shipping dates'''
-    for record in device_info:
-        if (datetime.datetime.today() - record['shippingDate']).days > 900 or (
-                datetime.datetime.today() - record['productionDate']).days > 900:
-            return False
-    return True
+    if device_info:
+        for record in device_info:
+            if (datetime.datetime.today() - record['shippingDate']).days > 900 or (
+                    datetime.datetime.today() - record['productionDate']).days > 900:
+                return False
+        return True
