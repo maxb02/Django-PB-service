@@ -21,6 +21,7 @@ class SerialNumberCheck(LoginRequiredMixin, View):
         user = request.user
         is_region_match = check_device_and_user_allowed_regions(user, device_info)
         user = request.user
+        documents = Act.objects.filter(serial_number=serial_number).all()
         if not user.is_staff:
             add_record_to_serial_number_check_journal(serial_number, user, is_valid, is_region_match)
         if not is_region_match and not (
@@ -30,6 +31,7 @@ class SerialNumberCheck(LoginRequiredMixin, View):
         return render(request, 'sncheck/serial_number_check.html', {'serial_number': serial_number,
                                                                     'is_valid': is_valid,
                                                                     'device_info': device_info,
+                                                                    'documents': documents,
                                                                     })
 
     def get(self, request):
