@@ -56,7 +56,7 @@ def send_region_mismatch_letter(device_data, user, language):
     subject = 'Region Mismatch {}'.format(device_data['serialNumber'], )
     from_email = 'noreplay@service.pocketbook-int.com'
     to = [user.email]
-    cc = list(EmailForNotifications.objects.filter(user_region=user.groups.all()).all())
+    cc = list(EmailForNotifications.objects.filter(user_region__in=user.groups.all()).all())
     if language == 'ru' or language == 'ua':
         email_template = 'sncheck/letters/region_mismatch_notifier_letter_ru.html'
     else:
