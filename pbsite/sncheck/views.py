@@ -39,7 +39,7 @@ class SerialNumberCheck(LoginRequiredMixin, View):
 
 
 class SerialNumberInfo(LoginRequiredMixin, View):
-    '''Viev for order info about serial number from link'''
+    '''View for order info about serial number from link'''
 
     def get(self, request, serial_number):
         if serial_number:
