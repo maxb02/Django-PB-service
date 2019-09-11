@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-22 15:43+0200\n"
+"POT-Creation-Date: 2019-09-11 16:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,303 +20,328 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: documents/models.py:34 documents/templates/documents/act.html:23
+#: documents/models.py:35 documents/templates/documents/document_detail.html:23
 msgid "Statement of manufacturer warranty rejection"
 msgstr "Акт отказа в гарантийном обслуживании"
 
-#: documents/models.py:35 documents/templates/documents/act.html:25
+#: documents/models.py:36 documents/templates/documents/document_detail.html:25
 msgid "Statement of manufacturer technical inspection"
 msgstr "Акт технической экспертизы устройства"
 
-#: documents/models.py:36 documents/templates/documents/act.html:27
+#: documents/models.py:37 documents/templates/documents/document_detail.html:27
 msgid "Statement of  manufacturer defect acceptance"
 msgstr "Акт списания устройства"
 
-#: documents/models.py:39 documents/templates/documents/act.html:34
-#: documents/templates/documents/showall.html:54
+#: documents/models.py:42 documents/templates/documents/document_detail.html:38
+#: documents/templates/documents/document_list.html:75
 msgid "In Process"
 msgstr "Обрабатывается"
 
-#: documents/models.py:40 documents/templates/documents/act.html:37
-#: documents/templates/documents/showall.html:57
+#: documents/models.py:43 documents/templates/documents/document_detail.html:41
+#: documents/templates/documents/document_list.html:78
 msgid "Confirmed"
 msgstr "Подтвержден"
 
-#: documents/models.py:41 documents/templates/documents/act.html:40
-#: documents/templates/documents/showall.html:59
+#: documents/models.py:44 documents/templates/documents/document_detail.html:44
+#: documents/templates/documents/document_list.html:81
 msgid "Rejected"
 msgstr "Отклонен"
 
-#: documents/models.py:44 documents/templates/documents/act.html:45
-#: documents/templates/documents/showall.html:25
+#: documents/models.py:50 documents/templates/documents/document_detail.html:49
+#: documents/templates/documents/document_list.html:37
 msgid "Serial Number"
 msgstr "Серийный Номер"
 
-#: documents/models.py:45
+#: documents/models.py:51
 msgid "Protocol Number"
 msgstr "Номер обращения"
 
-#: documents/models.py:46
+#: documents/models.py:52
 msgid "User Name"
 msgstr "Пользователь"
 
-#: documents/models.py:47
+#: documents/models.py:53
 msgid "Accepted or declined by"
 msgstr "Подтвердил или отклонил"
 
-#: documents/models.py:49 documents/templates/documents/act.html:59
-#: documents/templates/documents/showall.html:29
-msgid "Purchase Date"
-msgstr "Дата продажи"
-
-#: documents/models.py:50 documents/templates/documents/act.html:67
-#: documents/templates/documents/showall.html:28
-msgid "Received Date"
-msgstr "Дата приема"
-
-#: documents/models.py:51
-msgid "Conclusion Date"
-msgstr "Дата заключения"
-
-#: documents/models.py:52 documents/templates/documents/act.html:63
-msgid "Presale"
-msgstr "Предпродажный"
-
-#: documents/models.py:54 documents/templates/documents/act.html:71
-msgid "Customer Claim"
-msgstr "Жалоба потребителя"
-
-#: documents/models.py:55 documents/templates/documents/act.html:75
-msgid "Identified Malfunction"
-msgstr "Результат диагностики (выявленные дефекты)"
-
-#: documents/models.py:56
-msgid "Conclusion"
-msgstr "Заключение"
-
-#: documents/models.py:57
-msgid "Photo of warranty card"
-msgstr "Фото гарантийного талона"
-
-#: documents/models.py:58
-msgid "Photo of receipt"
-msgstr "Фото чека"
-
-#: documents/models.py:59
-msgid "Photo of screen"
-msgstr "Фото экрана"
-
-#: documents/models.py:60
-msgid "Photo of defect"
-msgstr "Фото дефекта"
-
-#: documents/models.py:63
-msgid "Client Name"
-msgstr "ФИО клиента (Потребителя)"
-
-#: documents/models.py:64 documents/templates/documents/act.html:21
-msgid "Document type"
-msgstr "Тип документа"
-
-#: documents/models.py:65
-msgid "Satatus"
-msgstr "Статус"
-
-#: documents/models.py:66
-msgid "Scope of Supply"
-msgstr "Комплектацыя"
-
-#: documents/models.py:67
-msgid "Visual (cosmetic) Defects:"
-msgstr "Косметические дефекты"
-
-#: documents/models.py:68
-msgid "Comments (for PocketBook)"
-msgstr "Комментарии инженера (для PocketBook)"
-
-#: documents/models.py:69
-msgid "Comment of Manager"
-msgstr "Комментарии инженера"
-
-#: documents/templates/documents/act.html:3
-#: documents/templates/documents/act.html:15
-msgid "Document"
-msgstr "Документ"
-
-#: documents/templates/documents/act.html:32
-#: documents/templates/documents/showall.html:30
-msgid "Status"
-msgstr "Статус"
-
-#: documents/templates/documents/act.html:43
-#: documents/templates/documents/showall.html:24
-#: sncheck/templates/sncheck/sncheck.html:58
-msgid "Device"
-msgstr "Устройство"
-
-#: documents/templates/documents/act.html:49
-#: documents/templates/documents/showall.html:22
-msgid "Service"
-msgstr "Сервисный центр"
-
-#: documents/templates/documents/act.html:55
-#: documents/templates/documents/showall.html:27
+#: documents/models.py:54 documents/templates/documents/document_detail.html:59
+#: documents/templates/documents/document_list.html:39
 msgid "Fill Date"
 msgstr "Дата заполнения"
 
-#: documents/templates/documents/act.html:79
-msgid "Comments"
-msgstr "Коментарии"
+#: documents/models.py:55 documents/templates/documents/document_detail.html:63
+#: documents/templates/documents/document_list.html:41
+msgid "Purchase Date"
+msgstr "Дата продажи"
 
-#: documents/templates/documents/act.html:84
-msgid "Comments of Pocketbook"
-msgstr "Коментарии представителя Pocketbook"
+#: documents/models.py:56 documents/templates/documents/document_detail.html:71
+#: documents/templates/documents/document_list.html:40
+msgid "Received Date"
+msgstr "Дата приема"
 
-#: documents/templates/documents/act.html:109
-msgid "Comment"
-msgstr "Коментарий"
+#: documents/models.py:57
+msgid "Conclusion Date"
+msgstr "Дата заключения"
 
-#: documents/templates/documents/request_form.html:5
-msgid "Request Document"
-msgstr "Запросить документ"
+#: documents/models.py:58 documents/templates/documents/document_detail.html:67
+msgid "Presale"
+msgstr "Предпродажный"
 
-#: documents/templates/documents/request_form.html:16
-msgid "Input device info"
-msgstr "Введите необходимые данные"
+#: documents/models.py:60 documents/templates/documents/document_detail.html:75
+msgid "Customer Claim"
+msgstr "Жалоба потребителя"
 
-#: documents/templates/documents/request_form.html:31
-msgid "Send request"
-msgstr "Отправить запрос"
+#: documents/models.py:61 documents/templates/documents/document_detail.html:79
+msgid "Identified Malfunction"
+msgstr "Результат диагностики (выявленные дефекты)"
 
-#: documents/templates/documents/showall.html:3
-#: main/templates/main/base.html:57
-msgid "Documents"
-msgstr "Документы"
+#: documents/models.py:62 documents/templates/documents/document_detail.html:83
+msgid "Conclusion"
+msgstr "Заключение"
 
-#: documents/templates/documents/showall.html:14
-msgid "All Your Documents"
-msgstr "Все ваши документы"
+#: documents/models.py:63
+msgid "Photo of warranty card"
+msgstr "Фото гарантийного талона"
 
-#: documents/templates/documents/showall.html:26
-msgid "Type"
-msgstr "Тип"
+#: documents/models.py:64
+msgid "Photo of receipt"
+msgstr "Фото чека"
 
-#: documents/templates/documents/showall.html:31
-msgid "Detail"
-msgstr "Подробно"
+#: documents/models.py:65
+msgid "Photo of screen"
+msgstr "Фото экрана"
 
-#: documents/templates/documents/showall.html:42
-msgid "Warranty rejection"
-msgstr "Отказ в ГО"
+#: documents/models.py:66
+msgid "Photo of defect"
+msgstr "Фото дефекта"
 
-#: documents/templates/documents/showall.html:44
-msgid "Technical inspection"
-msgstr "Техническая экспертиза"
+#: documents/models.py:69
+msgid "Client Name"
+msgstr "ФИО клиента (Потребителя)"
 
-#: documents/templates/documents/showall.html:46
-msgid "Defect acceptance"
-msgstr "Списание"
+#: documents/models.py:70 documents/templates/documents/document_detail.html:21
+msgid "Document type"
+msgstr "Тип документа"
 
-#: documents/templates/documents/showall.html:68
-msgid "Request Document Form"
-msgstr "Форма запроса документа"
+#: documents/models.py:71
+msgid "Satatus"
+msgstr "Статус"
 
-#: main/templates/main/base.html:52
-msgid "Home"
-msgstr "Главная"
+#: documents/models.py:72
+msgid "Scope of Supply"
+msgstr "Комплектацыя"
 
-#: main/templates/main/base.html:55 main/templates/main/index.html:17
-msgid "Devices"
-msgstr "Устройства"
+#: documents/models.py:73
+msgid "Visual (cosmetic) Defects:"
+msgstr "Косметические дефекты"
 
-#: main/templates/main/base.html:56 sncheck/templates/sncheck/sncheck.html:19
-msgid "Serial Check"
-msgstr "Проверка серийного номера"
+#: documents/models.py:74
+msgid "Comments (for PocketBook)"
+msgstr "Комментарии инженера (для PocketBook)"
 
-#: main/templates/main/base.html:102
-msgid "Contacts"
-msgstr "Контакты"
+#: documents/models.py:75
+msgid "Comment of Manager"
+msgstr "Комментарии инженера"
 
-#: main/templates/main/base.html:105
-msgid "Admin Section"
-msgstr "Администрирование"
+#: documents/models.py:76
+#, fuzzy
+#| msgid "Document type"
+msgid "Document Number"
+msgstr "Тип документа"
 
-#: main/templates/main/base.html:117
-msgid "Wellcome"
-msgstr "Приветствую"
-
-#: main/templates/main/base.html:118
-msgid " Log-out"
-msgstr "Выйти"
-
-#: main/templates/main/base.html:119
-msgid " Log-in"
-msgstr "Войти"
-
-#: main/templates/main/index.html:15
-msgid "News"
-msgstr "Новости"
-
-#: main/templates/main/index.html:16
-msgid "Last updates"
-msgstr "Последние обновления"
-
-#: pbservicesite/settings.py:111
-msgid "English"
-msgstr "Английский"
-
-#: pbservicesite/settings.py:112
-msgid "Russian"
-msgstr "Русский"
-
-#: sncheck/templates/sncheck/sncheck.html:7
-msgid "Submit"
-msgstr "Отправить"
-
-#: sncheck/templates/sncheck/sncheck.html:47
-#: sncheck/templates/sncheck/sncheck.html:49
-msgid "SN is valided"
-msgstr "Серийный номер валидный"
-
-#: sncheck/templates/sncheck/sncheck.html:47
-msgid "Yes"
-msgstr "Да"
-
-#: sncheck/templates/sncheck/sncheck.html:49
-msgid "No"
-msgstr "Нет"
-
-#: sncheck/templates/sncheck/sncheck.html:61
+#: documents/models.py:90
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:28
 msgid "Model"
 msgstr "Модель"
 
-#: sncheck/templates/sncheck/sncheck.html:64
-msgid "Production Date"
-msgstr "Дата производства"
+#: documents/models.py:95 documents/templates/documents/document_detail.html:53
+#: documents/templates/documents/document_list.html:31
+msgid "Service"
+msgstr "Сервисный центр"
 
-#: sncheck/templates/sncheck/sncheck.html:67
-msgid "Shipping Date"
-msgstr "Дата отгрузки"
-
-#: sncheck/templates/sncheck/sncheck.html:70
+#: documents/models.py:100 documents/templates/documents/document_list.html:30
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:40
 msgid "Region"
 msgstr "Регион"
 
-#: sncheck/templates/sncheck/sncheck.html:72
+#: documents/templates/documents/document_detail.html:3
+#: documents/templates/documents/document_detail.html:15
+#: documents/templates/documents/document_list.html:36
+msgid "Document"
+msgstr "Документ"
+
+#: documents/templates/documents/document_detail.html:36
+#: documents/templates/documents/document_list.html:42
+msgid "Status"
+msgstr "Статус"
+
+#: documents/templates/documents/document_detail.html:47
+#: documents/templates/documents/document_list.html:35
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:24
+msgid "Device"
+msgstr "Устройство"
+
+#: documents/templates/documents/document_detail.html:86
+msgid "Comments"
+msgstr "Коментарии"
+
+#: documents/templates/documents/document_detail.html:91
+msgid "Comments of Pocketbook"
+msgstr "Коментарии представителя Pocketbook"
+
+#: documents/templates/documents/document_detail.html:116
+msgid "Comment"
+msgstr "Коментарий"
+
+#: documents/templates/documents/document_list.html:3
+#: main/templates/main/base.html:74
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:78
+msgid "Documents"
+msgstr "Документы"
+
+#: documents/templates/documents/document_list.html:16
+msgid "All Your Documents"
+msgstr "Все ваши документы"
+
+#: documents/templates/documents/document_list.html:23
+msgid "Request Document Form"
+msgstr "Форма запроса документа"
+
+#: documents/templates/documents/document_list.html:38
+msgid "Type"
+msgstr "Тип"
+
+#: documents/templates/documents/document_list.html:57
+msgid "Warranty rejection"
+msgstr "Отказ в ГО"
+
+#: documents/templates/documents/document_list.html:59
+msgid "Technical inspection"
+msgstr "Техническая экспертиза"
+
+#: documents/templates/documents/document_list.html:61
+msgid "Defect acceptance"
+msgstr "Списание"
+
+#: documents/templates/documents/document_request_form.html:5
+msgid "Request Document"
+msgstr "Запросить документ"
+
+#: documents/templates/documents/document_request_form.html:16
+msgid "Input device info"
+msgstr "Введите необходимые данные"
+
+#: documents/templates/documents/document_request_form.html:29
+msgid "Send request"
+msgstr "Отправить запрос"
+
+#: main/templates/main/base.html:32
+msgid "Home"
+msgstr "Главная"
+
+#: main/templates/main/base.html:40
+msgid "Devices"
+msgstr "Устройства"
+
+#: main/templates/main/base.html:55 main/templates/main/base.html:68
+#: sncheck/templates/sncheck/serial_number_check.html:17
+msgid "Serial Check"
+msgstr "Проверка серийного номера"
+
+#: main/templates/main/base.html:82
+msgid "Contacts"
+msgstr "Контакты"
+
+#: main/templates/main/base.html:89
+msgid "Admin Section"
+msgstr "Администрирование"
+
+#: main/templates/main/base.html:97
+msgid "Wellcome"
+msgstr "Приветствую"
+
+#: main/templates/main/base.html:98
+msgid " Log-out"
+msgstr "Выйти"
+
+#: main/templates/main/base.html:99
+msgid " Log-in"
+msgstr "Войти"
+
+#: main/templates/main/index.html:18
+msgid "News"
+msgstr "Новости"
+
+#: main/templates/main/index.html:30
+msgid "Last updates"
+msgstr "Последние обновления"
+
+#: pbservicesite/settings.py:112
+msgid "English"
+msgstr "Английский"
+
+#: pbservicesite/settings.py:113
+msgid "Russian"
+msgstr "Русский"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:10
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:13
+msgid "SN is valided"
+msgstr "Серийный номер валидный"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:11
+msgid "Yes"
+msgstr "Да"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:14
+msgid "No"
+msgstr "Нет"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:32
+msgid "Production Date"
+msgstr "Дата производства"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:36
+msgid "Shipping Date"
+msgstr "Дата отгрузки"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:44
 msgid "Country"
 msgstr "Страна"
 
-#: sncheck/templates/sncheck/sncheck.html:75
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:48
 msgid "Color"
 msgstr "Цвет"
 
-#: sncheck/templates/sncheck/sncheck.html:79
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:52
+#, fuzzy
+#| msgid "Warranty rejection"
+msgid "Warranty term"
+msgstr "Срок гарантии"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:55
+msgid "months"
+msgstr "месяцев"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:67
 msgid "Partner"
 msgstr "Партнер"
 
-#: sncheck/templates/sncheck/sncheck.html:82
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:71
 msgid "Manufacturer"
 msgstr "Производитель"
+
+#: sncheck/templates/sncheck/serial_number_info.html:17
+#, fuzzy
+#| msgid "Serial Number"
+msgid "Serial Number Info"
+msgstr "Серийный Номер"
+
+#~ msgid "Detail"
+#~ msgstr "Подробно"
+
+#~ msgid "Submit"
+#~ msgstr "Отправить"
 
 #~ msgid "User"
 #~ msgstr "Пользователь"
