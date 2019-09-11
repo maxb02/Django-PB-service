@@ -48,6 +48,18 @@
                     <td>{% trans 'Color' %}</td>
                     <td>{{ data.colorEng }}</td>
                 </tr>
+                <tr>
+                    <td>{% trans 'Warranty term' %}</td>
+                    <td>
+                        {% if data.warranty %}
+                            {{ data.warranty }} {% trans 'months' %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                </tr>
+
+
 
 
                 {% if request.user.is_staff %}
@@ -62,19 +74,19 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
+    <tr>
+        <td valign="baseline" rowspan="0">{% trans 'Documents' %} </td>
+    </tr>
+    {% if documents %}
+        {% for document in documents %}
+            <tr>
+                <td><a href="{{ document.get_absolute_url }}" target="_blank">{{ document.number }}</a></td>
+            </tr>
+        {% endfor %}
+    {% else %}
         <tr>
-                    <td valign="baseline" rowspan="0">{% trans 'Documents' %} </td>
-                    </tr>
-                    {% if documents %}
-                        {% for document in documents %}
-                            <tr>
-                                <td><a href="{{ document.get_absolute_url }}" target="_blank">{{ document.number }}</a></td>
-                            </tr>
-                        {% endfor %}
-                        {% else %}
-                        <tr>
-                        <td>-</td>
-                        </tr>
-                    {% endif %}
+            <td>-</td>
+        </tr>
+    {% endif %}
 
 </table>
