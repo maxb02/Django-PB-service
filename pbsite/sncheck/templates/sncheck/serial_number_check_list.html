@@ -37,7 +37,7 @@
                 </div>
                 {% if serial_numbers %}
                     {% language 'en' %}
-                        <table id="seral_number_table" class="table table-bordered table-hover card-text">
+                        <table id="seral_number_table" class="table table-hover card-text">
                             <thead class="text-center">
                             <tr>
                                 <div class="text-center">
@@ -47,6 +47,7 @@
                                     <th>Production Date</th>
                                     <th>Shipping Date</th>
                                     <th>Time Passed</th>
+                                    <th>Warranty term</th>
                                     <th>Region</th>
                                     <th>Country</th>
                                     <th>Color</th>
@@ -79,6 +80,7 @@
                                         <td>{{ data.productionDate | date:"m.Y" }}</td>
                                         <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
                                         <td>{{ data.shippingDate | timesince }}</td>
+                                        <td> {% if data.warranty %} {{ data.warranty }} {% else %} - {% endif %}</td>
                                         <td>{{ data.countryEng }}</td>
                                         <td>{{ data.partnerCountry }}</td>
                                         <td>{{ data.colorEng }}</td>
