@@ -314,8 +314,6 @@ msgid "Color"
 msgstr "Цвет"
 
 #: sncheck/templates/sncheck/includes/serial_number_info_table.html:52
-#, fuzzy
-#| msgid "Warranty rejection"
 msgid "Warranty term"
 msgstr "Срок гарантии"
 
