@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans 'Battery Issue Form' %}{% endblock %}
+
+{% block body %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/documents.css' %}"/>
+       <div class="container-fluid">
+        <div class='container custom'>
+            <div class="card custom-bg">
+                <h5>
+                    <div class="card-header text-center text-light custom-header-bg">
+                        <b>{% trans 'Input device info' %}</b>
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="form-position">
+
+                        <form method="post" enctype="multipart/form-data" action="{% url 'document_request_url' %}">
+                            {% csrf_token %}
+
+                                {% bootstrap_form form  %}
+
+                            <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
+                                    value="Submit"><strong>{% trans 'Submit' %}</strong></button>
+                        </form>
+                        </div>
+
+
+{% endblock %}

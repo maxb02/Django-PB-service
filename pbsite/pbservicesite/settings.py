@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'contacts',
     'sncheck',
     'documents',
+    'issue',
     'import_export'
 
 ]

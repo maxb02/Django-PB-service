@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-11 16:46+0300\n"
+"POT-Creation-Date: 2019-09-23 14:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr "Серийный Номер"
 msgid "Protocol Number"
 msgstr "Номер обращения"
 
-#: documents/models.py:52
+#: documents/models.py:52 issue/models.py:15
 msgid "User Name"
 msgstr "Пользователь"
 
@@ -65,17 +65,17 @@ msgid "Accepted or declined by"
 msgstr "Подтвердил или отклонил"
 
 #: documents/models.py:54 documents/templates/documents/document_detail.html:59
-#: documents/templates/documents/document_list.html:39
+#: documents/templates/documents/document_list.html:39 issue/models.py:16
 msgid "Fill Date"
 msgstr "Дата заполнения"
 
 #: documents/models.py:55 documents/templates/documents/document_detail.html:63
-#: documents/templates/documents/document_list.html:41
+#: documents/templates/documents/document_list.html:41 issue/models.py:17
 msgid "Purchase Date"
 msgstr "Дата продажи"
 
 #: documents/models.py:56 documents/templates/documents/document_detail.html:71
-#: documents/templates/documents/document_list.html:40
+#: documents/templates/documents/document_list.html:40 issue/models.py:18
 msgid "Received Date"
 msgstr "Дата приема"
 
@@ -84,6 +84,7 @@ msgid "Conclusion Date"
 msgstr "Дата заключения"
 
 #: documents/models.py:58 documents/templates/documents/document_detail.html:67
+#: issue/models.py:19
 msgid "Presale"
 msgstr "Предпродажный"
 
@@ -144,7 +145,6 @@ msgid "Comment of Manager"
 msgstr "Комментарии инженера"
 
 #: documents/models.py:76
-#, fuzzy
 #| msgid "Document type"
 msgid "Document Number"
 msgstr "Тип документа"
@@ -195,7 +195,7 @@ msgstr "Коментарий"
 
 #: documents/templates/documents/document_list.html:3
 #: main/templates/main/base.html:74
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:78
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:66
 msgid "Documents"
 msgstr "Документы"
 
@@ -224,16 +224,53 @@ msgid "Defect acceptance"
 msgstr "Списание"
 
 #: documents/templates/documents/document_request_form.html:5
+#: issue/templates/issue/battery_issue_create.html:5
 msgid "Request Document"
 msgstr "Запросить документ"
 
 #: documents/templates/documents/document_request_form.html:16
+#: issue/templates/issue/battery_issue_create.html:15
 msgid "Input device info"
 msgstr "Введите необходимые данные"
 
 #: documents/templates/documents/document_request_form.html:29
 msgid "Send request"
 msgstr "Отправить запрос"
+
+#: issue/models.py:14
+#| msgid "Serial Number"
+msgid "Device Serial Number"
+msgstr "Серийный Номер Устройства"
+
+#: issue/models.py:20
+#| msgid "Serial Number"
+msgid "Battery Serial Number"
+msgstr "Серийный Номер АКБ"
+
+#: issue/models.py:21
+msgid "Battery Model"
+msgstr ""
+
+#: issue/models.py:22
+msgid "Battery Batch"
+msgstr ""
+
+#: issue/models.py:23
+#| msgid "Production Date"
+msgid "Battery Production Date"
+msgstr "Дата производства"
+
+#: issue/models.py:24
+msgid "Battery photo"
+msgstr "Фото АКБ"
+
+#: issue/models.py:25
+msgid "General view photo"
+msgstr "Фото устройства"
+
+#: issue/templates/issue/battery_issue_create.html:28
+msgid "Submit"
+msgstr "Отправить"
 
 #: main/templates/main/base.html:32
 msgid "Home"
@@ -276,11 +313,11 @@ msgstr "Новости"
 msgid "Last updates"
 msgstr "Последние обновления"
 
-#: pbservicesite/settings.py:112
+#: pbservicesite/settings.py:113
 msgid "English"
 msgstr "Английский"
 
-#: pbservicesite/settings.py:113
+#: pbservicesite/settings.py:114
 msgid "Russian"
 msgstr "Русский"
 
@@ -313,33 +350,21 @@ msgstr "Страна"
 msgid "Color"
 msgstr "Цвет"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:52
-msgid "Warranty term"
-msgstr "Срок гарантии"
-
 #: sncheck/templates/sncheck/includes/serial_number_info_table.html:55
-msgid "months"
-msgstr "месяцев"
-
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:67
 msgid "Partner"
 msgstr "Партнер"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:71
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:59
 msgid "Manufacturer"
 msgstr "Производитель"
 
 #: sncheck/templates/sncheck/serial_number_info.html:17
-#, fuzzy
 #| msgid "Serial Number"
 msgid "Serial Number Info"
-msgstr "Серийный Номер"
+msgstr "Информацыя о Серийном Номере"
 
 #~ msgid "Detail"
 #~ msgstr "Подробно"
-
-#~ msgid "Submit"
-#~ msgstr "Отправить"
 
 #~ msgid "User"
 #~ msgstr "Пользователь"
