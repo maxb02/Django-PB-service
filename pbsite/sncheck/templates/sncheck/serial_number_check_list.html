@@ -84,7 +84,7 @@
                                         <td>{{ data.countryEng }}</td>
                                         <td>{{ data.partnerCountry }}</td>
                                         <td>{{ data.colorEng }}</td>
-                                        <td>{{ data.manufacturer }}</td>
+                                        <td>{{ data.manufacturer }} {% if data.refurbishedBy %}Ref {{ data.refurbishedBy }} {% endif %}</td>
 
 
                                     {% endfor %}

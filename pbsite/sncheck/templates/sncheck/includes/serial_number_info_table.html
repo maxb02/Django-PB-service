@@ -48,28 +48,46 @@
                     <td>{% trans 'Color' %}</td>
                     <td>{{ data.colorEng }}</td>
                 </tr>
-                <tr>
-                    <td>{% trans 'Warranty term' %}</td>
-                    <td>
-                        {% if data.warranty %}
-                            {{ data.warranty }} {% trans 'months' %}
-                        {% else %}
-                            -
-                        {% endif %}
-                    </td>
-                </tr>
-
-
-
-
+                {% if  data.refurbishedBy %}
+                    <tr class="table-danger">
+                        <td>{% trans 'Warranty term' %}</td>
+                        <td>
+                            {% if data.warranty %}
+                                {{ data.warranty }} {% trans 'months' %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{% trans 'Warranty term' %}</td>
+                        <td>
+                            {% if data.warranty %}
+                                {{ data.warranty }} {% trans 'months' %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
                 {% if request.user.is_staff %}
                     <tr>
                         <td>{% trans 'Partner' %}</td>
                         <td>{{ data.partner }}</td>
                     </tr>
-                    <tr>
-                        <td>{% trans 'Manufacturer' %}</td>
-                        <td>{{ data.manufacturer }}</td>
+                    {% if data.refurbishedBy %}
+                        <tr class="table-danger">
+                            <td>{% trans 'Manufacturer' %}</td>
+                            <td><i class="fas fa-recycle"></i> {{ data.refurbishedBy }} </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{% trans 'Manufacturer' %}</td>
+                            <td>{{ data.manufacturer }}</td>
+                        </tr>
+
+                    {% endif %}
                     </tr>
                 {% endif %}
             {% endfor %}
@@ -88,5 +106,4 @@
             <td>-</td>
         </tr>
     {% endif %}
-
 </table>
