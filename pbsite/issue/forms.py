@@ -4,6 +4,7 @@ from .models import BatteryIssue
 
 
 class BatteryIssueForm(forms.ModelForm):
+
     class Meta:
         model = BatteryIssue
         fields = ('device_serial_number', 'purchase_date', 'received_date', 'is_presale', 'battery_serial_number',
@@ -16,8 +17,7 @@ class BatteryIssueForm(forms.ModelForm):
             'received_date': forms.DateInput(format=('%d/%m/%Y'),
                                              attrs={'class': 'form-control', 'placeholder': 'Select a date',
                                                     'type': 'date'}),
-            'battery_production_date': forms.DateInput(format=('%m/%Y'),
-                                                       attrs={'class': 'form-control', 'placeholder': 'Select a date',
+            'battery_production_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Select a date',
                                                               'type': 'week'}),
             'is_presale': forms.CheckboxInput(attrs={'id': 'is_presale'})
         }

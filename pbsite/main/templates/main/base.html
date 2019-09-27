@@ -20,7 +20,7 @@
           href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700&amp;subset=cyrillic-ext,latin-ext">
 
     {% block head %}
-{% endblock %}
+    {% endblock %}
 
 </head>
 
@@ -71,11 +71,37 @@
         {% endif %}
         {% if request.user.service_center or request.user.is_staff %}
             <li>
-                <a class="nav-link text-light text-lg-left" href="{% url 'document_list_url' %}"><i class="fas fa-file-alt fa-lg"></i> {% trans "Documents" %}
+                <a class="nav-link text-light text-lg-left" href="{% url 'document_list_url' %}"><i
+                        class="fas fa-file-alt fa-lg"></i> {% trans "Documents" %}
                     <span>{% if documents_in_process and request.user.is_staff %}({{ documents_in_process }}
                         ) {% endif %}</span>
                     &nbsp;</a>
             </li>
+        {% endif %}
+        {% if request.user.is_staff %}
+            <li class="nav-item dropdown">
+                <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-battery-empty fa-lg"></i>
+                    {% trans "Battery Issue" %}
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item text-light text-lg-left" href="{% url 'battery_issue_list_url' %}"><i
+                            class="fa fa-check"
+                            aria-hidden="true"></i> {% trans 'Battery Issue List' %}</a>
+                    <a class="dropdown-item text-light text-lg-left"
+                       href="{% url 'battery_issue_create_url' %}"><i class="fa  fa-list-ul aria-hidden= true"></i>
+                        {% trans 'Add Battery Issue' %}</a>
+                </div>
+            <li>
+
+                {% elif perms.issue.add_batteryissue %}
+            <li class="nav-item">
+                <a class="nav-link text-light text-lg-left" href="{% url 'battery_issue_create_url' %}"><i
+                        class="fas fa-battery-empty fa-lg"></i> {% trans "Add Battery Issue" %}
+                    &nbsp;</a>
+            </li>
+
+
         {% endif %}
         <li class="nav-item">
             <a class="nav-link text-light text-lg-left" href="/contacts"><i class="fa fa-address-book fa-lg"

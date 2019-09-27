@@ -117,6 +117,8 @@ LANGUAGES=[
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]
 
 TIME_ZONE = 'Europe/Kiev'
+DATE_INPUT_FORMATS = ['%d-%m-%Y', "%Y-W%W", '%d/%m/%Y"']
+
 
 USE_I18N = True
 

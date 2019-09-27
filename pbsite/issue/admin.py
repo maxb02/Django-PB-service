@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import BatteryIssue
 
-# Register your models here.
+@admin.register(BatteryIssue)
+class BattereIssueAdmin(admin.ModelAdmin):
+    pass
+
