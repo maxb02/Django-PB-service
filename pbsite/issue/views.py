@@ -25,8 +25,8 @@ class BatteryIssueDetail(LoginRequiredMixin, DetailView):
     model = BatteryIssue
 
 
-class BatteryIssueList(LoginRequiredMixin, ListView):
-    permission_denied_message = 'issue.view_battery_issue_list'
+class BatteryIssueList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
+    permission_required = 'issue.view_battery_issue_list'
     raise_exception = True
     model = BatteryIssue
 
