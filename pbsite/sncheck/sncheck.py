@@ -31,7 +31,7 @@ def get_device_info_from_shipments(serial_number):
                                        verify=False).json()
         except:
             return 'Erorr'
-        if device_info:
+        if device_info and not device_info.get('error_message'):
             for record in device_info:
                 record['shippingDate'] = datetime.datetime.strptime(record['shippingDate'], "%Y-%m-%d %H:%M:%S")
                 record['productionDate'] = datetime.datetime.strptime(record['month'] + record['year'], '%m%Y')
