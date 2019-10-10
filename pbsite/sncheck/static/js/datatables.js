@@ -1,9 +1,23 @@
 $(document).ready(function () {
     $('#seral_number_table').DataTable({
+        paging: false,
         "order": [],
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'excel', 'print',
+            {
+                extend: 'excel',
+                title: ''
+            },
+            {
+                extend: 'copy',
+                title: '',
+                header: ''
+
+            },
+            {
+                extend: 'print',
+                title: ''
+            }
         ]
     });
 });
