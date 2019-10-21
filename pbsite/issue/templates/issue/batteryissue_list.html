@@ -29,13 +29,14 @@
                             <th>Battery Model</th>
                             <th>Battery Batch</th>
                             <th>Battery Production Date</th>
+                            <th>Photos</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for issue in object_list %}
                             <tr>
                                 <td><a href="{{ issue.get_absolute_url }}" target="_blank">{{ issue.pk }}</a></td>
-                                <td>{{ issue.device_serial_number }}</td>
+                                <td><a href="{% url 'serial_number_info_url' serial_number=issue.device_serial_number %}">{{ issue.device_serial_number }}</a></td>
                                 <td>{{ issue.get_model }}</td>
                                 <td>{{ issue.user.service_center }}</td>
                                 <td>{{ issue.filling_date }}</td>
@@ -43,6 +44,9 @@
                                 <td>{{ issue.battery_model }}</td>
                                 <td>{{ issue.battery_batch }}</td>
                                 <td>{{ issue.battery_production_date }}</td>
+                                <td><a href="{{ issue.general_view_photo.url }}" target="_blank"><i class="fas fa-camera-retro"></i></a>
+                                    <a href="{{ issue.battery_photo.url }}" target="_blank"><i class="fas fa-camera-retro"></i></a>
+                                    </td>
 
                             </tr>
                         {% endfor %}
