@@ -23,8 +23,14 @@
                                 {% csrf_token %}
                                 {% bootstrap_form form %}
                                 {% bootstrap_form_errors form %}
+
+                                                            <div class="alert alert-warning" role="alert">
+                                <h4 class="alert-heading">{% trans 'Please pay your attention' %}</h4>
+                                <p>{% trans 'All photos should have portrait orientation and readable text position.' %}</p>
+                            </div>
                                 <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
                                         value="Save"><strong>{% trans 'Submit' %}</strong></button>
                             </form>
+
                         </div>
 {% endblock %}
