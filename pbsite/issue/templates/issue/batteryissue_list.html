@@ -39,8 +39,8 @@
                                 <td><a href="{% url 'serial_number_info_url' serial_number=issue.device_serial_number %}">{{ issue.device_serial_number }}</a></td>
                                 <td>{{ issue.get_model }}</td>
                                 <td>{{ issue.user.service_center }}</td>
-                                <td>{{ issue.filling_date }}</td>
-                                <td>{{ issue.purchase_date }}</td>
+                                <td>{{ issue.filling_date | date:"Y/m/d" }}</td>
+                                <td>{{ issue.purchase_date | date:"Y/m/d" }}</td>
                                 <td>{{ issue.battery_model }}</td>
                                 <td>{{ issue.battery_batch }}</td>
                                 <td>{{ issue.battery_production_date }}</td>
