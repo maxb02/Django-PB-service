@@ -37,7 +37,7 @@
                 </div>
                 {% if serial_numbers %}
                     {% language 'en' %}
-                        <table id="seral_number_table" class="table table-hover card-text">
+                        <table id="serial_number_table" class="table table-hover card-text">
                             <thead class="text-center">
                             <tr>
                                 <div class="text-center">
@@ -48,6 +48,7 @@
                                     <th>Shipping Date</th>
                                     <th>Time Passed</th>
                                     <th>Warranty term</th>
+                                    <th>Partner</th>
                                     <th>Region</th>
                                     <th>Country</th>
                                     <th>Manufacturer</th>
@@ -80,6 +81,7 @@
                                         <td>{{ data.shippingDate | date:"d.m.Y" }}</td>
                                         <td>{{ data.shippingDate | timesince }}</td>
                                         <td> {% if data.warranty %} {{ data.warranty }} {% else %} - {% endif %}</td>
+                                        <td>{{ data.partner }}</td>
                                         <td>{{ data.countryEng }}</td>
                                         <td>{{ data.partnerCountry }}</td>
                                         <td>{{ data.manufacturer }} {% if data.refurbishedBy %}Ref {{ data.refurbishedBy }} {% endif %}</td>
@@ -111,7 +113,7 @@
 
 {% block scripts %}
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="{% static "/js/datatables.js" %}"></script>
+    <script src="{% static "js/datatables.js" %}"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
