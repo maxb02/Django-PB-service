@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#serial_number_table').DataTable({
-        "paging": false
+        "paging": false,
         "order": [],
         buttons: [
             {
