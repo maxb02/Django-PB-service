@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from easy_pdf.rendering import render_to_pdf_response
 from .forms import ActRequestForm, ActComentForm
-from .models import Act
+from .models import Act, SerialNumberPrefix
 from django.http import HttpResponse
 
 
@@ -25,15 +25,17 @@ class DocumentRequest(LoginRequiredMixin, View):
 
     def get(self, request):
         form = ActRequestForm
+
         return render(request, 'documents/document_request_form.html', {'form': form})
 
 
 @login_required
 def document_list(request):
-    documents = Act.objects.all()
+    documents = Act.objects.all().select_related('created_by__service_center')
     if not request.user.is_staff:
-        documents = documents.filter(created_by__service_center=request.user.service_center)
-    return render(request, 'documents/document_list.html', {'documents': documents})
+        documents = documents.filter(created_by__service_center=request.user.service_center).select_related(
+            'created_by__service_center')
+    return render(request, 'documents/document_list.html', {'documents': documents, })
 
 
 class DocumentDetail(LoginRequiredMixin, View):
