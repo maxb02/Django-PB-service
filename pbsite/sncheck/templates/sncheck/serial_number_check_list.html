@@ -61,16 +61,29 @@
                             {% for info in devices_info_list %}
                                 <tr>
                                 {% if info.device_info == False %}
-                                    <td><a href="{% url 'serial_number_info_url' serial_number=info.serial_number %}">{{ info.serial_number }}</a></td>
+                                    <td>
+                                        <a href="{% url 'serial_number_info_url' serial_number=info.serial_number %}">{{ info.serial_number }}</a>
+                                    </td>
                                     {% if info.is_valid == True %}
                                         <td>Yes</td>
                                     {% elif info.is_valid == False %}
                                         <td>No</td>
                                     {% endif %}
-                                    <td colspan="9">No info in shipments</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+
                                 {% else %}
                                     {% for data in info.device_info %}
-                                        <td><a href="{% url 'serial_number_info_url' serial_number=info.serial_number %}">{{ info.serial_number }}</a></td>
+                                        <td>
+                                            <a href="{% url 'serial_number_info_url' serial_number=info.serial_number %}">{{ info.serial_number }}</a>
+                                        </td>
                                         {% if info.is_valid == True %}
                                             <td>Yes</td>
                                         {% elif info.is_valid == True %}
@@ -84,19 +97,21 @@
                                         <td>{{ data.partner }}</td>
                                         <td>{{ data.countryEng }}</td>
                                         <td>{{ data.partnerCountry }}</td>
-                                        <td>{{ data.manufacturer }} {% if data.refurbishedBy %}Ref {{ data.refurbishedBy }} {% endif %}</td>
+                                        <td>{{ data.manufacturer }} {% if data.refurbishedBy %}Ref
+                                            {{ data.refurbishedBy }} {% endif %}</td>
 
 
                                     {% endfor %}
-                                    <td> {% if info.serial_number_journal.all %}
-                                        {% for journal in info.serial_number_journal.all %}
-                                            {{ journal.user.service_center }} {{ journal.user.get_full_name }},
-                                        {% endfor %}
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                    </td>
+
                                 {% endif %}
+                                <td> {% if info.serial_number_journal.all %}
+                                    {% for journal in info.serial_number_journal.all %}
+                                        {{ journal.user.service_center }} {{ journal.user.get_full_name }},
+                                    {% endfor %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                                </td>
                                 </td>
 
                             {% endfor %}
