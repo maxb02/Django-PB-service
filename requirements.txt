@@ -31,7 +31,7 @@ python-dateutil==2.6.1
 pytz==2017.2
 PyYAML==3.13
 reportlab==3.5.9
-requests==2.18.4
+requests==2.20.0
 setuptools-git==1.2
 six==1.10.0
 tablib==0.12.1
