@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    $('#seral_number_table').DataTable({
-        paging: false,
+    $('#serial_number_table').DataTable({
+        pading: false,
         "order": [],
-        dom: 'Bfrtip',
         buttons: [
             {
                 extend: 'excel',
