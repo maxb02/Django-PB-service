@@ -2,7 +2,6 @@ from django.forms import ModelForm
 from django import forms
 from .models import Act
 
-
 class ActRequestForm(ModelForm):
     class Meta:
         model = Act

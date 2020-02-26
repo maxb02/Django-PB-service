@@ -1,0 +1,208 @@
+{% extends 'technicalguides/../../../main/templates/main/base.html' %}
+{% block title %} New Guide {{ block.super }} {% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'guide/css/guide.css' %}"/>
+{% endblock %}
+
+{% block body %}
+    <div class='card custom-bg'>
+        <!--- FORM START --->
+        <form id="guideform" @submit="submitGuide">
+            <!--- GUIDE NAME --->
+            <div class="form-group row">
+                <label for="guideTitle" class="col-sm-1 col-form-label">Guide title:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" v-model="title" id="guideTitle" placeholder="guide-title">
+                </div>
+            </div>
+            <!--- DEVICE LIST --->
+            <div class="form-group row">
+                <label for="guideDevice" class="col-sm-1 col-form-label">Device:</label>
+                <div class="col-sm-4">
+                    <select id="guideDevice" class="form-control" v-model="device">
+                        <option value="" selected>Select...</option>
+                        <option v-for="device in devices" :value="device.id">{{ device.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <!--- GROUP LIST --->
+            <div class="form-group row">
+                <label for="guideGroup" class="col-sm-1 col-form-label">Group:</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="guideGroup" v-model="group" multiple>
+                        <option v-for="group in groups" :value="group.id">{{ group.name }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" v-for="(step, stepIndex) in steps">
+                <!--- STEP BLOCK START --->
+                <div class="step card text-left">
+                    <div class='card-header step-header-padding'>
+                        <!--- STEP ID --->
+                        <div class="form-group row">
+                            <label :for="'step'+stepIndex+'position'" class="col-sm-1 col-form-label">Step
+                                Position:</label>
+                            <div class="col-sm-0">
+                                <input type="text" v-model="step.position" class="form-control"
+                                       :id="'step'+stepIndex+'position'" placeholder="#">
+                            </div>
+                            <label :for="'step'+stepIndex+'title'" class="col-sm-1 col-form-label">Step title:</label>
+                            <div class="col-sm-0">
+                                <input type="text" v-model="step.title" class="form-control"
+                                       :id="'step'+stepIndex+'title'" placeholder="Title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-body">
+                        <!--- STEP TEXT --->
+                        <div class="form-group row">
+                            <label :for="'step'+stepIndex+'text'" class="col-sm-1 col-form-label">Step text:</label>
+                            <div class="col-sm-6">
+                                <input type="text" v-model="step.text" class="form-control"
+                                       :id="'step'+stepIndex+'text'" placeholder="Text">
+                            </div>
+                        </div>
+                        <!--- STEP NOTICE --->
+                        <!--- GENERATED NOTICE --->
+                        <div class="form-group row" v-for="(notice, noticeIndex) in step.notices">
+                            <label :for="'step'+stepIndex+'type'+noticeIndex" class="col-sm-1 col-form-label">Notice
+                                type:</label>
+                            <div class="col-sm-0">
+                                <select :id="'step'+stepIndex+'type'+noticeIndex" class="form-control"
+                                        @change="noticeType($event, stepIndex, noticeIndex)">
+                                    <option value="" selected>Select...</option>
+                                    <option v-for="type in noticeTypes" :value="type.id">{{ type.name }}</option>
+                                </select>
+                            </div>
+                            <label :for="'step'+stepIndex+'text'+noticeIndex"
+                                   class="col-sm-1 col-form-label">Notice:</label>
+                            <div class="col-sm-0">
+                                <input type="text" v-model="step.notices[noticeIndex].text" class="form-control"
+                                       :id="'step'+stepIndex+'text'+noticeIndex" placeholder="Notice text">
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-danger"
+                                        @click="deleteNotice(stepIndex, noticeIndex)">Delete notice
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary" @click="addNotice(stepIndex)">Add notice
+                            </button>
+                        </div>
+                        <!--- GENERATED NOTICE --->
+                        <!--- STEP NOTICE --->
+                        <!--- STEP IMAGES --->
+                        <!--- GENERATED IMAGE FIELD --->
+                        <div class="form-group row" v-for="(image, imageIndex) in step.images">
+                            <img :src="image.src" width="100" alt="...">
+                            <label for="'step'+stepIndex+'imagepos'+imageIndex" class="col-sm-1 col-form-label">image_id:</label>
+                            <div class="col-sm-2">
+                                <input type="text" v-model="step.images[imageIndex].position" class="form-control"
+                                       :id="'step'+stepIndex+'imagepos'+imageIndex" placeholder="#">
+                            </div>
+                            <div class="custom-file col-sm-6">
+                                <input type="file" class="custom-file-input"
+                                       @change="fileChange($event, 'images', stepIndex, imageIndex)"
+                                       :id="'step'+stepIndex+'image'+imageIndex" accept="image/*">
+                                <label class="custom-file-label"
+                                       :for="'step'+stepIndex+'image'+imageIndex">{{ image.label }}</label>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-danger"
+                                        @click="deleteImage(stepIndex, imageIndex)">Delete image
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary" @click="addImage(stepIndex)">Add image
+                            </button>
+                        </div>
+                        <!--- GENERATED IMAGE FIELD --->
+                        <!--- STEP IMAGES --->
+                        <!--- STEP LINKS --->
+                        <!--- GENERATED LINKS FIELD --->
+                        <div class="form-group row" v-for="(link, linkIndex) in step.links">
+                            <label for="'step'+stepIndex+'linkname'+linkIndex"
+                                   class="col-sm-1 col-form-label">Name:</label>
+                            <div class="col-sm-2">
+                                <input type="text" v-model="step.links[linkIndex].label" class="form-control"
+                                       :id="'step'+stepIndex+'linkname'+linkIndex" placeholder="Name">
+                            </div>
+                            <label for="'step'+stepIndex+'linksrc'+linkIndex"
+                                   class="col-sm-1 col-form-label">Link:</label>
+                            <div class="col-sm-2">
+                                <input type="text" v-model="step.links[linkIndex].src" class="form-control"
+                                       :id="'step'+stepIndex+'linksrc'+linkIndex" placeholder="Link">
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-danger" @click="deleteLink(stepIndex, linkIndex)">
+                                    Delete link
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary" @click="addLink(stepIndex)">Add link</button>
+                        </div>
+                        <!--- GENERATED LINKS FIELD --->
+                        <!--- STEP LINKS --->
+                        <!--- STEP FILES --->
+                        <!--- GENERATED FILES FIELD --->
+                        <div class="form-group row" v-for="(file, fileIndex) in step.files">
+                            <label for="'step'+stepIndex+'filename'+fileIndex"
+                                   class="col-sm-1 col-form-label">Name:</label>
+                            <div class="col-sm-2">
+                                <input type="text" v-model="step.files[fileIndex].name" class="form-control"
+                                       :id="'step'+stepIndex+'filename'+fileIndex" placeholder="Name">
+                            </div>
+                            <div class="custom-file col-sm-6">
+                                <input type="file" class="custom-file-input"
+                                       @change="fileChange($event, 'files', stepIndex, fileIndex)"
+                                       :id="'step'+stepIndex+'file'+fileIndex" accept="application/zip,application/rar">
+                                <label class="custom-file-label"
+                                       :for="'step'+stepIndex+'file'+fileIndex">{{ file.label }}</label>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-danger" @click="deleteFile(stepIndex, fileIndex)">
+                                    Delete file
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary" @click="addFile(stepIndex)">Add file</button>
+                        </div>
+                        <!--- GENERATED FILES FIELD --->
+                        <!--- STEP FILES --->
+                        <button type="button" class="btn btn-danger" @click="deleteStep(stepIndex)">Delete step</button>
+                    </div>
+                </div>
+            </div>
+            <!--- STEP BLOCK END --->
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" @click="addStep()">Add step</button>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <!--- FORM END --->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'guide/js/add-guide.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+{% endblock %}
