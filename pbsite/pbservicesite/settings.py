@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'documents',
     'issue',
     'device',
+    'sparepart',
     'import_export'
 
 ]
