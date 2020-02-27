@@ -25,8 +25,8 @@ class Supplier(models.Model):
 
 class SparePart(models.Model):
     name = models.CharField(max_length=50, verbose_name='Name of spare part')
-    device = models.ForeignKey(Device, related_name='spare_part', verbose_name='Device')
-    category = models.ForeignKey(Category, related_name='category', verbose_name='Category')
+    device = models.ManyToManyField(Device, related_name='spare_parts', verbose_name='Device')
+    category = models.ForeignKey(Category, related_name='category', verbose_name='Category', null=True)
     image = models.ImageField(upload_to='spareparts', verbose_name='Photo')
     weight = models.PositiveSmallIntegerField(verbose_name='Weight grams')
     size = models.CharField(max_length=25, verbose_name='Size, millimeters')
@@ -38,4 +38,4 @@ class SparePart(models.Model):
     purchase_price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name='Purchase price, $')
 
     def __str__(self):
-        return '{} {}'.format(self.device, self.name)
+        return self.name
