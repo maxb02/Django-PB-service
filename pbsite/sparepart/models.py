@@ -24,18 +24,18 @@ class Supplier(models.Model):
 
 
 class SparePart(models.Model):
-    name = models.CharField(max_length=50)
-    device = models.ForeignKey(Device, related_name='spare_part')
-    category = models.ForeignKey(Category, related_name='category', null=True)
-    image = models.ImageField(upload_to='spareparts')
-    weight = models.PositiveSmallIntegerField()
-    size = models.CharField(max_length=25)
-    sku = models.CharField(max_length=50)
-    description = models.TextField()
-    comment = models.TextField()
-    supplier = models.ForeignKey(Supplier, related_name='spare_part')
-    manufacturer = models.ForeignKey(Manufacturer, related_name='manufacturer')
-    purchase_price = models.DecimalField(max_digits=18, decimal_places=2)
+    name = models.CharField(max_length=50, verbose_name='Name of spare part')
+    device = models.ForeignKey(Device, related_name='spare_part', verbose_name='Device')
+    category = models.ForeignKey(Category, related_name='category', null=True, verbose_name='Category')
+    image = models.ImageField(upload_to='spareparts', verbose_name='Photo')
+    weight = models.PositiveSmallIntegerField(verbose_name='Weight grams')
+    size = models.CharField(max_length=25, verbose_name='Size, millimeters')
+    sku = models.CharField(max_length=50, verbose_name='SKU')
+    description = models.TextField(verbose_name='Short description')
+    comment = models.TextField(verbose_name='Comment')
+    supplier = models.ForeignKey(Supplier, related_name='spare_part', verbose_name='Supplier')
+    manufacturer = models.ForeignKey(Manufacturer, related_name='manufacturer', verbose_name='Manufacturer')
+    purchase_price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name='Purchase price, $')
 
     def __str__(self):
         return '{} {}'.format(self.device, self.name)
