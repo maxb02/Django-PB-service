@@ -30,7 +30,7 @@ class SparePart(models.Model):
     image = models.ImageField(upload_to='spareparts', verbose_name='Photo')
     weight = models.PositiveSmallIntegerField(verbose_name='Weight grams')
     size = models.CharField(max_length=25, verbose_name='Size, millimeters')
-    part_number = models.CharField(max_length=50, verbose_name='Part Number')
+    sku = models.CharField(max_length=50, verbose_name='Part Number')
     description = models.TextField(verbose_name='Short description')
     comment = models.TextField(verbose_name='Comment', null=True, blank=True)
     supplier = models.ForeignKey(Supplier, related_name='spare_part', verbose_name='Supplier')
