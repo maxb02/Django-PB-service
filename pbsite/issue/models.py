@@ -39,7 +39,7 @@ class BatteryIssue(models.Model):
         return datetime.strptime('{}-{}'.format(self.battery_production_date, '0'), '%Y-W%U-%w')
 
     def get_model(self):
-        return Device.objects.filter(serial_number_prefix=self.device_serial_number[:3]).first().model_number
+        return Device.objects.filter(serial_number_prefix=self.device_serial_number[:3]).first()
     get_model.short_description = _('Model')
 
 
