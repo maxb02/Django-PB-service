@@ -2,6 +2,7 @@ $(document).ready(function () {
     $('#serial_number_table').DataTable({
         "paging": false,
         "order": [],
+        dom: 'Bfrtip',
         buttons: [
             {
                 extend: 'excel',
@@ -20,3 +21,15 @@ $(document).ready(function () {
         ]
     });
 });
+
+
+// $(document).ready(function () {
+//     $('#serial_number_table').DataTable({
+//         "order": [],
+//
+//         dom: 'Bfrtip',
+//         buttons: [
+//             'copy', 'excel', 'print',
+//         ]
+//     });
+// });
