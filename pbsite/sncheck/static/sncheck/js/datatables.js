@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $('#seral_number_table').DataTable({
-        paging: false,
+    $('#serial_number_table').DataTable({
+        "paging": false,
         "order": [],
         dom: 'Bfrtip',
         buttons: [
@@ -21,3 +21,15 @@ $(document).ready(function () {
         ]
     });
 });
+
+
+// $(document).ready(function () {
+//     $('#serial_number_table').DataTable({
+//         "order": [],
+//
+//         dom: 'Bfrtip',
+//         buttons: [
+//             'copy', 'excel', 'print',
+//         ]
+//     });
+// });

@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from django.urls import reverse
+from device.models import Device
 
 
 def upload_path_handler(self, filename):
@@ -27,11 +28,18 @@ class BatteryIssue(models.Model):
     general_view_photo = models.ImageField(upload_to=upload_path_handler, null=True,
                                            verbose_name=_('General view photo'))
 
+
+    class Meta:
+        permissions = (('view_battery_issue_list', 'User can view a list of objects'),)
+
     def get_absolute_url(self):
         return reverse('battery_issue_detail_url', kwargs={'pk': self.pk})
 
     def get_battery_production_date(self):
         return datetime.strptime('{}-{}'.format(self.battery_production_date, '0'), '%Y-W%U-%w')
 
-    class Meta:
-        permissions = (('view_battery_issue_list', 'User can view a list of objects'),)
+    def get_model(self):
+        return Device.objects.filter(serial_number_prefix=self.device_serial_number[:3]).first()
+    get_model.short_description = _('Model')
+
+

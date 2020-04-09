@@ -28,6 +28,6 @@ class BatteryIssueDetail(LoginRequiredMixin, DetailView):
 class BatteryIssueList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     permission_required = 'issue.view_battery_issue_list'
     raise_exception = True
-    model = BatteryIssue
+    queryset = BatteryIssue.objects.all().select_related('user', 'user__service_center')
 
 

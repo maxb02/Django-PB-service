@@ -1,0 +1,28 @@
+.custom-header-bg {
+    background-color: #00615b;
+}
+
+.card-body-padding {
+    padding: 0;
+}
+
+.custom-bg {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 97, 91, 0.5);
+    border-radius: 0.35rem;
+    margin: 1.5rem 4rem;
+}
+
+.step {
+    margin-top: 1rem;
+}
+
+.step-header-padding {
+    padding: 0.3rem 0.7rem 0;
+}
+
+.video-fluid {
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
