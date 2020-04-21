@@ -3,5 +3,6 @@ from .models import BatteryIssue
 
 @admin.register(BatteryIssue)
 class BattereIssueAdmin(admin.ModelAdmin):
-    pass
+    list_display = 'id', 'device_serial_number', 'user', 'filling_date'
+    search_fields = 'id', 'device_serial_number',
 
