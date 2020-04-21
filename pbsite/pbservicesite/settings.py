@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'device',
     'sparepart',
     'import_export',
-    'rest_framework',
+    # 'rest_framework',
 
 ]
 
