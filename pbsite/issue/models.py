@@ -31,6 +31,7 @@ class BatteryIssue(models.Model):
 
     class Meta:
         permissions = (('view_battery_issue_list', 'User can view a list of objects'),)
+        unique_together = ('device_serial_number', 'received_date')
 
     def get_absolute_url(self):
         return reverse('battery_issue_detail_url', kwargs={'pk': self.pk})
