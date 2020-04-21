@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, UpdateView
 from .forms import BatteryIssueForm
 from .models import BatteryIssue
 

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'bootstrap3',
+    'bootstrap4',
     'reversion',
     'ckeditor_uploader',
     'easy_pdf',
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     'issue',
     'device',
     'sparepart',
-    'import_export'
+    'import_export',
+    'rest_framework',
 
 ]
 

@@ -3,9 +3,9 @@ from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from .sncheck import get_device_info_from_shipments, validate_serial_number, check_device_and_user_allowed_regions, \
+from .sncheck import get_device_info_from_shipments, check_device_and_user_allowed_regions, \
     send_region_mismatch_letter, add_record_to_serial_number_check_journal, \
-    is_not_old_device
+    is_not_old_device, validate_serial_number
 from .models import SerialNumberCheckJournal
 from documents.models import Act
 
