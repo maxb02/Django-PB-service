@@ -3,8 +3,10 @@ from django import forms
 from .models import BatteryIssue
 from sncheck.validators import serial_number_length_validator, serial_number_validator
 
+
 class BatteryIssueForm(forms.ModelForm):
     device_serial_number = forms.CharField(validators=[serial_number_length_validator, serial_number_validator])
+
     class Meta:
         model = BatteryIssue
         fields = ('device_serial_number', 'purchase_date', 'received_date', 'is_presale', 'battery_serial_number',
