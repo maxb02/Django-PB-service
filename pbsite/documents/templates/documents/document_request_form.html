@@ -1,6 +1,8 @@
 {% extends 'main/base.html' %}
-{%  load i18n  %}
-{% load bootstrap3 %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
 {% block title %}{% trans 'Request Document' %}{% endblock %}
 
@@ -19,15 +21,13 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <div class="form-position">
-
-                        <form method="post" enctype="multipart/form-data" action="{% url 'document_request_url' %}">
-                            {% csrf_token %}
-
-                                {% bootstrap_form form  %}
-
-                            <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
-                                    value="Submit"><strong>{% trans 'Send request' %}</strong></button>
-                        </form>
+                            {% bootstrap_messages %}
+                            <form method="post" enctype="multipart/form-data" action="{% url 'document_request_url' %}">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
+                                        value="Submit"><strong>{% trans 'Send request' %}</strong></button>
+                            </form>
                         </div>
                         <script>
 

@@ -11,10 +11,12 @@ def validate_serial_number(serial_number):
 
     if serial_number:
         try:
-            key = requests.get(settings.SERIAL_NUMBER_VALIDATOR_URL, params={'sn': serial_number}, verify=False).text
+            r = requests.get(settings.SERIAL_NUMBER_VALIDATOR_URL, params={'sn': serial_number}, verify=False)
         except:
-            return 'Erorr'
-        if key == ' No such key':
+            return 'Error'
+        if r.status_code != 200:
+            return 'Error'
+        elif 'No such key' in r.text:
             return False
         else:
             return True
@@ -30,7 +32,7 @@ def get_device_info_from_shipments(serial_number):
             device_info = requests.get(settings.SERIAL_NUMBER_SHIPMENTS_URL, params={'sn': serial_number},
                                        verify=False).json()
         except:
-            return 'Erorr'
+            return 'Error'
         if device_info:
             for record in device_info:
                 record['shippingDate'] = datetime.datetime.strptime(record['shippingDate'], "%Y-%m-%d %H:%M:%S")
@@ -74,9 +76,9 @@ def send_region_mismatch_letter(device_data, user, language):
 
 def add_record_to_serial_number_check_journal(serial_number, user, is_valid, is_region_match):
     '''Add the record to journal'''
-    if is_valid == "Erorr":
+    if is_valid == "Error":
         is_valid = None
-    if is_region_match == 'Erorr':
+    if is_region_match == 'Error':
         is_region_match = None
     SerialNumberCheckJournal.objects.create(serial_number=serial_number, user=user, is_valid=is_valid, is_region_match=is_valid)
 
