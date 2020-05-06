@@ -56,7 +56,7 @@ def check_device_and_user_allowed_regions(user, device_info):
 def send_region_mismatch_letter(device_data, user, language):
     '''Send the region mismatch letter to user and service center manager if it exists'''
     subject = 'Region Mismatch {}'.format(device_data['serialNumber'], )
-    from_email = 'noreplay@service.pocketbook-int.com'
+    from_email = settings.EMAIL_FROM
     to = [user.email]
     cc = list(EmailForNotifications.objects.filter(user_region__in=user.groups.all()).all())
     if language == 'ru' or language == 'ua':

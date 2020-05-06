@@ -28,3 +28,6 @@ DATABASES = {
 #         'PORT': '',
 #     }
 # }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_FROM = 'noreply-service@example.com'
