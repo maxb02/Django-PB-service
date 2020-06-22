@@ -81,25 +81,53 @@
         {% if request.user.is_staff %}
             <li class="nav-item dropdown">
                 <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"
-                   role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-battery-empty fa-lg"></i>
-                    {% trans "Battery Issue" %}
+                   role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-chart-pie fa-lg"></i>
+                    {% trans "Issues" %}
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-light text-lg-left" href="{% url 'battery_issue_list_url' %}"><i
-                            class="fa fa-check"
-                            aria-hidden="true"></i> {% trans 'Battery Issue List' %}</a>
                     <a class="dropdown-item text-light text-lg-left"
-                       href="{% url 'battery_issue_create_url' %}"><i class="fa  fa-list-ul aria-hidden= true"></i>
+                       href="{% url 'battery_issue_list_url' %}">
+                        <i class="fas fa-list-ul"></i>
+                        {% trans 'Battery Issue List' %}</a>
+
+                    <a class="dropdown-item text-light text-lg-left"
+                       href="{% url 'battery_issue_create_url' %}">
+                        <i class="fa fa-battery-empty"></i>
                         {% trans 'Add Battery Issue' %}</a>
+
+                    <a class="dropdown-item text-light text-lg-left"
+                       href="{% url 'display_line_issue_list_url' %}">
+                        <i class="fas fa-list-ul"></i>
+                        {% trans 'Display Line Issues List' %}</a>
+
+                    <a class="dropdown-item text-light text-lg-left"
+                       href="{% url 'display_line_issue_create_url' %}">
+                        <i class="fas fa-microchip"></i>
+                        {% trans 'Add Display Line Issue' %}</a>
                 </div>
             <li>
 
-                {% elif perms.issue.add_batteryissue %}
-            <li class="nav-item">
-                <a class="nav-link text-light text-lg-left" href="{% url 'battery_issue_create_url' %}"><i
-                        class="fas fa-battery-empty fa-lg"></i> {% trans "Add Battery Issue" %}
-                    &nbsp;</a>
-            </li>
+                {% else %}
+            <li class="nav-item dropdown">
+                <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-chart-pie fa-lg"></i>
+                    {% trans "Issues" %}
+                </a>
+
+                <a class="dropdown-item text-light text-lg-left"
+                   href="{% url 'battery_issue_create_url' %}">
+                    <i class="fa fa-battery-empty"></i>
+                    {% trans 'Add Battery Issue' %}</a>
+
+
+                <a class="dropdown-item text-light text-lg-left"
+                   href="{% url 'display_line_issue_create_url' %}">
+                    <i class="fas fa-microchip"></i>
+                    {% trans 'Add Display Line Issue' %}</a>
+                </div>
+            <li>
 
 
         {% endif %}

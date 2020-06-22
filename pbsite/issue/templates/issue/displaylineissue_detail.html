@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Display line issue' %}  {{ object.pk }} {% endblock %}
+
+{% block body %}
+    {% load humanize %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'issue/css/style.css' %}"/>
+
+    <div class="container-fluid">
+        <div class='container custom'>
+            <div class="card custom-bg">
+                <h5>
+                    <div class="card-header text-center text-light custom-header-bg">
+                        {% trans 'Display line issue' %} # {{ object.pk }}
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th> {% trans 'Device Serial Number' %}</th>
+                            <td>
+                                <a href="{% url 'serial_number_info_url' serial_number=object.device_serial_number %}">{{ object.device_serial_number }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'User Name' %}</th>
+                            <td>{{ object.user.service_center }} , {{ object.user.get_full_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Fill Date' %}</th>
+                            <td>{{ object.filling_date }} ({{ object.filling_date | timesince }})</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Purchase Date' %}</th>
+                            {% if not object.is_presale %}
+                                <td>{{ object.purchase_date }} ({{ object.purchase_date |timesince }})</td>
+                            {% else %}
+                                <td>{% trans 'Presale' %}</td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Received Date' %}</th>
+                            <td>{{ object.received_date }} ({{ object.received_date |timesince }})</td>
+                        </tr>
+
+                    </table>
+
+                    {% if object.display_photo %}
+                        <a href="{{ object.display_photo.url }}" target="_blank"><img
+                                src="{{ object.display_photo.url }}" class="img-rounded" width="120"></a>
+                    {% endif %}
+                        {% if object.display_label_photo %}
+                        <a href="{{ object.display_label_photo.url }}" target="_blank"><img
+                                src="{{ object.display_label_photo.url }}" class="img-rounded" width="120"></a>
+                    {% endif %}
+                  {% if object.warranty_card_photo %}
+                        <a href="{{ object.warranty_card_photo.url }}" target="_blank"><img
+                                src="{{ object.warranty_card_photo.url }}" class="img-rounded" width="120"></a>
+                    {% endif %}
+                    {% if object.receipt_photo %}
+                        <a href="{{ object.receipt_photo.url }}" target="_blank"><img
+                                src="{{ object.receipt_photo.url }}" class="img-rounded" width="120"></a>
+                    {% endif %}
+
+
+
+
+
+{% endblock %}
