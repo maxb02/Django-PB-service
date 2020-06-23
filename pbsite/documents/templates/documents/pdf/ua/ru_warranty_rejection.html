@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <title>{{ document.number }}</title>
+    {% load static %}
+    {% load i18n %}
+    {% language 'ru' %}
+    <link rel="stylesheet" href="{% static '/css/pdf.css' %}">
+
+</head>
+<body>
+<div class="document">
+
+
+    <div>
+        <img class="logo" src="/static/img/logo-w-bg.png">
+    </div>
+
+    <div class="servicename">
+        <b>Авторизованный Сервисный Центр (АСЦ)<br>
+            {{ document.created_by.service_center.company_name }} </b><br>
+        <link rel="stylesheet" type="text/css" href="http://www.pocketbook-int.com/support/service-centers"
+              title="http://www.pocketbook-int.com/support/service-centers">
+        <a href="http://www.pocketbook-int.com/support/service-centers">
+            http://www.pocketbook-int.com/support/service-centers </a>
+    </div>
+    <br>
+    <div>
+        <div class="title">
+
+            <p><b> ЗАКЛЮЧЕНИЕ НА ОТКАЗ В ГАРАНТИЙНОМ ОБСЛУЖИВАНИИ {{ document.number }} </b></p>
+            <br>
+        </div>
+        <p><b>Номер обращения: </b> {{ document.protocol_number }} </p>
+        <p><b>Дата обращения: </b> {{ document.received_date | date:"d.m.Y" }}</p>
+        <p><b>Модель: </b> {{ document.get_model }}</p>
+        <p><b>Серийный номер: </b> {{ document.serial_number }}</p>
+        <p><b>Дата продажи: </b>{% if document.is_presale %} Предпродажный {% else %} {{ document.purchase_date | date:"d.m.Y" }} {% endif %}</p>
+        <br>
+
+        <b>Заявленные дефекты (со слов Потребителя):</b><br>
+        {{ document.customers_claim }}
+        <br>
+        <b>Внешний осмотр:</b><br>
+        {% if document.visual_defect.all %}
+        {% for visual_defect in document.visual_defect.all %}
+            {{ visual_defect }},
+        {% endfor %}
+        {% else %}
+        -
+        {% endif %}
+        <br>
+        <b>Комплектность:</b><br>
+        {% if document.scope_of_supply.all %}
+        {% for item in document.scope_of_supply.all %}
+            {{ item }},
+        {% endfor %}
+        {% else %}
+        -
+        {% endif %}
+        <br>
+        <b>Причина выдачи:</b><br>
+        {{ document.conclusion }}
+        <br>
+        <br>
+        <br>
+        <b>Дополнительно:</b>
+        <ol>
+            <li>Выдача настоящего Заключения согласована с Изготовителем.</li>
+            <li>Потребитель имеет право получить обслуживание на не гарантийной (платной) основе.</li>
+            <li>Дополнительную информацию можно получить, ознакомившись с гарантийными обязательстваим произодителя на сайте www.pocketbook-int.com.</li>
+            <li>Настоящее Заключение с подписями и печатью АСЦ выдается Потребителю или Представителю юридического лица.</li>
+            <li>В настоящем Заключении описаны недостатки на момент его выдачи и не отражены недостатки,
+                которые могут возникнуть после получения Заключения Потребителем или Представителем юридического лица.</li>
+            <li>Дубликат данного Заключения хранится в АСЦ в течение 90-ти дней*.</li>
+        </ol>
+        <br>
+        <br>
+        <br>
+        <div class="bottom">
+            <table>
+                <tr>
+                    <td><b>Юридическое наименование АСЦ:</b></td>
+                    <td>{{ document.created_by.service_center.company_name }}</td>
+                </tr>
+                <tr>
+                    <th>Инженер АСЦ:</th><td>{{ document.created_by.get_full_name }}</td><td>__________________________</td>
+                </tr>
+                <tr>
+                    <th>Руководитель АСЦ:</th><td>{{ document.created_by.service_center.manager_name }}</td><td>__________________________</td>
+                </tr>
+                <tr>
+                    <td><b>Дата составления заключения:</b></td><td>{{ document.conclusion_date | date:"d.m.Y" }}</td>
+                </tr>
+                <tr>
+                    <td><b>Потребитель/Юридическое лицо:</b></td><td>{{ document.client_name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Подпись Потребителя/Представителя юридического лица:</b></td><td>___________________________</td>
+                </tr>
+                <tr>
+                    <td><b>Дата получения заключения:</b></td><td>__________________________</td>
+                </tr>
+
+            </table>
+        </div>
+        Вопросы по данному Заключению можно адресовать на warranty@pocketbook-int.com
+        <hr>
+        *Претензии по Заключению рассматриваются только в оговоренный период.
+
+    </div>
+{% endlanguage %}
+
+</body>
+</html>

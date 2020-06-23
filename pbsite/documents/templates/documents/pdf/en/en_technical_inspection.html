@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>{{ document.number }}</title>
+    {% load static %}
+      {% load i18n %}
+    {% language 'en' %}
+    <link rel="stylesheet" href="{% static '/css/pdf.css' %}">
+
+</head>
+<body>
+<div class="document">
+
+
+    <div>
+        <img class="logo" src="/static/img/logo-w-bg.png">
+    </div>
+
+    <div class="servicename">
+        <b>AUTHORIZED SERVICE CENTER (ASC)<br>
+            {{ document.created_by.service_center.company_name }} </b><br>
+        <link rel="stylesheet" type="text/css" href="http://www.pocketbook-int.com/support/service-centers"
+              title="http://www.pocketbook-int.com/support/service-centers">
+        <a href="http://www.pocketbook-int.com/support/service-centers">
+            http://www.pocketbook-int.com/support/service-centers </a>
+    </div>
+    <br>
+    <div>
+        <div class="title">
+            <p><b> STATEMENT OF MANUFACTURER TECHNICAL INSPECTION {{ document.number }} </b></p>
+            <br>
+        </div>
+        <p><b>Number of claim protocol: </b> {{ document.protocol_number }} </p>
+        <p><b>Date of claim protocol: </b> {{ document.received_date | date:"d.m.Y" }}</p>
+        <p><b>Model: </b> {{ document.get_model }}</p>
+        <p><b>Serial number: </b> {{ document.serial_number }}</p>
+        <p><b>Date of device purchase: </b> {% if document.is_presale %} Presale {% else %} {{ document.purchase_date | date:"d.m.Y" }} {% endif %}</p>
+        <br>
+
+        <b>Customer's claim:</b><br>
+        {{ document.customers_claim }}
+        <br>
+        <b>Visual inspection:</b><br>
+        {% if document.visual_defect.all %}
+        {% for visual_defect in document.visual_defect.all %}
+            {{ visual_defect }},
+        {% endfor %}
+        {% else %}
+        -
+        {% endif %}
+        <br>
+        <b>Scope of supply:</b><br>
+        {% if document.scope_of_supply %}
+        {% for item in document.scope_of_supply.all %}
+            {{ item }},
+        {% endfor %}
+        {% else %}
+        -
+        {% endif %}<br>
+        <b>Conclusion: :</b><br>
+        {{ document.conclusion }}
+        <br>
+        <br>
+        <br>
+        <b>Additional information:</b>
+        <ol>
+            <li>The Conclusion was obtained and agreed with the Manufacturer.</li>
+            <li>The Conclusion is signed by the authorized person of ASC and issued to a Customer or Representative of
+                the legal entity.
+            </li>
+            <li>A duplicate of the Conclusion is stored in the service center for 90 days.*</li>
+        </ol>
+        <br>
+        <br>
+        <br>
+        <div class="bottom">
+            <table>
+                <tr>
+                    <td><b>Authorized Service Center (ASC):</b></td>
+                    <td>{{ document.created_by.service_center.company_name }}</td>
+                </tr>
+                <td><b>Date of Conclusion:</b></td>
+                <td>{{ document.conclusion_date | date:"d.m.Y" }}</td>
+                </tr>
+                <tr>
+                    <td><b>Client or the name of the legal entity:</b></td>
+                    <td>{{ document.client_name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Signature of Client or Representative of the legal entity:</b></td>
+                    <td>___________________________</td>
+                </tr>
+                <tr>
+                    <td><b>Date of obtaining the Conclusion:</b></td>
+                    <td>__________________________</td>
+                </tr>
+
+            </table>
+        </div>
+        For any questions regarding this Conclusion please contact us via e-mail: warranty@pocketbook-int.com
+        <hr>
+        *The Conclusion is accepted for consideration by the Manufacturer within 90 days from the date of obtaining.
+
+    </div>
+
+{% endlanguage %}
+</body>
+</html>
