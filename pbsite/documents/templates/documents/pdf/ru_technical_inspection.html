@@ -86,10 +86,10 @@
                     <td>{{ document.created_by.service_center.company_name }}</td>
                 </tr>
                 <tr>
-                    <th>Инженер АСЦ:</th><td>{{ document.created_by.get_full_name }}</td><td>__________________________</td>
+                    <th>Инженер АСЦ:</th><td>__________________________</td><td>__________________________</td>
                 </tr>
                 <tr>
-                    <th>Руководитель АСЦ:</th><td>{{ document.created_by.service_center.manager_name }}</td><td>__________________________</td>
+                    <th>Руководитель АСЦ:</th><td>__________________________</td><td>__________________________</td>
                 </tr>
                 <tr>
                     <td><b>Дата составления заключения:</b></td><td>{{ document.conclusion_date | date:"d.m.Y" }}</td>
