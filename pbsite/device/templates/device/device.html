@@ -1,38 +1,43 @@
 {% extends 'main/base.html' %}
+{% load i18n %}
 {% block title %} {{ device.name }} {% endblock %}
 
 {% block body %}
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'device/css/device.css'%}" />
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'device/css/device.css' %}"/>
 
-<div class="container">
-    <h2 class="text-center">{{ device.name }}</h2>
-    <div class="row">
-        <div class="col-sm-4"style="text-align: left">
-           <ul class='list-group rounded'>
-               {% for guide in guides %}
-            <li class='list-group-item'>
-                        <a class='text-light' href="{% url 'guide' device_name=device.name title=guide.title  %}">{{ guide.title }}</a>
-                        {% if request.user.is_staff %}{% for gr in guide.group.all %} [{{ gr }}] {% endfor %} {% endif %}
-            </li>
-            {% endfor %}
-           SP
-			</ul>
-                   <ul class='list-group rounded'>
-               {% for sparepart in spare_parts %}
-            <li class='list-group-item'>
-                        <a class='text-light' href="{{ sparepart.get_absolute_url }}">{{ sparepart.sku }} | {{ sparepart }}</a>
-                        {% if request.user.is_staff %}{% for gr in guide.group.all %} [{{ gr }}] {% endfor %} {% endif %}
-            </li>
-            {% endfor %}
-			</ul>
-        </div>
-		<div class="col-sm-2" style="text-align: center">
-		</div>
-        <div class="col-sm-6" style="text-align: center">
-             <img class="img-fluid" src= "{{ device.image.url }}" alt="Device Image"> <!-- link to device image -->
+    <div class="container">
+        <h2 class="text-center">{{ device.name }}</h2>
+        <div class="row">
+            <div class="col-sm-4" style="text-align: left">
+                <ul class='list-group rounded'>
+                    {% for guide in guides %}
+                        <li class='list-group-item'>
+                            <a class='text-light'
+                               href="{% url 'guide' device_name=device.name title=guide.title %}">{{ guide.title }}</a>
+                            {% if request.user.is_staff %}{% for gr in guide.group.all %} [{{ gr }}]
+                            {% endfor %} {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <h5> {% trans 'Spare parts' %}</h5>
+                <ul class='list-group rounded'>
+                    {% for sparepart in spare_parts %}
+                        <li class='list-group-item'>
+                            <a class='text-light' href="{{ sparepart.get_absolute_url }}">{{ sparepart.sku }}
+                                | {{ sparepart }}</a>
+                            {% if request.user.is_staff %}{% for gr in guide.group.all %} [{{ gr }}]
+                            {% endfor %} {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-sm-2" style="text-align: center">
+            </div>
+            <div class="col-sm-6" style="text-align: center">
+                <img class="img-fluid" src="{{ device.image.url }}" alt="Device Image"> <!-- link to device image -->
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
