@@ -3,7 +3,7 @@
 
 {% block body %}
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/device.css'%}" />
+<link rel="stylesheet" type="text/css" href="{% static 'device/css/device.css'%}" />
 
 <div class="container">
     <h2 class="text-center">{{ device.name }}</h2>
@@ -21,7 +21,7 @@
                    <ul class='list-group rounded'>
                {% for sparepart in spare_parts %}
             <li class='list-group-item'>
-                        <a class='text-light' href="{{ sparepart.get_absolute_url }}">{{ sparepart }}</a>
+                        <a class='text-light' href="{{ sparepart.get_absolute_url }}">{{ sparepart.sku }} | {{ sparepart }}</a>
                         {% if request.user.is_staff %}{% for gr in guide.group.all %} [{{ gr }}] {% endfor %} {% endif %}
             </li>
             {% endfor %}
@@ -30,7 +30,7 @@
 		<div class="col-sm-2" style="text-align: center">
 		</div>
         <div class="col-sm-6" style="text-align: center">
-             <img class="img-fluid" src= "{{ device.img.url }}" alt="Device Image"> <!-- link to device image -->
+             <img class="img-fluid" src= "{{ device.image.url }}" alt="Device Image"> <!-- link to device image -->
         </div>
     </div>
 </div>

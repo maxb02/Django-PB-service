@@ -1,0 +1,13 @@
+.container h2 {
+		padding: 2rem 1rem;
+}
+
+.list-group-item {
+  background-color: #00615b;
+
+}
+
+.list-group-item:focus, .list-group-item:hover {
+    text-decoration: none;
+    background: #008c83;
+}
