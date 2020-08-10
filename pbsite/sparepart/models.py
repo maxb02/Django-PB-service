@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from device.models import Device
 
 
@@ -39,3 +40,6 @@ class SparePart(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('spare_part_detail_url', kwargs={'pk': self.pk})

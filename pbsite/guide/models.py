@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 
 class Guide(models.Model):
     title = models.CharField(max_length=50)
-    device = models.ForeignKey('technicalguides.Device', related_name='guide', on_delete=models.CASCADE)
+    device = models.ForeignKey('technicalguides.Device', related_name='guides', on_delete=models.CASCADE)
     group = models.ManyToManyField(Group, related_name='guides')
 
 

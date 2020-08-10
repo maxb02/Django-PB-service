@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 12:40+0300\n"
+"POT-Creation-Date: 2020-06-19 14:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,8 +56,9 @@ msgstr "Серийный Номер"
 msgid "Protocol Number"
 msgstr "Номер обращения"
 
-#: documents/models.py:52 issue/models.py:17
+#: documents/models.py:52 issue/models.py:18 issue/models.py:59
 #: issue/templates/issue/batteryissue_detail.html:27
+#: issue/templates/issue/displaylineissue_detail.html:27
 msgid "User Name"
 msgstr "Пользователь"
 
@@ -66,20 +67,23 @@ msgid "Accepted or declined by"
 msgstr "Подтвердил или отклонил"
 
 #: documents/models.py:54 documents/templates/documents/document_detail.html:59
-#: documents/templates/documents/document_list.html:39 issue/models.py:18
-#: issue/templates/issue/batteryissue_detail.html:31
+#: documents/templates/documents/document_list.html:39 issue/models.py:19
+#: issue/models.py:60 issue/templates/issue/batteryissue_detail.html:31
+#: issue/templates/issue/displaylineissue_detail.html:31
 msgid "Fill Date"
 msgstr "Дата заполнения"
 
 #: documents/models.py:55 documents/templates/documents/document_detail.html:63
-#: documents/templates/documents/document_list.html:41 issue/models.py:19
-#: issue/templates/issue/batteryissue_detail.html:35
+#: documents/templates/documents/document_list.html:41 issue/models.py:20
+#: issue/models.py:61 issue/templates/issue/batteryissue_detail.html:35
+#: issue/templates/issue/displaylineissue_detail.html:35
 msgid "Purchase Date"
 msgstr "Дата продажи"
 
 #: documents/models.py:56 documents/templates/documents/document_detail.html:71
-#: documents/templates/documents/document_list.html:40 issue/models.py:20
-#: issue/templates/issue/batteryissue_detail.html:43
+#: documents/templates/documents/document_list.html:40 issue/models.py:21
+#: issue/models.py:62 issue/templates/issue/batteryissue_detail.html:43
+#: issue/templates/issue/displaylineissue_detail.html:43
 msgid "Received Date"
 msgstr "Дата приема"
 
@@ -88,7 +92,9 @@ msgid "Conclusion Date"
 msgstr "Дата заключения"
 
 #: documents/models.py:58 documents/templates/documents/document_detail.html:67
-#: issue/models.py:21 issue/templates/issue/batteryissue_detail.html:39
+#: issue/models.py:22 issue/models.py:63
+#: issue/templates/issue/batteryissue_detail.html:39
+#: issue/templates/issue/displaylineissue_detail.html:39
 msgid "Presale"
 msgstr "Предпродажный"
 
@@ -104,11 +110,11 @@ msgstr "Результат диагностики (выявленные дефе
 msgid "Conclusion"
 msgstr "Заключение"
 
-#: documents/models.py:63
+#: documents/models.py:63 issue/models.py:67
 msgid "Photo of warranty card"
 msgstr "Фото гарантийного талона"
 
-#: documents/models.py:64
+#: documents/models.py:64 issue/models.py:69
 msgid "Photo of receipt"
 msgstr "Фото чека"
 
@@ -152,7 +158,7 @@ msgstr "Комментарии инженера"
 msgid "Document Number"
 msgstr "Тип документа"
 
-#: documents/models.py:90
+#: documents/models.py:90 issue/models.py:44 issue/models.py:74
 #: sncheck/templates/sncheck/includes/serial_number_info_table.html:28
 msgid "Model"
 msgstr "Модель"
@@ -226,12 +232,13 @@ msgstr "Техническая экспертиза"
 msgid "Defect acceptance"
 msgstr "Списание"
 
-#: documents/templates/documents/document_request_form.html:5
+#: documents/templates/documents/document_request_form.html:7
 msgid "Request Document"
 msgstr "Запросить документ"
 
-#: documents/templates/documents/document_request_form.html:16
-#: issue/templates/issue/batteryissue_form.html:15
+#: documents/templates/documents/document_request_form.html:18
+#: issue/templates/issue/batteryissue_form.html:18
+#: issue/templates/issue/displaylineissue_form.html:18
 msgid "Input device info"
 msgstr "Введите необходимые данные"
 
@@ -239,65 +246,80 @@ msgstr "Введите необходимые данные"
 msgid "Send request"
 msgstr "Отправить запрос"
 
-#: issue/forms.py:27
+#: issue/forms.py:29
 msgid ""
 "Photo of general view of the device (with visible serial number on the back "
 "cover)"
-msgstr ""
+msgstr "Фото устройства с задней кришкой где видно серийный номер"
 
-#: issue/forms.py:28
+#: issue/forms.py:30
 msgid "Photo of the battery label"
-msgstr ""
+msgstr "Фото шильдика АКБ"
 
-#: issue/models.py:16 issue/templates/issue/batteryissue_detail.html:21
+#: issue/models.py:17 issue/models.py:58
+#: issue/templates/issue/batteryissue_detail.html:21
+#: issue/templates/issue/displaylineissue_detail.html:21
 msgid "Device Serial Number"
 msgstr "Серийный Номер Устройства"
 
-#: issue/models.py:22 issue/templates/issue/batteryissue_detail.html:47
+#: issue/models.py:23 issue/templates/issue/batteryissue_detail.html:47
 msgid "Battery Serial Number"
 msgstr "Серийный Номер АКБ"
 
-#: issue/models.py:23 issue/templates/issue/batteryissue_detail.html:51
+#: issue/models.py:24 issue/templates/issue/batteryissue_detail.html:51
 msgid "Battery Model"
 msgstr ""
 
-#: issue/models.py:24 issue/templates/issue/batteryissue_detail.html:55
+#: issue/models.py:25 issue/templates/issue/batteryissue_detail.html:55
 msgid "Battery Batch"
 msgstr ""
 
-#: issue/models.py:25 issue/templates/issue/batteryissue_detail.html:59
+#: issue/models.py:26 issue/templates/issue/batteryissue_detail.html:59
 msgid "Battery Production Date"
 msgstr "Дата производства"
 
-#: issue/models.py:26
+#: issue/models.py:27
 msgid "Battery photo"
 msgstr "Фото АКБ"
 
-#: issue/models.py:28
+#: issue/models.py:29
 msgid "General view photo"
 msgstr "Фото устройства"
+
+#: issue/models.py:64
+#| msgid "Battery photo"
+msgid "Display photo"
+msgstr "Фото дисплея"
+
+#: issue/models.py:65
+msgid "Display label photo"
+msgstr "Фото шильдика дисплея"
 
 #: issue/templates/issue/batteryissue_detail.html:3
 #: issue/templates/issue/batteryissue_detail.html:15
 #: main/templates/main/base.html:85
-#, fuzzy
 #| msgid "Battery photo"
 msgid "Battery Issue"
-msgstr "Фото АКБ"
+msgstr "Battery Issue"
 
-#: issue/templates/issue/batteryissue_form.html:5
-msgid "Battery Issue Form"
-msgstr ""
+#: issue/templates/issue/batteryissue_form.html:7
+#: issue/templates/issue/displaylineissue_detail.html:3
+#: issue/templates/issue/displaylineissue_detail.html:15
+msgid "Display line issue"
+msgstr "Display line issue"
 
-#: issue/templates/issue/batteryissue_form.html:28
+#: issue/templates/issue/batteryissue_form.html:30
+#: issue/templates/issue/displaylineissue_form.html:30
 msgid "Please pay your attention"
 msgstr "Пожалуйста, обратите внимание"
 
-#: issue/templates/issue/batteryissue_form.html:29
+#: issue/templates/issue/batteryissue_form.html:31
+#: issue/templates/issue/displaylineissue_form.html:31
 msgid "All photos should have portrait orientation and readable text position."
 msgstr "Все фотографии должны иметь «книжную» ориентацию, текст должен быть читаемым"
 
-#: issue/templates/issue/batteryissue_form.html:32
+#: issue/templates/issue/batteryissue_form.html:34
+#: issue/templates/issue/displaylineissue_form.html:34
 msgid "Submit"
 msgstr "Отправить"
 
@@ -305,6 +327,10 @@ msgstr "Отправить"
 #: issue/templates/issue/batteryissue_list.html:16
 #: main/templates/main/base.html:90
 msgid "Battery Issue List"
+msgstr ""
+
+#: issue/templates/issue/displaylineissue_form.html:7
+msgid "Battery Issue Form"
 msgstr ""
 
 #: main/templates/main/base.html:32
@@ -352,11 +378,11 @@ msgstr "Новости"
 msgid "Last updates"
 msgstr "Последние обновления"
 
-#: pbservicesite/settings.py:113
+#: pbservicesite/settings.py:122
 msgid "English"
 msgstr "Английский"
 
-#: pbservicesite/settings.py:114
+#: pbservicesite/settings.py:123
 msgid "Russian"
 msgstr "Русский"
 
