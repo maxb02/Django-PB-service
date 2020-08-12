@@ -28,7 +28,7 @@ class Guide(models.Model):
     published_date = models.DateTimeField(blank=True, auto_now_add=True)
     updated_date = models.DateTimeField(blank=True, auto_now=True)
     objects = GuideManager()
-    _device = models.ForeignKey(NewDevice, null=True)
+    new_device = models.ForeignKey(NewDevice, null=True)
 
     def __str__(self):
         return self.title
