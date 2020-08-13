@@ -16,7 +16,7 @@
                     {% for guide in guides %}
                         <li class='list-group-item'>
                             <a class='text-light'
-                               href="{% url 'guide' device_name=device.name title=guide.title %}">{{ guide.title }}</a>
+                               href="{{ guide.get_absolute_url }}">{{ guide.title }}</a>
                             {% if request.user.is_staff %}{% for gr in guide.group.all %} [{{ gr }}]
                             {% endfor %} {% endif %}
                         </li>

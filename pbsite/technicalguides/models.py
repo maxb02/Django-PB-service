@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import Group
+from django.shortcuts import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 from device.models import Device as NewDevice
 
@@ -32,3 +33,6 @@ class Guide(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('technocalguide_by_pk_detail_url', kwargs={'pk': self.pk})

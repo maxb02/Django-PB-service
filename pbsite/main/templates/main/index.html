@@ -32,7 +32,7 @@
                         {% for guide in guides|slice:"4" %}
                             <div class="card">
                                 <a class="newslink"
-                                   href="{% url 'guide' device_name=guide.device.name title=guide.title %}">
+                                   href="{{ guide.get_absolute_url }}">
                                     <h4 class="card-title">
                                         <div class="card-header">
                                             {{ guide.title }}
