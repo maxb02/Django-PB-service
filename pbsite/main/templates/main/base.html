@@ -32,27 +32,11 @@
                                                                     aria-hidden="true"></i> {% trans "Home" %}
                 &nbsp;</a>
         </li>
-
-
-        <li class="nav-item dropdown">
-            <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-               aria-haspopup="true" aria-expanded="false"><i class="fa fa-tablet-alt fa-lg"
-                                                             aria-hidden="true"></i> {% trans "Devices" %}</a>
-            <div class="dropdown-menu">
-                {% for device in devices %}
-                    <a class="dropdown-content dropdown-item text-light text-lg-left"
-                       href="{% url 'device' device_name=device.name %}"><i class="fa fa-tablet-alt fa-lg"
-                                                                            aria-hidden="true"></i> {{ device.name }}
-                    </a>
-                {% endfor %}
-            </div>
-        </li>
-        {% if request.user.is_staff %}
             <li class="nav-item dropdown">
                 <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"
                    role="button"
                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-tablet-alt fa-lg"
-                                                                 aria-hidden="true"></i>SP</a>
+                                                                 aria-hidden="true"></i> {% trans 'Devices' %}</a>
                 <div class="dropdown-menu">
                     {% for device in new_devices %}
                         <a class="dropdown-content dropdown-item text-light text-lg-left"
@@ -62,7 +46,6 @@
                     {% endfor %}
                 </div>
             </li>
-        {% endif %}
         {% if request.user.is_staff %}
             <li class="nav-item dropdown">
                 <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"

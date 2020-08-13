@@ -6,7 +6,8 @@ from .models import Supplier, Manufacturer, SparePart, Category
 class SparePartAdmin(admin.ModelAdmin):
 
     list_select_related = ('supplier', 'manufacturer', 'category')
-    list_display = ('name', 'get_device', 'category', 'sku', 'purchase_price', 'supplier', 'manufacturer')
+    list_display = ('sku', 'name', 'get_device', 'category', 'purchase_price', 'supplier', 'manufacturer')
+    list_filter = 'supplier',
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
