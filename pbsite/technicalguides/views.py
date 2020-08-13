@@ -19,7 +19,7 @@ def device(request, device_name):
 @login_required
 def guide(request, device_name, title):
     guide = get_object_or_404(Device, name=device_name).guide_set.get(title=title)
-    return render(request, 'technicalguides/guide.html', {'guide': guide, 'device_name': device_name})
+    return render(request, 'technicalguides/guide_detail.html', {'guide': guide, 'device_name': device_name})
 
 
 class TechnicalGuideDetail(LoginRequiredMixin, DetailView):
