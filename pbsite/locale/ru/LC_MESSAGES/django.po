@@ -156,7 +156,7 @@ msgstr "Комментарии инженера"
 
 #: documents/models.py:76
 msgid "Document Number"
-msgstr "Тип документа"
+msgstr "Номер документа"
 
 #: documents/models.py:90 issue/models.py:44 issue/models.py:74
 #: sncheck/templates/sncheck/includes/serial_number_info_table.html:28
