@@ -70,6 +70,9 @@ class DisplayLineIssue(models.Model):
     receipt_photo = models.ImageField(null=True, blank=True, upload_to=display_line_upload_path_handler,
                                       verbose_name=_('Photo of receipt'))
 
+    class Meta:
+        permissions = (('view_display_line_issue_list', 'User can view a list of objects'),)
+
     def get_model(self):
         return Device.objects.filter(serial_number_prefix=self.device_serial_number[:3]).first()
 
