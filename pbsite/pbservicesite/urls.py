@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^issue/', include('issue.urls')),
     url(r'device/', include('device.urls')),
     url(r'sparepart/', include('sparepart.urls')),
+    url(r'refurbishment/', include('refurbishment.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', auth_views.login, name='login'),

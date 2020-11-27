@@ -46,6 +46,7 @@ class Act(models.Model):
 
     class Meta:
         ordering = ['-filling_date']
+        permissions = (('accept_or_decline_acts', 'User can accept or decline acts'),)
 
     serial_number = models.CharField(max_length=20, verbose_name =_('Serial Number'), db_index=True)
     protocol_number = models.CharField(max_length=10, null=True, verbose_name =_('Protocol Number'))

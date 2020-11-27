@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'issue',
     'device',
     'sparepart',
+    'refurbishment',
     'import_export',
     # 'rest_framework',
 

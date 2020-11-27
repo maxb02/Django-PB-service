@@ -54,7 +54,7 @@ class DocumentDetail(LoginRequiredMixin, View):
 
     def get(self, request, number):
         document = get_object_or_404(Act, number=number)
-        if request.user.is_staff:
+        if request.user.has_perm('documents.accept_or_decline_acts'):
             form = ActComentForm(instance=document)
             return render(request, 'documents/document_detail.html', {'document': document, 'form': form})
         elif document.created_by.service_center != request.user.service_center:

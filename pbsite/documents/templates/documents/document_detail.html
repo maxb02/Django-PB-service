@@ -108,7 +108,7 @@
                         <a href="{{ document.defect_photo.url }}" target="_blank"><img src="{{ document.defect_photo.url }}" class="img-rounded" width="120"></a>
                     {% endif %}
 
-                    {% if request.user.is_staff %}
+                    {% if form %}
                         <br>
                         <hr>
                         <form method="POST" class="post-form" action='{{ document.get_absolute_url }}'>
