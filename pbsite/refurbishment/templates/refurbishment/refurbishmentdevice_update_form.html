@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Add Refurbishment Device' %}  {{ object.pk }} {% endblock %}
+
+{% block body %}
+    {% load i18n %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% load staticfiles %}
+    {% bootstrap_messages %}
+    <link rel="stylesheet" type="text/css" href="{% static 'refurbishment/css/style.css' %}"/>
+    <div class="container-fluid">
+        <div class='container custom'>
+            <div class="card custom-bg">
+                <h5>
+                    <div class="card-header text-center text-light custom-header-bg">
+                        <b>{% trans 'Device info' %}</b>
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="form-position">
+                            {% bootstrap_messages %}
+                            <form method="post" enctype="multipart/form-data"
+                                  action="{{ object.get_update_url }}">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
+                                        value="Save"><strong>{% trans 'Update' %}</strong></button>
+                                {% if perms.refurbishment.can_mark_refurbishment_device_as_returned %}
+                                <button type="submit" class="btn btn-block custom-header-bg text-light" type="submit"
+                                        name="was_returned"><strong>{% trans 'Was Returned' %} <i
+                                        class="fas fa-frown"></i></strong></button>
+                            {% endif %}
+                            </form>
+                        </div>
+{% endblock %}

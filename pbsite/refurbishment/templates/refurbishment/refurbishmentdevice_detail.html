@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Refurbishment Device Detail' %}  {{ object.pk }} {% endblock %}
+
+{% block body %}
+    {% load humanize %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'refurbishment/css/style.css' %}"/>
+
+    <div class="container-fluid">
+        <div class='container custom'>
+            <div class="card custom-bg">
+                <h5>
+                    <div class="card-header text-center text-light custom-header-bg">
+                        {% trans 'Refurbishment Device Detail' %} {{ object.new_serial_number }}
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th> {% trans 'New Serial Number' %}</th>
+                            <td>
+                                <a href="{% url 'serial_number_info_url' serial_number=object.new_serial_number %}">{{ object.new_serial_number }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Old Serial Number' %}</th>
+                            <td>
+                                <a href="{% url 'serial_number_info_url' serial_number=object.old_serial_number %}">{{ object.old_serial_number }}</a>
+                            </td>
+                        </tr>
+                        <th>{% trans 'Refurbishment' %}</th>
+                        <td>{% for refurbishment in object.refurbishment.all %}
+                            {% if forloop.last %}
+                                {{ refurbishment }}
+                            {% else %}
+                                {{ refurbishment }},
+                            {% endif %}{% endfor %}
+                        </td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Defect' %}</th>
+                            <td>{% for defect in object.defect.all %}
+                                {% if forloop.last %}
+                                    {{ defect }}
+                                {% else %}
+                                    {{ defect }},
+                                {% endif %}{% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Condition' %}</th>
+                            <td>{{ object.condition }}</td>
+                        <tr>
+                            <th>{% trans 'Created By' %}</th>
+                            <td>{{ object.created_by.service_center }} {{ object.created_by.get_full_name }}, {{ object.create_date | date:"d.m.Y" }}
+                                ({{ object.create_date | timesince }})
+                            </td>
+                        </tr>
+                        {% if object.updated_by %}
+                            <tr>
+                                <th>{% trans 'Updated By' %}</th>
+                                <td>{{ object.updated_by.service_center }} {{ object.updated_by.get_full_name }}, {{ object.update_date | date:"d.m.Y" }}
+                                ({{ object.update_date | timesince }})</td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <th>{% trans 'Was Returned' %}</th>
+                            <td>{{ object.get_was_returned }}</td>
+                        </tr>
+
+                    </table>
+
+
+
+{% endblock %}
