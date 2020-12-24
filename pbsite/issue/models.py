@@ -48,10 +48,11 @@ class BatteryIssue(models.Model):
 
 
 def display_line_upload_path_handler(self, filename):
-    return "issue/display-line/{device_serial_number}/{date}/{file}".format(device_serial_number=self.device_serial_number,
-                                                                       date=datetime.now().strftime(
-                                                                           "%Y.%m.%d"),
-                                                                       file=filename)
+    return "issue/display-line/{device_serial_number}/{date}/{file}".format(
+        device_serial_number=self.device_serial_number,
+        date=datetime.now().strftime(
+            "%Y.%m.%d"),
+        file=filename)
 
 
 class DisplayLineIssue(models.Model):
@@ -80,3 +81,25 @@ class DisplayLineIssue(models.Model):
 
     def get_absolute_url(self):
         return reverse('display_line_issue_detail_url', kwargs={'pk': self.pk})
+
+
+class ClockIssue(models.Model):
+    device_serial_number = models.CharField(max_length=20, verbose_name=_('Device Serial Number'), unique=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='clock_line_issues',
+                             verbose_name=_('User Name'))
+    filling_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Fill Date'))
+    purchase_date = models.DateField(verbose_name=_('Purchase Date'), null=True, blank=True,
+                                     help_text='Fill purchase date if available')
+    comments = models.TextField(null=True, blank=True, verbose_name=_('Comments'))
+
+    class Meta:
+        permissions = (('view_clock_issue_list', 'User can view a list of Clock Issues'),)
+
+    def get_model(self):
+        return Device.objects.filter(serial_number_prefix=self.device_serial_number[:3]).first()
+
+    get_model.short_description = _('Model')
+
+    def get_absolute_url(self):
+        return reverse('clock_issue_detail_url', kwargs={'pk': self.pk})
+

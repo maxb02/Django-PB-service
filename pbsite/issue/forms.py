@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django import forms
-from .models import BatteryIssue, DisplayLineIssue
+from .models import BatteryIssue, DisplayLineIssue, ClockIssue
 from sncheck.validators import serial_number_length_validator, serial_number_validator
 
 
@@ -46,5 +46,20 @@ class DisplayLineIssueForm(forms.ModelForm):
                                                     'type': 'date'}),
             'received_date': forms.DateInput(format=('%d/%m/%Y'),
                                              attrs={'class': 'form-control', 'placeholder': 'Select a date',
+                                                    'type': 'date'}),
+        }
+
+
+class ClockIssueForm(forms.ModelForm):
+    device_serial_number = forms.CharField(validators=[serial_number_length_validator, serial_number_validator])
+    class Meta:
+        model = ClockIssue
+        fields = (
+            'device_serial_number', 'purchase_date', 'comments',
+        )
+        widgets = {
+            'purchase_date': forms.DateInput(format=('%d/%m/%Y'),
+                                             attrs={'class': 'form-control',
+                                                    'placeholder': 'Select a date if available',
                                                     'type': 'date'}),
         }
