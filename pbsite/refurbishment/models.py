@@ -3,41 +3,42 @@ from django.db import models
 from django.urls import reverse
 from device.models import Device
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
-
-def valid(prohibited_with):
-    pass
 
 class Refurbishment(models.Model):
+    """Contain a type of refurbishment (a type of repair)"""
     name = models.CharField(max_length=255, verbose_name=_('Refurbishment name'))
-    prohibited_with = models.ManyToManyField('self', null=True, blank=True,validators=[valid,])
-
-    # def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
-    #     if db_field.name == 'prohibited_with':
-    #         # set the query set to whatever you like
-    #         kwargs['queryset'] = request._obj.client.clienturls.all()
-    #     return super(Refurbishment,
-    #                  self).formfield_for_foreignkey(request, obj, **kwargs)
+    prohibited_with = models.ManyToManyField('self', null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Defect(models.Model):
+    """Contain a defect of device before refurbishment"""
     name = models.CharField(max_length=255, verbose_name=_('Defect name'))
 
     def __str__(self):
         return self.name
 
 
+LABEL_DATE_FIELD_NAME_CHOICE = (
+    ('prd', 'Production date'),
+    ('ref', 'Refurbish date')
+)
+
+
 class Condition(models.Model):
-    name = models.CharField(max_length=255, verbose_name=_('Condition nmae'))
+    """Mark the kind of device after refurbishment"""
+    name = models.CharField(max_length=255, verbose_name=_('Condition name'))
+    sku_suffix = models.CharField(max_length=5, verbose_name=_('Suffix for base SKU'), null=True)
+    label_date_field_name = models.CharField(choices=LABEL_DATE_FIELD_NAME_CHOICE, max_length=3)
 
     def __str__(self):
         return self.name
 
 
 class RefurbishmentDevice(models.Model):
+    """Refurbished device item"""
     old_serial_number = models.CharField(max_length=20, unique=True, verbose_name=_('Old Serial Number'))
     new_serial_number = models.CharField(max_length=20, unique=True, verbose_name=_('New Serial Number'))
     refurbishment = models.ManyToManyField(Refurbishment, verbose_name=_('Refurbishment'), validators=())
@@ -65,13 +66,15 @@ class RefurbishmentDevice(models.Model):
     def get_update_url(self):
         return reverse('refurbishment_device_update_url', kwargs={'pk': self.pk})
 
-    def get_model(self):
-        return Device.objects.filter(serial_number_prefix=self.new_serial_number[:3]).first()
-
-    get_model.short_description = _('Model')
+    def get_label_url(self):
+        return reverse('refurbishment_device_label_url', kwargs={'pk': self.pk})
 
     def get_was_returned(self):
+        """A humanized status which show was the device returned or not"""
         if self.was_returned:
             return _('Yes')
         else:
             return _('No')
+
+
+

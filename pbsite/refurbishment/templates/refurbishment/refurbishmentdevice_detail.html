@@ -15,7 +15,11 @@
                         {% trans 'Refurbishment Device Detail' %} {{ object.new_serial_number }}
                     </div>
                 </h5>
+
                 <div class="card-body">
+                 <div class="form-group row">
+                         <a href="{{ object.get_update_url }}" target="_blank"><i class="far fa-edit"> {% trans 'Edit' %}</i></a>
+                    </div>
                     <table class="table">
                         <tr>
                             <th> {% trans 'New Serial Number' %}</th>
