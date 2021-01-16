@@ -6,6 +6,10 @@ class Factory(models.Model):
     name = models.CharField(max_length=25, unique=True)
     code = models.CharField(max_length=2, unique=True, db_index=True)
 
+    class Meta:
+        verbose_name = 'Factory'
+        verbose_name_plural = 'Factories'
+
     def __str__(self):
         return '{} | {}'.format(self.name, self.code)
 
@@ -15,6 +19,10 @@ class Module(models.Model):
     code = models.CharField(max_length=2, unique=True, db_index=True)
     description = models.TextField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'Module'
+        verbose_name_plural = 'Modules'
+
     def __str__(self):
         return '{} | {}'.format(self.name, self.code)
 
@@ -22,6 +30,11 @@ class Module(models.Model):
 class Region(models.Model):
     name = models.CharField(max_length=25, unique=True)
     code = models.CharField(max_length=1, unique=True, db_index=True)
+
+    class Meta:
+        verbose_name = 'Region'
+        verbose_name_plural = 'Regions'
+
 
     def __str__(self):
         return '{} | {}'.format(self.name, self.code)
@@ -32,6 +45,10 @@ class Project(models.Model):
     code = models.CharField(max_length=3, unique=True, db_index=True)
     description = models.TextField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'Project'
+        verbose_name_plural = 'Projects'
+
     def __str__(self):
         return '{} | {}'.format(self.name, self.code)
 
@@ -39,6 +56,11 @@ class Project(models.Model):
 class Color(models.Model):
     name = models.CharField(max_length=25, unique=True)
     code = models.CharField(max_length=1, unique=True, db_index=True)
+
+    class Meta:
+        verbose_name = 'Color'
+        verbose_name_plural = 'Colors'
+
 
     def __str__(self):
         return '{} | {}'.format(self.name, self.code)
@@ -54,6 +76,8 @@ class Device(models.Model):
 
     class Meta:
         unique_together = ('model_number', 'code')
+        verbose_name = 'Device'
+        verbose_name_plural = 'Devices'
 
     def get_absolute_url(self):
         return reverse('device_detail_url', kwargs={'pk': self.pk})
@@ -70,6 +94,10 @@ class SKU(models.Model):
     module = models.ForeignKey(Module, related_name='skus', null=False, blank=False)
     description = models.TextField(null=True, blank=True)
     device = models.ForeignKey(Device, related_name='skus', null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'SKU'
+        verbose_name_plural = 'SKUs'
 
     def __str__(self):
         return self.name
