@@ -28,7 +28,7 @@ class Region(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=25, unique=True)
+    name = models.CharField(max_length=35, unique=True)
     code = models.CharField(max_length=3, unique=True, db_index=True)
     description = models.TextField(null=True, blank=True)
 
