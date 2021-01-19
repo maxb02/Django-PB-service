@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 
@@ -35,7 +36,6 @@ class Region(models.Model):
         verbose_name = 'Region'
         verbose_name_plural = 'Regions'
 
-
     def __str__(self):
         return '{} | {}'.format(self.name, self.code)
 
@@ -60,7 +60,6 @@ class Color(models.Model):
     class Meta:
         verbose_name = 'Color'
         verbose_name_plural = 'Colors'
-
 
     def __str__(self):
         return '{} | {}'.format(self.name, self.code)
@@ -94,6 +93,8 @@ class SKU(models.Model):
     module = models.ForeignKey(Module, related_name='skus', null=False, blank=False)
     description = models.TextField(null=True, blank=True)
     device = models.ForeignKey(Device, related_name='skus', null=False, blank=False)
+    model_name = models.CharField(max_length=25)
+    ean = models.CharField(max_length=13, validators=[RegexValidator(regex='^.{13}$', message='EAN-13 length has to be 13', code='nomatch')], verbose_name = 'EAN-13', help_text = 'European Article Number')
 
     class Meta:
         verbose_name = 'SKU'

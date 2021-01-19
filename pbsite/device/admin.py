@@ -5,20 +5,20 @@ from .models import Device, SKU, Region, Color, Module, Project, Factory
 
 class SKUInline(admin.TabularInline):
     model = SKU
+    fields = 'name', 'model_name', 'region', 'project', 'module', 'color', 'ean', 'description'
+
 
 class DeviceAdminForm(forms.ModelForm):
-
     class Meta:
         model = Device
         fields = 'name', 'model_number', 'code', 'factory', 'image',
-
 
 
 @admin.register(Device)
 class DeviceAdmin(admin.ModelAdmin):
     list_display = ('model_number', 'name', 'serial_number_prefix')
     form = DeviceAdminForm
-    inlines = [SKUInline,]
+    inlines = [SKUInline, ]
 
 
 admin.site.register(SKU)
