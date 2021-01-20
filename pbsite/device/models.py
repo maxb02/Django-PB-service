@@ -86,7 +86,7 @@ class Device(models.Model):
 
 
 class SKU(models.Model):
-    name = models.CharField(max_length=25, unique=True)
+    name = models.CharField(max_length=25, db_index=True)
     region = models.ForeignKey(Region, related_name='skus', null=False, blank=False)
     project = models.ForeignKey(Project, related_name='skus', null=False, blank=False)
     color = models.ForeignKey(Color, related_name='skus', null=False, blank=False)
