@@ -93,7 +93,7 @@ class SKU(models.Model):
     module = models.ForeignKey(Module, related_name='skus', null=False, blank=False)
     description = models.TextField(null=True, blank=True)
     device = models.ForeignKey(Device, related_name='skus', null=False, blank=False)
-    model_name = models.CharField(max_length=25)
+    model_name = models.CharField(max_length=30)
     ean = models.CharField(max_length=13, validators=[RegexValidator(regex='^.{13}$', message='EAN-13 length has to be 13', code='nomatch')], verbose_name = 'EAN-13', help_text = 'European Article Number')
 
     class Meta:
