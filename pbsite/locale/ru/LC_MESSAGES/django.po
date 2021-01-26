@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-19 14:56+0300\n"
+"POT-Creation-Date: 2021-01-26 12:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,215 +20,232 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: documents/models.py:35 documents/templates/documents/document_detail.html:23
+#: device/templates/device/device.html:14
+msgid "Guides"
+msgstr "Руководства"
+
+#: device/templates/device/device.html:27
+msgid "Spare parts"
+msgstr "Запасные части"
+
+#: documents/models.py:38 documents/templates/documents/act_detail.html:23
 msgid "Statement of manufacturer warranty rejection"
 msgstr "Акт отказа в гарантийном обслуживании"
 
-#: documents/models.py:36 documents/templates/documents/document_detail.html:25
+#: documents/models.py:39 documents/templates/documents/act_detail.html:25
 msgid "Statement of manufacturer technical inspection"
 msgstr "Акт технической экспертизы устройства"
 
-#: documents/models.py:37 documents/templates/documents/document_detail.html:27
+#: documents/models.py:40 documents/templates/documents/act_detail.html:27
 msgid "Statement of  manufacturer defect acceptance"
 msgstr "Акт списания устройства"
 
-#: documents/models.py:42 documents/templates/documents/document_detail.html:38
-#: documents/templates/documents/document_list.html:75
+#: documents/models.py:45 documents/templates/documents/act_detail.html:38
+#: documents/templates/documents/act_list.html:75
 msgid "In Process"
 msgstr "Обрабатывается"
 
-#: documents/models.py:43 documents/templates/documents/document_detail.html:41
-#: documents/templates/documents/document_list.html:78
+#: documents/models.py:46 documents/templates/documents/act_detail.html:41
+#: documents/templates/documents/act_list.html:78
 msgid "Confirmed"
 msgstr "Подтвержден"
 
-#: documents/models.py:44 documents/templates/documents/document_detail.html:44
-#: documents/templates/documents/document_list.html:81
+#: documents/models.py:47 documents/templates/documents/act_detail.html:44
+#: documents/templates/documents/act_list.html:81
 msgid "Rejected"
 msgstr "Отклонен"
 
-#: documents/models.py:50 documents/templates/documents/document_detail.html:49
-#: documents/templates/documents/document_list.html:37
+#: documents/models.py:61 documents/templates/documents/act_detail.html:49
+#: documents/templates/documents/act_list.html:37
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:4
 msgid "Serial Number"
 msgstr "Серийный Номер"
 
-#: documents/models.py:51
+#: documents/models.py:62
 msgid "Protocol Number"
 msgstr "Номер обращения"
 
-#: documents/models.py:52 issue/models.py:18 issue/models.py:59
-#: issue/templates/issue/batteryissue_detail.html:27
+#: documents/models.py:64 issue/models.py:18 issue/models.py:61
+#: issue/models.py:89 issue/templates/issue/batteryissue_detail.html:27
+#: issue/templates/issue/clockissue_detail.html:27
 #: issue/templates/issue/displaylineissue_detail.html:27
 msgid "User Name"
 msgstr "Пользователь"
 
-#: documents/models.py:53
+#: documents/models.py:67
 msgid "Accepted or declined by"
 msgstr "Подтвердил или отклонил"
 
-#: documents/models.py:54 documents/templates/documents/document_detail.html:59
-#: documents/templates/documents/document_list.html:39 issue/models.py:19
-#: issue/models.py:60 issue/templates/issue/batteryissue_detail.html:31
+#: documents/models.py:68 documents/templates/documents/act_detail.html:59
+#: documents/templates/documents/act_list.html:39 issue/models.py:19
+#: issue/models.py:62 issue/models.py:90
+#: issue/templates/issue/batteryissue_detail.html:31
+#: issue/templates/issue/clockissue_detail.html:31
 #: issue/templates/issue/displaylineissue_detail.html:31
 msgid "Fill Date"
 msgstr "Дата заполнения"
 
-#: documents/models.py:55 documents/templates/documents/document_detail.html:63
-#: documents/templates/documents/document_list.html:41 issue/models.py:20
-#: issue/models.py:61 issue/templates/issue/batteryissue_detail.html:35
+#: documents/models.py:69 documents/templates/documents/act_detail.html:63
+#: documents/templates/documents/act_list.html:41 issue/models.py:20
+#: issue/models.py:63 issue/models.py:91
+#: issue/templates/issue/batteryissue_detail.html:35
+#: issue/templates/issue/clockissue_detail.html:35
 #: issue/templates/issue/displaylineissue_detail.html:35
 msgid "Purchase Date"
 msgstr "Дата продажи"
 
-#: documents/models.py:56 documents/templates/documents/document_detail.html:71
-#: documents/templates/documents/document_list.html:40 issue/models.py:21
-#: issue/models.py:62 issue/templates/issue/batteryissue_detail.html:43
+#: documents/models.py:70 documents/templates/documents/act_detail.html:71
+#: documents/templates/documents/act_list.html:40 issue/models.py:21
+#: issue/models.py:64 issue/templates/issue/batteryissue_detail.html:43
 #: issue/templates/issue/displaylineissue_detail.html:43
 msgid "Received Date"
 msgstr "Дата приема"
 
-#: documents/models.py:57
+#: documents/models.py:71
 msgid "Conclusion Date"
 msgstr "Дата заключения"
 
-#: documents/models.py:58 documents/templates/documents/document_detail.html:67
-#: issue/models.py:22 issue/models.py:63
+#: documents/models.py:72 documents/templates/documents/act_detail.html:67
+#: issue/models.py:22 issue/models.py:65
 #: issue/templates/issue/batteryissue_detail.html:39
 #: issue/templates/issue/displaylineissue_detail.html:39
 msgid "Presale"
 msgstr "Предпродажный"
 
-#: documents/models.py:60 documents/templates/documents/document_detail.html:75
+#: documents/models.py:74 documents/templates/documents/act_detail.html:75
 msgid "Customer Claim"
 msgstr "Жалоба потребителя"
 
-#: documents/models.py:61 documents/templates/documents/document_detail.html:79
+#: documents/models.py:75 documents/templates/documents/act_detail.html:79
 msgid "Identified Malfunction"
 msgstr "Результат диагностики (выявленные дефекты)"
 
-#: documents/models.py:62 documents/templates/documents/document_detail.html:83
+#: documents/models.py:76 documents/templates/documents/act_detail.html:83
 msgid "Conclusion"
 msgstr "Заключение"
 
-#: documents/models.py:63 issue/models.py:67
+#: documents/models.py:78 issue/models.py:70
 msgid "Photo of warranty card"
 msgstr "Фото гарантийного талона"
 
-#: documents/models.py:64 issue/models.py:69
+#: documents/models.py:80 issue/models.py:72
 msgid "Photo of receipt"
 msgstr "Фото чека"
 
-#: documents/models.py:65
+#: documents/models.py:82
 msgid "Photo of screen"
 msgstr "Фото экрана"
 
-#: documents/models.py:66
+#: documents/models.py:84
 msgid "Photo of defect"
 msgstr "Фото дефекта"
 
-#: documents/models.py:69
+#: documents/models.py:86
 msgid "Client Name"
 msgstr "ФИО клиента (Потребителя)"
 
-#: documents/models.py:70 documents/templates/documents/document_detail.html:21
+#: documents/models.py:87 documents/templates/documents/act_detail.html:21
 msgid "Document type"
 msgstr "Тип документа"
 
-#: documents/models.py:71
+#: documents/models.py:88
 msgid "Satatus"
 msgstr "Статус"
 
-#: documents/models.py:72
+#: documents/models.py:89
 msgid "Scope of Supply"
 msgstr "Комплектацыя"
 
-#: documents/models.py:73
+#: documents/models.py:90
 msgid "Visual (cosmetic) Defects:"
 msgstr "Косметические дефекты"
 
-#: documents/models.py:74
+#: documents/models.py:92
 msgid "Comments (for PocketBook)"
 msgstr "Комментарии инженера (для PocketBook)"
 
-#: documents/models.py:75
+#: documents/models.py:93
 msgid "Comment of Manager"
 msgstr "Комментарии инженера"
 
-#: documents/models.py:76
+#: documents/models.py:94
 msgid "Document Number"
 msgstr "Номер документа"
 
-#: documents/models.py:90 issue/models.py:44 issue/models.py:74
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:28
-msgid "Model"
-msgstr "Модель"
-
-#: documents/models.py:95 documents/templates/documents/document_detail.html:53
-#: documents/templates/documents/document_list.html:31
-msgid "Service"
-msgstr "Сервисный центр"
-
-#: documents/models.py:100 documents/templates/documents/document_list.html:30
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:40
-msgid "Region"
-msgstr "Регион"
-
-#: documents/templates/documents/document_detail.html:3
-#: documents/templates/documents/document_detail.html:15
-#: documents/templates/documents/document_list.html:36
+#: documents/templates/documents/act_detail.html:3
+#: documents/templates/documents/act_detail.html:15
+#: documents/templates/documents/act_list.html:36
 msgid "Document"
 msgstr "Документ"
 
-#: documents/templates/documents/document_detail.html:36
-#: documents/templates/documents/document_list.html:42
+#: documents/templates/documents/act_detail.html:36
+#: documents/templates/documents/act_list.html:42
 msgid "Status"
 msgstr "Статус"
 
-#: documents/templates/documents/document_detail.html:47
-#: documents/templates/documents/document_list.html:35
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:24
+#: documents/templates/documents/act_detail.html:47
+#: documents/templates/documents/act_list.html:35
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:30
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:28
 msgid "Device"
 msgstr "Устройство"
 
-#: documents/templates/documents/document_detail.html:86
+#: documents/templates/documents/act_detail.html:53
+#: documents/templates/documents/act_list.html:31
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:33
+msgid "Service"
+msgstr "Сервисный центр"
+
+#: documents/templates/documents/act_detail.html:86 issue/models.py:93
+#: issue/templates/issue/clockissue_detail.html:40
 msgid "Comments"
 msgstr "Коментарии"
 
-#: documents/templates/documents/document_detail.html:91
+#: documents/templates/documents/act_detail.html:91
 msgid "Comments of Pocketbook"
 msgstr "Коментарии представителя Pocketbook"
 
-#: documents/templates/documents/document_detail.html:116
+#: documents/templates/documents/act_detail.html:116
+#: sparepart/templates/sparepart/sparepart_detail.html:47
 msgid "Comment"
 msgstr "Коментарий"
 
-#: documents/templates/documents/document_list.html:3
-#: main/templates/main/base.html:75
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:96
+#: documents/templates/documents/act_detail.html:133
+msgid "Compensation Status"
+msgstr ""
+
+#: documents/templates/documents/act_list.html:3
+#: main/templates/main/base.html:73
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:100
 msgid "Documents"
 msgstr "Документы"
 
-#: documents/templates/documents/document_list.html:16
+#: documents/templates/documents/act_list.html:16
 msgid "All Your Documents"
 msgstr "Все ваши документы"
 
-#: documents/templates/documents/document_list.html:23
+#: documents/templates/documents/act_list.html:23
 msgid "Request Document Form"
 msgstr "Форма запроса документа"
 
-#: documents/templates/documents/document_list.html:38
+#: documents/templates/documents/act_list.html:30
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:44
+msgid "Region"
+msgstr "Регион"
+
+#: documents/templates/documents/act_list.html:38
 msgid "Type"
 msgstr "Тип"
 
-#: documents/templates/documents/document_list.html:57
+#: documents/templates/documents/act_list.html:57
 msgid "Warranty rejection"
 msgstr "Отказ в ГО"
 
-#: documents/templates/documents/document_list.html:59
+#: documents/templates/documents/act_list.html:59
 msgid "Technical inspection"
 msgstr "Техническая экспертиза"
 
-#: documents/templates/documents/document_list.html:61
+#: documents/templates/documents/act_list.html:61
 msgid "Defect acceptance"
 msgstr "Списание"
 
@@ -238,7 +255,9 @@ msgstr "Запросить документ"
 
 #: documents/templates/documents/document_request_form.html:18
 #: issue/templates/issue/batteryissue_form.html:18
+#: issue/templates/issue/clockissue_form.html:18
 #: issue/templates/issue/displaylineissue_form.html:18
+#: refurbishment/templates/refurbishment/refurbishmentdevice_create_form.html:18
 msgid "Input device info"
 msgstr "Введите необходимые данные"
 
@@ -256,8 +275,9 @@ msgstr "Фото устройства с задней кришкой где ви
 msgid "Photo of the battery label"
 msgstr "Фото шильдика АКБ"
 
-#: issue/models.py:17 issue/models.py:58
+#: issue/models.py:17 issue/models.py:59 issue/models.py:87
 #: issue/templates/issue/batteryissue_detail.html:21
+#: issue/templates/issue/clockissue_detail.html:21
 #: issue/templates/issue/displaylineissue_detail.html:21
 msgid "Device Serial Number"
 msgstr "Серийный Номер Устройства"
@@ -286,27 +306,28 @@ msgstr "Фото АКБ"
 msgid "General view photo"
 msgstr "Фото устройства"
 
-#: issue/models.py:64
-#| msgid "Battery photo"
+#: issue/models.py:44 issue/models.py:80 issue/models.py:101
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:32
+msgid "Model"
+msgstr "Модель"
+
+#: issue/models.py:66
 msgid "Display photo"
 msgstr "Фото дисплея"
 
-#: issue/models.py:65
+#: issue/models.py:68
 msgid "Display label photo"
 msgstr "Фото шильдика дисплея"
 
 #: issue/templates/issue/batteryissue_detail.html:3
 #: issue/templates/issue/batteryissue_detail.html:15
-#: main/templates/main/base.html:85
-#| msgid "Battery photo"
 msgid "Battery Issue"
 msgstr "Battery Issue"
 
 #: issue/templates/issue/batteryissue_form.html:7
-#: issue/templates/issue/displaylineissue_detail.html:3
-#: issue/templates/issue/displaylineissue_detail.html:15
-msgid "Display line issue"
-msgstr "Display line issue"
+#: issue/templates/issue/displaylineissue_form.html:7
+msgid "Battery Issue Form"
+msgstr ""
 
 #: issue/templates/issue/batteryissue_form.html:30
 #: issue/templates/issue/displaylineissue_form.html:30
@@ -316,57 +337,105 @@ msgstr "Пожалуйста, обратите внимание"
 #: issue/templates/issue/batteryissue_form.html:31
 #: issue/templates/issue/displaylineissue_form.html:31
 msgid "All photos should have portrait orientation and readable text position."
-msgstr "Все фотографии должны иметь «книжную» ориентацию, текст должен быть читаемым"
+msgstr ""
+"Все фотографии должны иметь «книжную» ориентацию, текст должен быть читаемым"
 
 #: issue/templates/issue/batteryissue_form.html:34
+#: issue/templates/issue/clockissue_form.html:30
 #: issue/templates/issue/displaylineissue_form.html:34
+#: refurbishment/templates/refurbishment/refurbishmentdevice_create_form.html:30
 msgid "Submit"
 msgstr "Отправить"
 
 #: issue/templates/issue/batteryissue_list.html:3
 #: issue/templates/issue/batteryissue_list.html:16
-#: main/templates/main/base.html:90
+#: main/templates/main/base.html:92
 msgid "Battery Issue List"
 msgstr ""
 
-#: issue/templates/issue/displaylineissue_form.html:7
-msgid "Battery Issue Form"
+#: issue/templates/issue/clockissue_detail.html:3
+#: issue/templates/issue/clockissue_detail.html:15
+#: issue/templates/issue/displaylineissue_detail.html:3
+#: issue/templates/issue/displaylineissue_detail.html:15
+#: issue/templates/issue/displaylineissue_list.html:3
+#: issue/templates/issue/displaylineissue_list.html:16
+msgid "Display line issue"
+msgstr "Display line issue"
+
+#: issue/templates/issue/clockissue_form.html:7
+msgid "Clock Issue Form"
+msgstr ""
+
+#: issue/templates/issue/clockissue_list.html:3
+#: issue/templates/issue/clockissue_list.html:16
+msgid "Clock issue"
 msgstr ""
 
 #: main/templates/main/base.html:32
 msgid "Home"
 msgstr "Главная"
 
-#: main/templates/main/base.html:40
+#: main/templates/main/base.html:39
+#: sparepart/templates/sparepart/sparepart_detail.html:59
 msgid "Devices"
 msgstr "Устройства"
 
-#: main/templates/main/base.html:55 main/templates/main/base.html:68
+#: main/templates/main/base.html:53 main/templates/main/base.html:66
 #: sncheck/templates/sncheck/serial_number_check.html:17
 msgid "Serial Check"
 msgstr "Проверка серийного номера"
 
-#: main/templates/main/base.html:93 main/templates/main/base.html:100
+#: main/templates/main/base.html:84
+msgid "Issues"
+msgstr ""
+
+#: main/templates/main/base.html:97 main/templates/main/base.html:124
 msgid "Add Battery Issue"
 msgstr ""
 
-#: main/templates/main/base.html:108
+#: main/templates/main/base.html:102
+#, fuzzy
+#| msgid "Display line issue"
+msgid "Display Line Issues List"
+msgstr "Display line issue"
+
+#: main/templates/main/base.html:107 main/templates/main/base.html:130
+#, fuzzy
+#| msgid "Display line issue"
+msgid "Add Display Line Issue"
+msgstr "Display line issue"
+
+#: main/templates/main/base.html:112 main/templates/main/base.html:135
+msgid "Add Clock Issue"
+msgstr ""
+
+#: main/templates/main/base.html:117
+msgid "Clock Issue List"
+msgstr ""
+
+#: main/templates/main/base.html:145 refurbishment/models.py:44
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:36
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:32
+msgid "Refurbishment"
+msgstr ""
+
+#: main/templates/main/base.html:151
 msgid "Contacts"
 msgstr "Контакты"
 
-#: main/templates/main/base.html:115
+#: main/templates/main/base.html:158
 msgid "Admin Section"
 msgstr "Администрирование"
 
-#: main/templates/main/base.html:123
+#: main/templates/main/base.html:166
 msgid "Wellcome"
 msgstr "Приветствую"
 
-#: main/templates/main/base.html:124
+#: main/templates/main/base.html:167
 msgid " Log-out"
 msgstr "Выйти"
 
-#: main/templates/main/base.html:125
+#: main/templates/main/base.html:168
 msgid " Log-in"
 msgstr "Войти"
 
@@ -378,67 +447,229 @@ msgstr "Новости"
 msgid "Last updates"
 msgstr "Последние обновления"
 
-#: pbservicesite/settings.py:122
+#: pbservicesite/settings.py:117
 msgid "English"
 msgstr "Английский"
 
-#: pbservicesite/settings.py:123
+#: pbservicesite/settings.py:118
 msgid "Russian"
 msgstr "Русский"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:10
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:13
-msgid "SN is valided"
-msgstr "Серийный номер валидный"
+#: refurbishment/models.py:9
+msgid "Refurbishment name"
+msgstr ""
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:11
+#: refurbishment/models.py:18
+#, fuzzy
+#| msgid "Defect acceptance"
+msgid "Defect name"
+msgstr "Списание"
+
+#: refurbishment/models.py:32
+#, fuzzy
+#| msgid "Production Date"
+msgid "Condition name"
+msgstr "Дата производства"
+
+#: refurbishment/models.py:33
+msgid "Suffix for base SKU"
+msgstr ""
+
+#: refurbishment/models.py:42
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:31
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:29
+#, fuzzy
+#| msgid "Serial Number"
+msgid "Old Serial Number"
+msgstr "Серийный Номер"
+
+#: refurbishment/models.py:43
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:25
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:28
+#, fuzzy
+#| msgid "Serial Number"
+msgid "New Serial Number"
+msgstr "Серийный Номер"
+
+#: refurbishment/models.py:45
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:46
+msgid "Defect"
+msgstr ""
+
+#: refurbishment/models.py:46
+msgid "Refurbishment Device Condition"
+msgstr ""
+
+#: refurbishment/models.py:47
+msgid "Notes"
+msgstr ""
+
+#: refurbishment/models.py:48
+msgid "Date of creation"
+msgstr ""
+
+#: refurbishment/models.py:49
+#, fuzzy
+#| msgid "Last updates"
+msgid "Date of update"
+msgstr "Последние обновления"
+
+#: refurbishment/models.py:51
+msgid "Created By User"
+msgstr ""
+
+#: refurbishment/models.py:53
+msgid "Updated By User"
+msgstr ""
+
+#: refurbishment/models.py:54
+msgid "Device was returned"
+msgstr ""
+
+#: refurbishment/models.py:75
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:15
 msgid "Yes"
 msgstr "Да"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:14
+#: refurbishment/models.py:77
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:18
 msgid "No"
 msgstr "Нет"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:32
+#: refurbishment/templates/refurbishment/refurbishmentdevice_create_form.html:3
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:18
+#: refurbishment/templates/refurbishment/refurbishmentdevice_update_form.html:3
+msgid "Add Refurbishment Device"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:3
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:15
+msgid "Refurbishment Device Detail"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:21
+msgid "Edit"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:56
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:31
+msgid "Condition"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:59
+msgid "Created By"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:66
+msgid "Updated By"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_detail.html:72
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:35
+#: refurbishment/templates/refurbishment/refurbishmentdevice_update_form.html:33
+msgid "Was Returned"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:3
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:22
+msgid "Refurbishment Devices List"
+msgstr ""
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_list.html:34
+#, fuzzy
+#| msgid "Fill Date"
+msgid "Date"
+msgstr "Дата заполнения"
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_update_form.html:18
+#, fuzzy
+#| msgid "Input device info"
+msgid "Device info"
+msgstr "Введите необходимые данные"
+
+#: refurbishment/templates/refurbishment/refurbishmentdevice_update_form.html:30
+msgid "Update"
+msgstr ""
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:14
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:17
+msgid "SN is valided"
+msgstr "Серийный номер валидный"
+
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:36
 msgid "Production Date"
 msgstr "Дата производства"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:36
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:40
 msgid "Shipping Date"
 msgstr "Дата отгрузки"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:44
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:48
 msgid "Country"
 msgstr "Страна"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:48
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:52
 msgid "Color"
 msgstr "Цвет"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:53
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:64
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:57
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:68
 #, fuzzy
 #| msgid "Warranty rejection"
 msgid "Warranty term"
 msgstr "Отказ в ГО"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:56
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:67
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:60
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:71
 msgid "months"
 msgstr ""
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:76
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:80
 msgid "Partner"
 msgstr "Партнер"
 
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:81
-#: sncheck/templates/sncheck/includes/serial_number_info_table.html:86
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:85
+#: sncheck/templates/sncheck/includes/serial_number_info_table.html:90
+#: sparepart/templates/sparepart/sparepart_detail.html:55
 msgid "Manufacturer"
 msgstr "Производитель"
 
 #: sncheck/templates/sncheck/serial_number_info.html:17
 msgid "Serial Number Info"
-msgstr "Информацыя о Серийном Номере"
+msgstr "Информация о Серийном Номере"
+
+#: sparepart/templates/sparepart/sparepart_detail.html:3
+#: sparepart/templates/sparepart/sparepart_detail.html:17
+msgid "Spare part"
+msgstr ""
+
+#: sparepart/templates/sparepart/sparepart_detail.html:23
+msgid "Spare part name"
+msgstr ""
+
+#: sparepart/templates/sparepart/sparepart_detail.html:27
+msgid "Category"
+msgstr ""
+
+#: sparepart/templates/sparepart/sparepart_detail.html:31
+msgid "SKU"
+msgstr ""
+
+#: sparepart/templates/sparepart/sparepart_detail.html:35
+msgid "Weight grams"
+msgstr ""
+
+#: sparepart/templates/sparepart/sparepart_detail.html:39
+msgid "Size, millimeters"
+msgstr ""
+
+#: sparepart/templates/sparepart/sparepart_detail.html:43
+msgid "Short description"
+msgstr ""
+
+#: sparepart/templates/sparepart/sparepart_detail.html:51
+msgid "Supplier"
+msgstr ""
 
 #~ msgid "Detail"
 #~ msgstr "Подробно"
