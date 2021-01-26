@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>
 
     <div class="container-fluid">
-        <div class='container custom'>
+        <div class='custom'>
             <div class="card custom-bg">
                 <h5>
                     <div class="card-header text-center text-light custom-header-bg">
@@ -17,7 +17,7 @@
                     </div>
                 </h5>
                 <div class="card-body">
-                    <form class="form-sn" action="/snchecklist" method="POST" target="_parent">
+                    <form class="form-sn" action="{% url 'snchecklist' %}" method="POST" target="_parent">
                         {% csrf_token %}
                         <div class="form-group row">
                             <div class="input-group mb-2 mb-sm-0">
@@ -53,6 +53,7 @@
                                     <th>Country</th>
                                     <th>Manufacturer</th>
                                     <th>Checked by</th>
+                                    <th>Documents</th>
                                 </div>
                             </tr>
                             </thead>
@@ -69,6 +70,7 @@
                                     {% elif info.is_valid == False %}
                                         <td>No</td>
                                     {% endif %}
+                                    <td>-</td>
                                     <td>-</td>
                                     <td>-</td>
                                     <td>-</td>
@@ -112,9 +114,17 @@
                                     -
                                 {% endif %}
                                 </td>
+                                <td>
+                                    {% if info.documents %}
+                                        {% for document in info.documents %}
+                                            <a href="{{ document.get_absolute_url }}"
+                                               target="_blank">{{ document.number }}</a>
+                                        {% endfor %}
+                                    {% endif %}
                                 </td>
 
                             {% endfor %}
+
                             </tr>
                             </tbody>
                         </table>

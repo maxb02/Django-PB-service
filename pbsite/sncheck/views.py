@@ -66,11 +66,13 @@ def snchecklist(request):
             device_info = get_device_info_from_shipments(serial_number)
             serial_number_journal = SerialNumberCheckJournal.objects.filter(serial_number=serial_number).distinct(
                 'user')
+            documents = Act.objects.filter(serial_number=serial_number).all()
             devices_info_list.append({
                 'serial_number': serial_number,
                 'is_valid': is_valid,
                 'device_info': device_info,
                 'serial_number_journal': serial_number_journal,
+                'documents': documents,
             })
 
         return render(request, 'sncheck/serial_number_check_list.html', {'devices_info_list': devices_info_list,
