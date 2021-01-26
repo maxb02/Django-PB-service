@@ -1,5 +1,9 @@
 {% load i18n %}
 <table class="table table-striped card-text">
+    <tr>
+        <td>{% trans 'Serial Number' %}</td>
+        <td>{{ serial_number }}</td>
+    </tr>
 
     <tr>
         {% if is_valid == 'Error' %}
