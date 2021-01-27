@@ -92,7 +92,7 @@ class Act(models.Model):
                                            verbose_name=_('Comments (for PocketBook)'))
     comment_of_manager = models.TextField(max_length=500, null=True, blank=True, verbose_name=_('Comment of Manager'))
     number = models.CharField(max_length=50, verbose_name=_('Document Number'), db_index=True, null=True, blank=True)
-    compensation_status = models.CharField(max_length=5, choices=COMPENSATION_STATUS_CHOICES, default='nc_nr',)
+    compensation_status = models.CharField(max_length=5, choices=COMPENSATION_STATUS_CHOICES, default='nc_nr', null=True)
 
     def __str__(self):
         return self.serial_number
