@@ -30,7 +30,7 @@ LABEL_DATE_FIELD_NAME_CHOICE = (
 class Condition(models.Model):
     """Mark the kind of device after refurbishment"""
     name = models.CharField(max_length=255, verbose_name=_('Condition name'))
-    sku_suffix = models.CharField(max_length=5, verbose_name=_('Suffix for base SKU'), null=True)
+    sku_suffix = models.CharField(max_length=5, verbose_name=_('Suffix for base SKU'), null=True, blank=True)
     label_date_field_name = models.CharField(choices=LABEL_DATE_FIELD_NAME_CHOICE, max_length=3)
 
     def __str__(self):
