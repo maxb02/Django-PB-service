@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, UpdateView
 from django.views.generic.edit import CreateView
 
 from device.exceptions import SKUDoesNotExist
-from device.mixins import DeviceModelFieldMixin
+from device.mixins import DevicesListAddModelNumberFieldMixin
 from users.mixins import UserServiceCenterObjectOnlyMixin
 from .label import get_info_for_label, create_label_response
 from .models import RefurbishmentDevice
@@ -15,7 +15,7 @@ from .forms import RefurbishmentDeviceForm
 class RefurbishmentDeviceList(PermissionRequiredMixin,
                               LoginRequiredMixin,
                               UserServiceCenterObjectOnlyMixin,
-                              DeviceModelFieldMixin,
+                              DevicesListAddModelNumberFieldMixin,
                               ListView):
     model = RefurbishmentDevice
     permission_required = 'refurbishment.view_refurbishment_device_list'
