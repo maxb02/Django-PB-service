@@ -10,3 +10,12 @@ class UserServiceCenterObjectOnlyMixin:
             queryset = queryset.filter(**kwargs)
 
         return queryset
+
+
+class CreatedByUserMixin:
+    created_by_field = 'created_by'
+
+    def form_valid(self, form):
+        created_by = self.request.user
+        setattr(form.instance, self.created_by_field, created_by)
+        return super().form_valid(form)
