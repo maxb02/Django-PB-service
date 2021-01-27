@@ -1,12 +1,13 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
+
 from .models import Act, SerialNumberPrefix, VisualDefect, ScopeOfSupply
 
 
 @admin.register(Act)
 class ActAdmin(admin.ModelAdmin):
     list_display = ('number',
-                    'get_region', 'get_service', 'get_model', 'serial_number', 'document_type', 'status',
+                    'created_by', 'serial_number', 'document_type', 'status',
                     'filling_date',
                     'received_date', 'purchase_date')
     search_fields = 'number', 'serial_number'

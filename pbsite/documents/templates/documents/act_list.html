@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>
 
     <div class="container-fluid">
-        <div class='container custom'>
+        <div class='custom'>
             <div class="card custom-bg">
                 <h5>
                     <div class="card-header text-center text-light custom-header-bg">
@@ -40,47 +40,51 @@
                             <th>{% trans 'Received Date' %}</th>
                             <th>{% trans 'Purchase Date' %}</th>
                             <th>{% trans 'Status' %}</th>
+                            <th>{% trans 'Compensation' %}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for document in documents %}
+                        {% for act in object_list %}
                             <tr>
                                 {% if request.user.is_staff %}
-                                    <td>{{ document.created_by.service_center.region }}</td>
-                                    <td>{{ document.created_by.service_center }}</td>
+                                    <td>{{ act.created_by.service_center.region }}</td>
+                                    <td>{{ act.created_by.service_center }}</td>
                                 {% endif %}
 
-                                <td>{{ document.get_model }}</td>
-                                <td><a href="{{ document.get_absolute_url }}" target="_blank">{{ document.number }}</a></td>
-                                <td><a href="{% url 'serial_number_info_url' serial_number=document.serial_number %}">{{ document.serial_number }}</a></td>
-                                {% if document.document_type == 'warranty_rejection' %}
+                                <td>{{ act.model_number }}</td>
+                                <td><a href="{{ act.get_absolute_url }}" target="_blank">{{ act.number }}</a></td>
+                                <td><a href="{% url 'serial_number_info_url' serial_number=act.serial_number %}">{{ act.serial_number }}</a></td>
+                                {% if act.document_type == 'warranty_rejection' %}
                                     <td>{% trans 'Warranty rejection' %}</td>
-                                {% elif document.document_type == 'technical_inspection' %}
+                                {% elif act.document_type == 'technical_inspection' %}
                                     <td>{% trans 'Technical inspection' %}</td>
-                                {% elif document.document_type == 'defect_acceptance' %}
+                                {% elif act.document_type == 'defect_acceptance' %}
                                     <td>{% trans 'Defect acceptance' %}</td>
-                                    {% elif document.document_type == 'discount_voucher_50' %}
+                                    {% elif act.document_type == 'discount_voucher_50' %}
                                     <td>Discount 50%</td>
-                                    {% elif document.document_type == 'discount_voucher_20' %}
+                                    {% elif act.document_type == 'discount_voucher_20' %}
                                     <td>Discount 20%</td>
                                     {% else %}
-                                        <td>{{ document.document_type }}</td>
+                                        <td>{{ act.document_type }}</td>
                                 {% endif %}
-                                <td>{{ document.filling_date | date:"Y/m/d" }}</td>
-                                <td>{{ document.received_date | date:"Y/m/d" }}</td>
-                                <td>{{ document.purchase_date | date:"Y/m/d" }}</td>
+                                <td>{{ act.filling_date | date:"Y/m/d" }}</td>
+                                <td>{{ act.received_date | date:"Y/m/d" }}</td>
+                                <td>{{ act.purchase_date | date:"Y/m/d" }}</td>
 
 
-                                {% if document.status == 'in_process' %}
+                                {% if act.status == 'in_process' %}
                                     <td>{% trans 'In Process' %}<i class="fas fa-sync"></i></td>
-                                {% elif document.status == 'confirmed' %}
-                                    <td><a target="_blank" rel="noopener noreferrer" href="{{ document.get_pdf_url  }}"
+                                {% elif act.status == 'confirmed' %}
+                                    <td><a target="_blank" rel="noopener noreferrer" href="{{ act.get_pdf_url  }}"
                                            style="display:block;">&nbsp;{% trans 'Confirmed' %} <i
                                             class="fa fa-download"></i></a></td>
-                                {% elif document.status == 'rejected' %}
+                                {% elif act.status == 'rejected' %}
                                     <td>{% trans 'Rejected' %} <i class="fa fa-times" aria-hidden="true"></i></td>
-                                    {% else %} <td>{{ document.status }}</td>
+                                    {% else %} <td>{{ act.status }}</td>
                                 {% endif %}
+                            <td>
+                                {{ act.get_compensation_status_display }}
+                            </td>
 
                             </tr>
                         {% endfor %}

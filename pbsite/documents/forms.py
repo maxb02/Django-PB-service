@@ -26,7 +26,16 @@ class ActRequestForm(ModelForm):
         }
 
 
-class ActComentForm(ModelForm):
+class ActCommentForm(ModelForm):
     class Meta:
         model = Act
         fields = ('comment_of_manager',)
+
+
+class ActCompensationStatusForm(ModelForm):
+    class Meta:
+        model = Act
+        fields = ('compensation_status',)
+        widgets = {
+            'compensation_status': forms.RadioSelect()
+        }

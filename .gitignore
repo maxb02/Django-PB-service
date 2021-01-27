@@ -12,3 +12,4 @@ db.sqlite3
 /pbsite/pbservicesite/local_setting.py
 .gitignore.swp
 .sql
+.coverage
