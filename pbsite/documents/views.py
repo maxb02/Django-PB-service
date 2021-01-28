@@ -23,6 +23,7 @@ class ActDetail(LoginRequiredMixin,
                 UserServiceCenterObjectOnlyMixin,
                 DetailView):
     model = Act
+    user_field = 'created_by'
     raise_exception = True
     slug_field = 'number'
     slug_url_kwarg = 'number'
