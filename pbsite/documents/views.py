@@ -31,7 +31,7 @@ class ActDetail(LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.user.has_perm('accept_or_decline_acts'):
+        if self.request.user.has_perm('documents.accept_or_decline_acts'):
             context['form'] = ActCommentForm
             context['compensation_status_form'] = ActCompensationStatusForm(instance=self.object)
         return context
