@@ -7,7 +7,7 @@ class SparePartAdmin(admin.ModelAdmin):
 
     list_select_related = ('supplier', 'manufacturer', 'category')
     list_display = ('sku', 'name', 'get_device', 'category', 'purchase_price', 'supplier', 'manufacturer')
-    list_filter = 'supplier', 'device'
+    list_filter = 'supplier', 'device', 'category'
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
