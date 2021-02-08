@@ -15,7 +15,7 @@ class ServiceCenter(models.Model):
     language = models.CharField(max_length=50, choices=(
                                                         ('ru', 'Russian'),
                                                         ('en', 'English'),
-                                                        ('ua', 'Ukrainian'),
+                                                        ('uk', 'Ukrainian'),
 
     ))
 
