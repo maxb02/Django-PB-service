@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+
+    <title>{{ document.number }}</title>
+    {% load static %}
+    {% load i18n %}
+    {% language 'ua' %}
+        <link rel="stylesheet" href="{% static '/css/pdf.css' %}">
+
+        </head>
+        <body>
+        <div class="document">
+
+        <div>
+            <img class="logo" src="/static/img/logo-w-bg.png">
+        </div>
+
+        <div class="servicename">
+            <b>Авторизований Сервісний Центр (АСЦ)<br>
+                {{ document.created_by.service_center.company_name }} </b><br>
+            <link rel="stylesheet" type="text/css" href="http://www.pocketbook-int.com/support/service-centers"
+                  title="http://www.pocketbook-int.com/support/service-centers">
+            <a href="http://www.pocketbook-int.com/support/service-centers">
+                http://www.pocketbook-int.com/support/service-centers </a>
+        </div>
+        <br>
+        <div>
+            <div class="title">
+
+                <p><b> Висновок про відмову в наданні гарантійного обслуговування {{ document.number }} </b></p>
+                <br>
+            </div>
+            <p><b>Номер звернення: </b> {{ document.protocol_number }} </p>
+            <p><b>Дата звернення: </b> {{ document.received_date | date:"d.m.Y" }}</p>
+            <p><b>Модель пристрою: </b> {{ document.get_model }}</p>
+            <p><b>Серійний номер:  </b> {{ document.serial_number }}</p>
+            <p><b>Дата продажу: </b>{% if document.is_presale %} Передпродажний {% else %}
+                {{ document.purchase_date | date:"d.m.Y" }} {% endif %}</p>
+            <br>
+
+            <b>Заявлені дефекти (за описом Споживача):</b><br>
+            {{ document.customers_claim }}
+            <br>
+            <b>Зовнішній вигляд:</b><br>
+            {% if document.visual_defect.all %}
+                {% for visual_defect in document.visual_defect.all %}
+                    {{ visual_defect }},
+                {% endfor %}
+            {% else %}
+                -
+            {% endif %}
+            <br>
+            <b>Комплектність:</b><br>
+            {% if document.scope_of_supply.all %}
+                {% for item in document.scope_of_supply.all %}
+                    {{ item }},
+                {% endfor %}
+            {% else %}
+                -
+            {% endif %}
+            <br>
+            <b>Причина выдачи:</b><br>
+            {{ document.conclusion }}
+            <br>
+            <br>
+            <br>
+            <b>Висновок:</b>
+            <ol>
+                <li>Видача цього Висновку погоджена з виробником пристрою</li>
+                <li>Споживач має право отримати обслуговування на негарантійній (платній) основі.</li>
+                <li>Додаткову інформацію щодо гарантійних зобов’язань виробника можна на сайті виробника:
+                    https://pocketbook.com.ua/uk-ua/warranty-terms-ua.
+                </li>
+                <li>Цей Висновок з підписами і печатками видається споживачу або іншій особі, яка звертається до АСЦ
+                    (заявнику або його представнику).
+                </li>
+                <li>В цьому Висновку описані дефекти та недоліки пристрою на момент його видачі та не вказані дефекти або недоліки, які можуть виникнути після отримання цього Висновку споживачем або заявником (представником).
+                </li>
+                <li>Дублікат цього Висновку зберігається в АСЦ протягом 30-ти днів*.</li>
+            </ol>
+            <br>
+            <br>
+            <br>
+            <div class="bottom">
+                <table>
+                   <tr>
+                        <td><b>Назва/Місцезнаходження АСЦ</b></td>
+                        <td>{{ document.created_by.service_center.company_name }} / м. {{ document.created_by.service_center.city }}</td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <th>Інженер АСЦ (ПІБ та підпис):</th>
+                        <td>__________________________</td>
+                        <td>__________________________</td>
+                    </tr>
+                    <tr>
+                        <th>Керівник АСЦ (ПІБ та підпис):</th>
+                        <td>__________________________</td>
+                        <td>__________________________</td>
+                    </tr>
+                    <tr>
+                        <td><b>Дата оформлення:</b></td>
+                        <td>{{ document.conclusion_date | date:"d.m.Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Споживач/Заявник/Представник:</b></td>
+                        <td>{{ document.client_name }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Підпис Споживача/Заявника/Представника:</b></td>
+                        <td>___________________________</td>
+                    </tr>
+                    <tr>
+                        <td><b>Дата отримання:</b></td>
+                        <td>__________________________</td>
+                    </tr>
+                </table>
+            </div>
+            Усі питання з приводу цього Висновку можна направити на адресу warranty@pocketbook-int.com
+            <hr>
+            *Усі претензії за цим Висновком приймаються тільки у вказаний період (30 днів з дати отримання).
+        </div>
+    {% endlanguage %}
+    </body>
+</html>
