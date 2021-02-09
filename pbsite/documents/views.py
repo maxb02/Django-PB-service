@@ -5,6 +5,9 @@ from django.core.exceptions import PermissionDenied
 from django.views.generic import View, CreateView, ListView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from easy_pdf.rendering import render_to_pdf_response
+
+from device.models import Device
+from device.serial_number_parser import parse_serial_number
 from .forms import ActRequestForm, ActCommentForm, ActCompensationStatusForm
 from .models import Act
 from users.mixins import UserServiceCenterObjectOnlyMixin, CreatedByUserMixin
@@ -69,15 +72,23 @@ class ActCompensationStatusUpdate(LoginRequiredMixin,
     form_class = ActCompensationStatusForm
 
 
+class ActGeneratePDF(LoginRequiredMixin,
+                     View):
 
-@login_required
-def generate_pdf(request, number):
-    document = get_object_or_404(Act, number=number)
-    if document.status == 'confirmed' and (
-            document.created_by.service_center == request.user.service_center or request.user.is_staff):
-        language = document.created_by.service_center.language
-        template = document.document_type
-        context = {'document': document, }
+    def get(self, request, number):
+        obj = get_object_or_404(Act, number=number)
+        if not obj.status == 'confirmed':
+            raise PermissionDenied
+        serial_number = obj.serial_number
+        parsed_serial_number = parse_serial_number(serial_number)
+        try:
+            device = Device.objects.values('model_number').get(code=parsed_serial_number.model_code,
+                                                               factory__code=parsed_serial_number.factory_code)
+            model_number = device.get('model_number')
+        except Device.DoesNotExist:
+            model_number = None
+        obj.model_number = model_number
+        language = obj.created_by.service_center.language
+        template = obj.document_type
+        context = {'document': obj, }
         return render_to_pdf_response(request, 'documents/pdf/{}_{}.html'.format(language, template), context, )
-    else:
-        raise PermissionDenied

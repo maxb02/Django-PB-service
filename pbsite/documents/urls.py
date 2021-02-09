@@ -9,5 +9,5 @@ urlpatterns = [
         name='document_accept_or_reject_url'),
     url(r'^documents/compensation_status/(?P<pk>.+)$', views.ActCompensationStatusUpdate.as_view(),
         name='compensation_status_url'),
-    url(r'^documents/pdf/(?P<number>.+)$', views.generate_pdf, name='document_generate_pdf_url'),
+    url(r'^documents/pdf/(?P<number>.+)$', views.ActGeneratePDF.as_view(), name='document_generate_pdf_url'),
 ]
