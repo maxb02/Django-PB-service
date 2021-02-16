@@ -30,17 +30,15 @@ def parse_serial_number(serial_number):
 def get_model_sku_color(serial_number):
     parsed_serial_number = parse_serial_number(serial_number)
     try:
-        info = Device.objects.values('name', 'skus__name', 'skus__color__name',).get(
+        info = Device.objects.filter(
             factory__code=parsed_serial_number.factory_code,
             code=parsed_serial_number.model_code,
             skus__module__code=parsed_serial_number.module_code,
             skus__region__code=parsed_serial_number.region_code,
             skus__project__code=parsed_serial_number.project_code,
-            skus__color__code=parsed_serial_number.color_code, )
+            skus__color__code=parsed_serial_number.color_code, ).values('name', 'skus__name',
+                                                                        'skus__color__name', ).first()
     except Device.DoesNotExist:
         raise SKUDoesNotExist(serial_number)
 
     return info
-
-
-
