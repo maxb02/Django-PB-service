@@ -167,7 +167,7 @@ AUTH_USER_MODEL = 'users.User'
 FILEBROWSER_DIRECTORY = 'technicalguides/'
 
 FILEBROWSER_EXTENSIONS = {
-    'Archive': ['.zip', ],
+    'Archive': ['.zip', '.rar', '.gz', ],
     'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff'],
     'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],
     'Video': ['.mov', '.wmv', '.mpeg', '.mpg', '.avi', '.rm'],
