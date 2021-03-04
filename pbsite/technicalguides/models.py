@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import Group
 from django.shortcuts import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -36,3 +37,11 @@ class Guide(models.Model):
 
     def get_absolute_url(self):
         return reverse('technocalguide_by_pk_detail_url', kwargs={'pk': self.pk})
+
+
+# Fake file FileBrowser model
+class FileBrowser(models.Model):
+    class Meta:
+        managed = False
+        verbose_name = _('FileBrowser')
+        verbose_name_plural = _('FileBrowser')
