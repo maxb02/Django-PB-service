@@ -13,9 +13,9 @@ admin.site.index_title = "Welcome to Pocketbook Service Portall"
 urlpatterns = [
     url(r'', include('main.urls')),
     url(r'', include('technicalguides.urls')),
-    url(r'', include('contacts.urls')),
+    url(r'contacts/', include('contacts.urls')),
     url(r'', include('sncheck.urls')),
-    url(r'', include('documents.urls')),
+    url(r'documents/', include('documents.urls')),
     url(r'^issue/', include('issue.urls')),
     url(r'device/', include('device.urls')),
     url(r'sparepart/', include('sparepart.urls')),
