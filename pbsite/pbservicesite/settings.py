@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+
+from django.conf import settings
+
 try:
     from pbservicesite.local_setting import *
 except ImportError:
@@ -21,7 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application definition
 
 INSTALLED_APPS = [
-    # 'admin_view_permission',
+    'grappelli',
+    'filebrowser',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,7 +52,7 @@ INSTALLED_APPS = [
     'sparepart',
     'refurbishment',
     'import_export',
-    # 'rest_framework',
+
 
 ]
 
@@ -136,6 +140,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -157,6 +162,31 @@ LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
 
 AUTH_USER_MODEL = 'users.User'
+
+# FILEBROWSER
+FILEBROWSER_DIRECTORY = 'technicalguides/'
+
+FILEBROWSER_EXTENSIONS = {
+    'Archive': ['.zip', ],
+    'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff'],
+    'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],
+    'Video': ['.mov', '.wmv', '.mpeg', '.mpg', '.avi', '.rm'],
+    'Audio': ['.mp3', '.mp4', '.wav', '.aiff', '.midi', '.m4p']
+}
+
+FILEBROWSER_SELECT_FORMATS = {
+    'file': ['Image', 'Document', 'Video', 'Audio'],
+    'image': ['Image'],
+    'document': ['Document'],
+    'media': ['Video', 'Audio'],
+}
+
+# 1GB
+FILEBROWSER_MAX_UPLOAD_SIZE = 1073741824
+
+FILEBROWSER_SHOW_IN_DASHBOARD = True
+#GRAPPELLI
+GRAPPELLI_ADMIN_TITLE = 'Pocketbook Service'
 
 if DEBUG == True:
     INSTALLED_APPS += ['debug_toolbar', ]
