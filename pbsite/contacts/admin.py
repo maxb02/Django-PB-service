@@ -7,7 +7,7 @@ from .models import Link
 
 
 @admin.register(PhoneNumber)
-class PhoneNumberlAdmin(VersionAdmin):
+class PhoneNumberAdmin(VersionAdmin):
     list_display = ('number', 'country',)
     list_filter = ('country',)
 
