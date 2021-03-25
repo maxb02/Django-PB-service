@@ -29,7 +29,7 @@ pyparsing==2.2.0
 PyPDF2==1.26.0
 python-dateutil==2.6.1
 pytz==2017.2
-PyYAML==3.13
+PyYAML==5.4
 reportlab==3.5.9
 requests==2.18.4
 setuptools-git==1.2
