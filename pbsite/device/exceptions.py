@@ -6,3 +6,6 @@ class SKUDoesNotExist(Exception):
 
     def __str__(self):
         return  '{} {}'.format(self.message, self.serial_number)
+
+class TestR:
+    pass
