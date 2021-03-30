@@ -7,7 +7,8 @@ django-import-export==1.1.0
 django-modeltranslation==0.12
 django-reversion==2.0.10
 psycopg2-binary==2.7.6.1
+django-filebrowser==3.9.2
 PyPDF2==1.26.0
 reportlab==3.5.9
 requests==2.18.4
-django-filebrowser==3.9.2
+
