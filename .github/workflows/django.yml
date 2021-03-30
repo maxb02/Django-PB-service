@@ -1,10 +1,17 @@
 name: Django CI
 
+# triggers for workflow
 on:
-  push:
-    branches: [ master, dev ]
+  # opening a pull request to master and develop branch will be a trigger
   pull_request:
-    branches: [ master, dev ]
+    branches:
+      - develop
+      - master
+  # any code pushed to master and develop branch will also be a trigger
+  push:
+    branches:
+      - master
+      - develop
 
 jobs:
   build:
