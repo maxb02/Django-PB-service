@@ -28,7 +28,7 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link text-light text-lg-left" href="/"><i class="fa fa-home fa-lg"
+            <a class="nav-link text-light text-lg-left" href="{% url "index" %}"><i class="fa fa-home fa-lg"
                                                                     aria-hidden="true"></i> {% trans "Home" %}
                 &nbsp;</a>
         </li>
@@ -53,16 +53,16 @@
                     {% trans "Serial Check" %}
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-light text-lg-left" href="/sncheck"><i class="fa fa-check"
+                    <a class="dropdown-item text-light text-lg-left" href="{% url "sncheck" %}"><i class="fa fa-check"
                                                                                         aria-hidden="true"></i> Check SN</a>
-                    <a class="dropdown-item text-light text-lg-left" href="/snchecklist"><i class="fa  fa-list-ul "
+                    <a class="dropdown-item text-light text-lg-left" href="{% url "snchecklist" %}"><i class="fa  fa-list-ul "
                                                                                             aria-hidden="true"></i>
                         Check List of SN</a>
                 </div>
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link text-light text-lg-left" href="/sncheck"><i class="fa fa-check-square-o fa-lg"
+                <a class="nav-link text-light text-lg-left" href="{% url "sncheck" %}"><i class="fa fa-check-square-o fa-lg"
                                                                                aria-hidden="true"></i> {% trans "Serial Check" %}
                     &nbsp;</a>
             </li>
@@ -147,14 +147,14 @@
             </li>
         {% endif %}
         <li class="nav-item">
-            <a class="nav-link text-light text-lg-left" href="/contacts"><i class="fa fa-address-book fa-lg"
+            <a class="nav-link text-light text-lg-left" href="{% url "contacts" %}"><i class="fa fa-address-book fa-lg"
                                                                             aria-hidden="true"></i> {% trans "Contacts" %}
                 &nbsp;</a>
         </li>
 
         {% if request.user.is_staff %}
             <li class="nav-item">
-                <a class="nav-link text-light text-lg-left" href="/admin/"><i class="fa fa-cogs fa-lg"
+                <a class="nav-link text-light text-lg-left" href="{% url "admin" %}"><i class="fa fa-cogs fa-lg"
                                                                               aria-hidden="true"></i> {% trans "Admin Section" %}
                     &nbsp;</a>
             </li>
@@ -176,7 +176,7 @@
                 </a>
                 </li>
                 <li class="nav-item" id="logout">
-                <a class="nav-link text-light text-lg-left" href="/logout">
+                <a class="nav-link text-light text-lg-left" href="{% url "logout" %}">
 					<span>
 						<i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> {{ logout }}
 					</span>
