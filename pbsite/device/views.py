@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import get_object_or_404, render
 from .models import Device
 
 
 
-class DeviceDetail(View):
+class DeviceDetail(LoginRequiredMixin, View):
     def get(self, request, pk):
         device = get_object_or_404(Device, pk=pk)
         if request.user.is_staff:
