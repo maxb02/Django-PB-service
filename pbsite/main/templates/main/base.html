@@ -14,7 +14,7 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="shortcut icon" href={% static 'ico/favicon.ico' %} type="image/x-icon"/>
+    <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
     <link rel="stylesheet" type="text/css"
           href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700&amp;subset=cyrillic-ext,latin-ext">
@@ -28,43 +28,44 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link text-light text-lg-left" href="/"><i class="fa fa-home fa-lg"
-                                                                    aria-hidden="true"></i> {% trans "Home" %}
-                &nbsp;</a>
+            <a class="nav-link text-light text-lg-left" href="{% url 'index' %}">
+                <i class="fa fa-home fa-lg" aria-hidden="true"></i> {% trans "Home" %}
+            </a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"
                role="button"
-               aria-haspopup="true" aria-expanded="false"><i class="fa fa-tablet-alt fa-lg"
-                                                             aria-hidden="true"></i> {% trans 'Devices' %}</a>
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-tablet-alt fa-lg" aria-hidden="true"></i> {% trans 'Devices' %}
+            </a>
             <div class="dropdown-menu">
                 {% for device in new_devices %}
-                    <a class="dropdown-content dropdown-item text-light text-lg-left"
-                       href="{{ device.get_absolute_url }}"><i class="fa fa-tablet-alt fa-lg"
-                                                               aria-hidden="true"></i> {{ device.name }}
+                    <a class="dropdown-content dropdown-item text-light text-lg-left" href="{{ device.get_absolute_url }}">
+                        <i class="fa fa-tablet-alt fa-lg" aria-hidden="true"></i> {{ device.name }}
                     </a>
                 {% endfor %}
             </div>
         </li>
         {% if request.user.is_staff %}
             <li class="nav-item dropdown">
-                <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#"
-                   role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-clipboard-check fa-lg"></i>
+                <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-clipboard-check fa-lg"></i>
                     {% trans "Serial Check" %}
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-light text-lg-left" href="/sncheck"><i class="fa fa-check"
-                                                                                        aria-hidden="true"></i> Check SN</a>
-                    <a class="dropdown-item text-light text-lg-left" href="/snchecklist"><i class="fa  fa-list-ul "
-                                                                                            aria-hidden="true"></i>
-                        Check List of SN</a>
+                    <a class="dropdown-item text-light text-lg-left" href="{% url 'serial_number_check_url' %}">
+                        <i class="fa fa-check" aria-hidden="true"></i> Check SN
+                    </a>
+                    <a class="dropdown-item text-light text-lg-left" href="{% url 'snchecklist' %}">
+                        <i class="fa  fa-list-ul" aria-hidden="true"></i> Check List of SN
+                    </a>
                 </div>
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link text-light text-lg-left" href="/sncheck"><i class="fa fa-check-square-o fa-lg"
-                                                                               aria-hidden="true"></i> {% trans "Serial Check" %}
-                    &nbsp;</a>
+                <a class="nav-link text-light text-lg-left" href="{% url 'serial_number_check_url' %}">
+                    <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i> {% trans "Serial Check" %}
+                </a>
             </li>
         {% endif %}
         {% if request.user.service_center or request.user.is_staff %}
@@ -147,14 +148,14 @@
             </li>
         {% endif %}
         <li class="nav-item">
-            <a class="nav-link text-light text-lg-left" href="/contacts"><i class="fa fa-address-book fa-lg"
+            <a class="nav-link text-light text-lg-left" href="{% url 'contacts' %}"><i class="fa fa-address-book fa-lg"
                                                                             aria-hidden="true"></i> {% trans "Contacts" %}
                 &nbsp;</a>
         </li>
 
         {% if request.user.is_staff %}
             <li class="nav-item">
-                <a class="nav-link text-light text-lg-left" href="/admin/"><i class="fa fa-cogs fa-lg"
+                <a class="nav-link text-light text-lg-left" href="{% url 'admin:index' %}"><i class="fa fa-cogs fa-lg"
                                                                               aria-hidden="true"></i> {% trans "Admin Section" %}
                     &nbsp;</a>
             </li>
@@ -176,7 +177,7 @@
                 </a>
                 </li>
                 <li class="nav-item" id="logout">
-                <a class="nav-link text-light text-lg-left" href="/logout">
+                <a class="nav-link text-light text-lg-left" href="{% url 'logout' %}">
 					<span>
 						<i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> {{ logout }}
 					</span>
