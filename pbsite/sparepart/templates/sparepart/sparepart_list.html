@@ -1,0 +1,69 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Spare part' %} # {{ object.name }} {% endblock %}
+
+{% block body %}
+    {% load humanize %}
+    {% load staticfiles %}
+
+<div class="container py-4">
+    <div class="row no-gutters d-flex">
+        <a href="{{ device.get_absolute_url }}"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+        <h2 class="col-11 text-center">{% trans 'Parts List:' %}</h2>
+    </div>
+    <div class="card">
+        <nav class="card-header">
+            <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-Display"><b>Display</b></a>
+                <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-Battery"><b>Battery</b></a>
+            </div>
+        </nav>
+        <div class="card-body tab-content">
+            <div id="nav-Display" class="tab-pane fade show active">
+                <div class="row justify-content-center">
+        {% for part in device.spare_parts.all %}
+            <div class="card m-2 px-0 col-5">
+                <div class="row no-gutters">
+                    <div class="col-md-5 p-2 align-self-center">
+                        <img src="{{ part.image.url }}" class="img-fluid" alt="{{ photo }}">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body p-2">
+                            <h5 class="card-title">{{ part.name }}</h5>
+                            <p class="card-text">
+                                <table class="table table-sm table-borderless">
+                                    <tr>
+                                        <th scope="row" width="30%">Part No.:</th>
+                                        <td>{{ part.sku }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Weight(g):</th>
+                                        <td>{{ part.weight }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Size(mm):</th>
+                                        <td>{{ part.size }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" colspan="2">Description:</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{ part.description }}</td>
+                                    </tr>
+                                </table>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+                </div>
+            </div>
+            <div id="nav-Battery" class="tab-pane fade show row justify-content-center">
+                Battery category fields
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
