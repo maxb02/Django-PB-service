@@ -29,3 +29,9 @@ class SerialNumberCheckJournal(models.Model):
 
     def get_user_full_name(self):
         return self.user.get_full_name
+
+    class Meta:
+        permissions = (
+            ('can_check_serial_number_list', 'User can check a list of serial numbers'),
+
+        )

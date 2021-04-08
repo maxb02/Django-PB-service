@@ -46,7 +46,7 @@
                 {% endfor %}
             </div>
         </li>
-        {% if request.user.is_staff %}
+        {% if request.user.is_staff or perms.sncheck.can_check_serial_number_list %}
             <li class="nav-item dropdown">
                 <a class="nav-link text-light text-lg-left dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-clipboard-check fa-lg"></i>
