@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 {% load i18n %}
-{% block title %} {% trans 'Spare part' %} # {{ object.name }} {% endblock %}
+{% block title %} {% trans 'Spare part list for' %} # {{ device.name }} {% endblock %}
 
 {% block body %}
     {% load humanize %}
@@ -9,13 +9,14 @@
 <div class="container py-4">
     <div class="row no-gutters d-flex">
         <a href="{{ device.get_absolute_url }}"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
-        <h2 class="col-11 text-center">{% trans 'Parts List:' %}</h2>
+        <h2 class="col-11 text-center">{{ device.name }} - {% trans 'Spare Parts List:' %}</h2>
     </div>
     <div class="card">
         <nav class="card-header">
             <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
-                <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-Display"><b>Display</b></a>
-                <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-Battery"><b>Battery</b></a>
+                {% for category in device.spare_parts.category.all %}
+                    <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-{{ category.name }}"><b>{{ category.name }}</b></a
+                {% endfor %}
             </div>
         </nav>
         <div class="card-body tab-content">
@@ -25,7 +26,9 @@
             <div class="card m-2 px-0 col-5">
                 <div class="row no-gutters">
                     <div class="col-md-5 p-2 align-self-center">
-                        <img src="{{ part.image.url }}" class="img-fluid" alt="{{ photo }}">
+
+                        <img src="{% if part.image %}{{ part.image.url }}{% endif %}" class="img-fluid" alt="{{ photo }}">
+
                     </div>
                     <div class="col-md-7">
                         <div class="card-body p-2">
@@ -59,11 +62,17 @@
         {% endfor %}
                 </div>
             </div>
-            <div id="nav-Battery" class="tab-pane fade show row justify-content-center">
-                Battery category fields
+        {% for category in device.spare_parts.category.all %}
+            <div id="nav-{{ category.name }}" class="tab-pane fade show row justify-content-center">
+                {{ category.name }}
             </div>
+            {{ category.name }}
+        {% endfor %}
+
         </div>
     </div>
 </div>
-
+    {% for category in categorys %}
+        {{ category.name }}
+    {% endfor %}
 {% endblock %}
