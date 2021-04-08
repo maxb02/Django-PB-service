@@ -23,7 +23,6 @@ class ActCreate(LoginRequiredMixin, CreatedByUserMixin, CreateView):
 
 class ActDetail(LoginRequiredMixin,
                 DeviceAddModelNumberFieldMixin,
-                UserServiceCenterObjectOnlyMixin,
                 DetailView):
     model = Act
     user_field = 'created_by'
