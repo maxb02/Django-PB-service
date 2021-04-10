@@ -1,0 +1,61 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}
+    You spare parts order
+{% endblock %}
+{% block body %}
+    <h1>You spare parts order</h1>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>SKU</th>
+            <th>Compare with</th>
+            <th>Remove</th>
+            <th>Unit price</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>{% for item in cart %}
+            {% with spare_part=item.spare_part %}
+                <tr>
+                    <td>{{ spare_part.name }}</td>
+                    <td>
+                        <a href="{{ spare_part.get_absolute_url }}">
+                            <img width="100" src="{% if spare_part.image %}{{ product.image.url }}
+{% else %}{% static "img/no_image.png" %}{% endif %}">
+                        </a>
+                    </td>
+                    <td>{{ spare_part.category }}</td>
+                    <td>{{ spare_part.sku }}</td>
+                    <td>{% for device in spare_part.device.all %}{{ device.model_number }}{% if not forloop.last %},
+                    {% endif %}{% endfor %}</td>
+                    <td>
+                        <form action="{% url "cart_add" spare_part.id %}"
+                              method="post">{{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            <input type="submit" value="Update">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td><a href="{% url "cart_remove" spare_part.id %}">Remove</a></td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            <td class="num">${{ cart.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="#" class="button
+        light">Return to spare parts list</a>
+        <a href="#" class="button">Order</a>
+    </p>
+{% endblock %}
