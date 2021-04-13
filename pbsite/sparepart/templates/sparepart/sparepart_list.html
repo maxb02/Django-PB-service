@@ -35,7 +35,6 @@
                                         <div class="col-md-7">
                                             <div class="card-body p-2">
                                                 <h5 class="card-title">{{ spare_part.name }}</h5>
-                                                <p class="card-text">
                                                 <table class="table table-sm table-borderless">
                                                     <tr>
                                                         <th scope="row" width="30%">Part No.:</th>
@@ -57,16 +56,21 @@
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
-                                                            <form action="{% url "cart_add" spare_part.id %}"
-                                                                  method="post">
-                                                                {{ cart_spare_part_form }}
+                                                            <form action="{% url 'cart_add' spare_part.id %}" class="form-inline" method="post">
+                                                                <div class="input-group input-group-sm">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text bg-transparent">{{ cart_spare_part_form.quantity.label }}: </span>
+                                                                    </div>
+                                                                    <input class="form-control" id="{{ cart_spare_part_form.quantity.auto_id }}" name="{{ cart_spare_part_form.quantity.name }}" type="number" value="{{ cart_spare_part_form.quantity.value }}" size="4" min="1" required />
+                                                                    <div class="input-group-append">
+                                                                        <input type="submit" class="btn btn-primary" value="Add to cart" />
+                                                                    </div>
+                                                                </div>
                                                                 {% csrf_token %}
-                                                                <input type="submit" value="Add to cart">
                                                             </form>
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
