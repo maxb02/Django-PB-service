@@ -18,7 +18,11 @@
             <th>Price</th>
         </tr>
         </thead>
-        <tbody>{% for item in cart %}
+        <tbody>
+        {% for supplier, spare_parts in cart.get_items_by_supplier.items %}
+        <th><b>{{ supplier }}</b></th>
+
+        {% for item in spare_parts %}
             {% with spare_part=item.spare_part %}
                 <tr>
                     <td>{{ spare_part.name }}</td>
@@ -45,6 +49,7 @@
                     <td class="num">${{ item.total_price }}</td>
                 </tr>
             {% endwith %}
+            {% endfor %}
         {% endfor %}
         <tr class="total">
             <td>Total</td>
@@ -58,4 +63,5 @@
         light">Return to spare parts list</a>
         <a href="#" class="button">Order</a>
     </p>
+
 {% endblock %}

@@ -1,4 +1,5 @@
 from decimal import Decimal
+from collections import defaultdict
 from django.conf import settings
 from .models import SparePart
 
@@ -34,11 +35,9 @@ class Cart:
             del self.cart[spare_part_id]
             self.save()
 
+
     def __iter__(self):
-        """
-        Iterate over the items in the cart and get the spare parts
-        from the database.
-        """
+
         spare_part_ids = self.cart.keys()
         spare_parts = SparePart.objects.filter(id__in=spare_part_ids)
 
@@ -60,3 +59,10 @@ class Cart:
     def clear(self):
         del self.session[settings.SPARE_PARTS_CART_SESSION_ID]
         self.save()
+
+    def get_items_by_supplier(self):
+        d = defaultdict(list)
+        for item in self:
+            supplier_name = item['spare_part'].supplier.name
+            d[supplier_name].append(item)
+        return dict(d)
