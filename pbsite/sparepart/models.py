@@ -51,7 +51,7 @@ class Order(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, related_name='orders',
                                    verbose_name=_('orders'))
     created_date = models.DateTimeField(auto_now_add=True)
-    destination = models.CharField(max_length=50, validators=_('Order destination'))
+    destination = models.CharField(max_length=50, verbose_name=_('Order destination'))
 
     class Meta:
         ordering = ('-created_date',)
@@ -73,7 +73,7 @@ class OrderSupplier(models.Model):
 
     order = models.ForeignKey(Order,
                               related_name='orders_supplier',
-                              on_delete=models.CASCADE)
+                              on_delete=models.CASCADE,)
     supplier = models.ForeignKey(Supplier,
                                  verbose_name='orders_supplier',
                                  on_delete=models.DO_NOTHING)

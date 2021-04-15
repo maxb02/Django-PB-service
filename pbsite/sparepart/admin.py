@@ -42,4 +42,10 @@ class OrderItemInline(admin.TabularInline):
 @admin.register(OrderSupplier)
 class OrderSupplierAdmin(admin.ModelAdmin):
     list_display = ['id', 'supplier', 'status', 'update_date', 'post_service']
+    readonly_fields = ['order', 'supplier', 'update_date']
     inlines = [OrderItemInline]
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    pass
