@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <h3>Order # {{ order.id }}</h3>
+    {% for supplier_order in order.orders_supplier.all %}
+        <p><b>{{ supplier_order }}</b></p>
+        {% for item in supplier_order.order_items.all %}
+           <p>{{ item }}</p>
+            {% endfor %}
+    {% endfor %}
+{% endblock %}
