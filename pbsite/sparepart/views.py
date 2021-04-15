@@ -1,15 +1,17 @@
 from collections import defaultdict
-
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from django.views.decorators.http import require_POST
-from django.views.generic import DetailView, View
+from django.views.generic import DetailView, View, ListView
 
 from device.models import Device
 from .cart import Cart
-from .forms import CartAddSparePartForm
-from .models import SparePart
+from .forms import CartAddSparePartForm, OrderCreateForm
+from .models import SparePart, Supplier, Order, OrderSupplier, OrderItem
+from .order import create_order, CartIsEmptyException
 
 
 class SparePartDetail(LoginRequiredMixin, DetailView):
@@ -64,4 +66,32 @@ def cart_detail(request):
             initial={'quantity': item['quantity'],
                      'update': True})
     return render(request, 'sparepart/cart_detail.html', {'cart': cart})
+
+
 # ________________________________________________________________________
+
+
+class OrderCreateView(View):
+    def post(self, request):
+        order = create_order(request)
+        return HttpResponseRedirect(reverse('order_created', kwargs={'pk': order.pk}))
+
+    def get(self, request):
+        form = OrderCreateForm
+        return render(request,
+                      'sparepart/order_create.html', {'form': form})
+
+
+class OrderCreatedView(DetailView):
+    model = Order
+    template_name = 'sparepart/order_created.html'
+
+
+class OrderDetailView(DetailView):
+    model = Order
+    template_name = 'sparepart/order_detail.html'
+
+
+class OrderListView(ListView):
+    model = OrderSupplier
+    template_name = 'sparepart/order_list.html'
