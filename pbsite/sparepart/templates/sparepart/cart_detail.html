@@ -14,9 +14,10 @@
             <div class="row">
                 <div class="col-8 mb-0">
                 {% for supplier, spare_parts in cart.get_items_by_supplier.items %}
+                    <h5>Supplier: {{ supplier }}</h5>
                     {% for item in spare_parts %}
                         {% with spare_part=item.spare_part %}
-                    <div class="card {% if not forloop.parentloop.last %} mb-3 {% endif %}">
+                    <div class="card {% if not forloop.parentloop.last or not  forloop.last %} mb-3 {% endif %}">
                         <div class="row no-gutters">
                             <div class="col-md-4 p-2 align-self-center">
                                 <a href="{{ spare_part.get_absolute_url }}">
