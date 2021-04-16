@@ -5,7 +5,8 @@
     <div class="order-info">
         <h3>Your order</h3>
         <ul>
-            {% for item in cart %}
+            {% for supplier, item in cart.get_items_by_supplier %}
+                <p>{{ supplier }}</p>
                 <li>
                     {{ item.quantity }}x {{ item.spare_part.name }}
                     <span>${{ item.total_price }}</span>

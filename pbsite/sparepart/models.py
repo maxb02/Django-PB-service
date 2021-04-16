@@ -92,6 +92,9 @@ class OrderSupplier(models.Model):
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.order_items.all())
 
+    def get_absolute_url(self):
+        return reverse('order_detail', kwargs={'pk': self.pk})
+
 
 class OrderItem(models.Model):
     order_supplier = models.ForeignKey(OrderSupplier,
