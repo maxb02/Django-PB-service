@@ -47,7 +47,8 @@ def check_device_and_user_allowed_regions(user, device_info):
     '''Compare user allowed region with the device region'''
     if device_info:
         for record in device_info:
-            if AllowedDeviceRegion.objects.filter(user_region__in=user.groups.all(), device_region=record['countryEng']).exists():
+            if AllowedDeviceRegion.objects.filter(user_region__in=user.groups.all(),
+                                                  device_region=record['countryEng']).exists():
                 return True
             else:
                 return False
@@ -80,7 +81,8 @@ def add_record_to_serial_number_check_journal(serial_number, user, is_valid, is_
         is_valid = None
     if is_region_match == 'Error':
         is_region_match = None
-    SerialNumberCheckJournal.objects.create(serial_number=serial_number, user=user, is_valid=is_valid, is_region_match=is_valid)
+    SerialNumberCheckJournal.objects.create(serial_number=serial_number, user=user, is_valid=is_valid,
+                                            is_region_match=is_region_match)
 
 
 def is_not_old_device(device_info):
