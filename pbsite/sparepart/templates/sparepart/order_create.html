@@ -1,16 +1,20 @@
 {% extends 'main/base.html' %}
 
 {% block body %}
-    <h1>Checkout</h1>
+    <h1>Create order</h1>
     <div class="order-info">
         <h3>Your order</h3>
         <ul>
-            {% for supplier, item in cart.get_items_by_supplier %}
-                <p>{{ supplier }}</p>
+            {% for supplier, spare_parts in cart.get_items_by_supplier.items %}
+                <h3>{{ supplier }}</h3>
+                {% for item in spare_parts %}
+                    {% with spare_part=item.spare_part %}
                 <li>
                     {{ item.quantity }}x {{ item.spare_part.name }}
                     <span>${{ item.total_price }}</span>
                 </li>
+                    {% endwith %}
+                    {% endfor %}
             {% endfor %}
         </ul>
         <p>Total: ${{ cart.get_total_price }}</p>

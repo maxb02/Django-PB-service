@@ -77,9 +77,11 @@ class OrderCreateView(View):
         return HttpResponseRedirect(reverse('order_created', kwargs={'pk': order.pk}))
 
     def get(self, request):
-        form = OrderCreateForm
+        cart = Cart(request)
+        form = OrderCreateForm()
         return render(request,
-                      'sparepart/order_create.html', {'form': form})
+                      'sparepart/order_create.html', {'form': form,
+                                                      'cart': cart})
 
 
 class OrderCreatedView(DetailView):
@@ -87,11 +89,11 @@ class OrderCreatedView(DetailView):
     template_name = 'sparepart/order_created.html'
 
 
-class OrderDetailView(DetailView):
-    model = Order
+class OrderSupplierDetailView(DetailView):
+    model = OrderSupplier
     template_name = 'sparepart/order_detail.html'
 
 
-class OrderListView(ListView):
+class OrderSupplierListView(ListView):
     model = OrderSupplier
     template_name = 'sparepart/order_list.html'

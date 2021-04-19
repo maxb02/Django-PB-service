@@ -1,12 +1,12 @@
 {% extends "main/base.html" %}
 {% block body %}
 Thank you
-{% endblock %}
-{% block content %}
+
 <h1>Thank you</h1>
 <p>Your order has been successfully completed. Your order number is
 <strong>{{ order.id }}</strong>.</p>
-    {{ order.destination }}
+
+   Order destination: {{ order.destination }}
 <br>
     Our manager will contact you.<br>
     You can follow orders on <a href="{% url 'order_list' %}">orders list page</a>

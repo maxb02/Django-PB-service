@@ -149,6 +149,14 @@
                     &nbsp;</a>
             </li>
         {% endif %}
+        {% if perms.sparepart.can_add_order %}
+            <li class="nav-item">
+                <a class="nav-link text-light text-lg-left"
+                   href="{% url 'order_list' %}"><i class="fas fa-dolly-flatbed"></i>{% trans 'Spare Parts Order' %}
+                    &nbsp;</a>
+            </li>
+
+        {% endif %}
         <li class="nav-item">
             <a class="nav-link text-light text-lg-left" href="{% url 'contacts' %}"><i class="fa fa-address-book fa-lg"
                                                                                        aria-hidden="true"></i> {% trans "Contacts" %}
@@ -163,7 +171,7 @@
             </li>
         {% endif %}
     </ul>
-        {% include 'sparepart/drop_down_cart.html' %}
+    {% include 'sparepart/drop_down_cart.html' %}
     <ul class="navbar-nav ml-3">
         <li class="nav-item" id="welcomelogin">
             {% trans "Wellcome" as wellcome %}
@@ -190,7 +198,7 @@
 					</span>
                 </a>
             {% endif %}
-        </li>
+            </li>
     </ul>
 
 </nav>
