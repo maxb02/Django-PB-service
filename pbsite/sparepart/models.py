@@ -41,7 +41,7 @@ class SparePart(models.Model):
     purchase_price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name='Purchase price, $')
 
     def __str__(self):
-        return self.name
+        return '{} | {}'.format(self.name, self.sku)
 
     def get_absolute_url(self):
         return reverse('spare_part_detail_url', kwargs={'pk': self.pk})
@@ -77,14 +77,14 @@ class OrderSupplier(models.Model):
     supplier = models.ForeignKey(Supplier,
                                  verbose_name='orders_supplier',
                                  on_delete=models.DO_NOTHING)
-    invoice_number = models.CharField(max_length=30, verbose_name=_('Invoice Number'))
+    invoice_number = models.CharField(max_length=30, verbose_name=_('Invoice Number'), null=True, blank=True)
     invoice_date = models.DateTimeField(null=True, blank=True, editable=False)
     status = models.CharField(max_length=20, default='in_process', choices=STATUS_CHOICES)
     update_date = models.DateTimeField(auto_now=True, verbose_name=_('Update Date'))
-    post_service = models.CharField(max_length=50, verbose_name=_('Delivery Service Name'))
-    track_number = models.CharField(max_length=50, verbose_name=_('Track Number'))
-    estimated_delivery_date = models.DateTimeField(blank=True, null=True)
-    delivered_date = models.DateTimeField(blank=True, null=True)
+    post_service = models.CharField(max_length=50, verbose_name=_('Delivery Service Name'), null=True, blank=True)
+    track_number = models.CharField(max_length=50, verbose_name=_('Track Number'), null=True, blank=True)
+    estimated_delivery_date = models.DateField(blank=True, null=True)
+    delivered_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return 'Order Supplier {}, {}'.format(self.supplier, self.id)
@@ -94,6 +94,9 @@ class OrderSupplier(models.Model):
 
     def get_absolute_url(self):
         return reverse('order_detail', kwargs={'pk': self.pk})
+
+    def get_excel_file_url(self):
+        return reverse('order_file', kwargs={'pk': self.pk})
 
 
 class OrderItem(models.Model):
@@ -112,3 +115,5 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+
