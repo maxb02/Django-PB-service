@@ -1,5 +1,4 @@
 from collections import defaultdict
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -8,10 +7,11 @@ from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, View, ListView
 
 from device.models import Device
+from users.mixins import UserServiceCenterObjectOnlyMixin
 from .cart import Cart
 from .forms import CartAddSparePartForm, OrderCreateForm
-from .models import SparePart, Supplier, Order, OrderSupplier, OrderItem
-from .order import create_order, CartIsEmptyException
+from .models import SparePart, Order, OrderSupplier
+from .order import create_order, get_supplier_order_file_response
 
 
 class SparePartDetail(LoginRequiredMixin, DetailView):
@@ -71,7 +71,8 @@ def cart_detail(request):
 # ________________________________________________________________________
 
 
-class OrderCreateView(View):
+class OrderCreateView(LoginRequiredMixin,
+                      View):
     def post(self, request):
         order = create_order(request)
         return HttpResponseRedirect(reverse('order_created', kwargs={'pk': order.pk}))
@@ -84,16 +85,29 @@ class OrderCreateView(View):
                                                       'cart': cart})
 
 
-class OrderCreatedView(DetailView):
+class OrderCreatedView(LoginRequiredMixin,
+                       UserServiceCenterObjectOnlyMixin,
+                       DetailView):
     model = Order
     template_name = 'sparepart/order_created.html'
 
 
-class OrderSupplierDetailView(DetailView):
+class OrderSupplierDetailView(LoginRequiredMixin,
+                              UserServiceCenterObjectOnlyMixin,
+                              DetailView):
     model = OrderSupplier
     template_name = 'sparepart/order_detail.html'
 
 
-class OrderSupplierListView(ListView):
+class OrderSupplierListView(LoginRequiredMixin,
+                            UserServiceCenterObjectOnlyMixin,
+                            ListView):
     model = OrderSupplier
     template_name = 'sparepart/order_list.html'
+
+
+def order_supplier_file(request, pk):
+    order = get_object_or_404(OrderSupplier, pk=pk)
+    response = get_supplier_order_file_response(order)
+    return response
+
