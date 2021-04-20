@@ -85,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'documents.context_processors.documents_in_process',
                 'device.context_processors.devices_menu',
+                'sparepart.context_processors.cart',
             ],
         },
     },
@@ -196,3 +197,6 @@ if DEBUG == True:
     INSTALLED_APPS += ['debug_toolbar', ]
     MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware', ]
     INTERNAL_IPS = ['127.0.0.1', ]
+
+
+SPARE_PARTS_CART_SESSION_ID = 'cart'

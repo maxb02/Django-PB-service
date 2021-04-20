@@ -1,10 +1,17 @@
 from collections import defaultdict
-
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import DetailView, View
-from .models import SparePart, Category
+from django.urls import reverse
+from django.views.decorators.http import require_POST
+from django.views.generic import DetailView, View, ListView
+
 from device.models import Device
+from .cart import Cart
+from .forms import CartAddSparePartForm, OrderCreateForm
+from .models import SparePart, Supplier, Order, OrderSupplier, OrderItem
+from .order import create_order, CartIsEmptyException
 
 
 class SparePartDetail(LoginRequiredMixin, DetailView):
@@ -19,7 +26,74 @@ class SparePartDeviceList(LoginRequiredMixin, View):
         for spare_part in device.spare_parts.all():
             categories[spare_part.category.name].append(spare_part)
 
+        cart_spare_part_form = CartAddSparePartForm()
+
         return render(request, 'sparepart/sparepart_list.html', {
             'device': device,
             'categories': dict(categories),
+            'cart_spare_part_form': cart_spare_part_form
         })
+
+
+# Cart__________________________________________________________
+@require_POST
+def cart_add(request, spare_part_id):
+    cart = Cart(request)
+    spare_part = get_object_or_404(SparePart, id=spare_part_id)
+    form = CartAddSparePartForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        cart.add(
+            spare_part=spare_part,
+            quantity=cd['quantity'],
+            update_quantity=cd['update']
+        )
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def cart_remove(request, spare_part_id):
+    cart = Cart(request)
+    spare_part = get_object_or_404(SparePart, id=spare_part_id)
+    cart.remove(spare_part)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def cart_detail(request):
+    cart = Cart(request)
+
+    for item in cart:
+        item['update_quantity_form'] = CartAddSparePartForm(
+            initial={'quantity': item['quantity'],
+                     'update': True})
+    return render(request, 'sparepart/cart_detail.html', {'cart': cart})
+
+
+# ________________________________________________________________________
+
+
+class OrderCreateView(View):
+    def post(self, request):
+        order = create_order(request)
+        return HttpResponseRedirect(reverse('order_created', kwargs={'pk': order.pk}))
+
+    def get(self, request):
+        cart = Cart(request)
+        form = OrderCreateForm()
+        return render(request,
+                      'sparepart/order_create.html', {'form': form,
+                                                      'cart': cart})
+
+
+class OrderCreatedView(DetailView):
+    model = Order
+    template_name = 'sparepart/order_created.html'
+
+
+class OrderSupplierDetailView(DetailView):
+    model = OrderSupplier
+    template_name = 'sparepart/order_detail.html'
+
+
+class OrderSupplierListView(ListView):
+    model = OrderSupplier
+    template_name = 'sparepart/order_list.html'
