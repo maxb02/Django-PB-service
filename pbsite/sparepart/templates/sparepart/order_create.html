@@ -1,27 +1,39 @@
 {% extends 'main/base.html' %}
 
 {% block body %}
-    <h1>Create order</h1>
-    <div class="order-info">
-        <h3>Your order</h3>
-        <ul>
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header text-center">
+            <h2>Create order</h2>
+        </div>
+        <div class="card-body order-info">
             {% for supplier, spare_parts in cart.get_items_by_supplier.items %}
-                <h3>{{ supplier }}</h3>
+            <h3>{{ supplier }}:</h3>
+            <table class="table table-borderless table-striped">
                 {% for item in spare_parts %}
-                    {% with spare_part=item.spare_part %}
-                <li>
-                    {{ item.quantity }}x {{ item.spare_part.name }}
-                    <span>${{ item.total_price }}</span>
-                </li>
-                    {% endwith %}
-                    {% endfor %}
+                {% with spare_part=item.spare_part %}
+                <tr class="border-bottom">
+                    <th scope="row" width="90%">{{ item.spare_part.name }}</th>
+                    <td class="text-center">x{{ item.quantity }}</td>
+                    <td class="text-center"><b>${{ item.total_price }}</b></td>
+                </tr>
+                {% endwith %}
+                {% endfor %}
+            </table>
             {% endfor %}
-        </ul>
-        <p>Total: ${{ cart.get_total_price }}</p>
+            <h5 class="text-right">Total: ${{ cart.get_total_price }}</h5><hr />
+            <form action="{% url 'order_create' %}" method="post" class="order-form">
+                <div class="input-group mb-3">
+                    <label class="input-group-prepend">
+                        <span class="input-group-text bg-transparent"><b>{{ form.destination.label }}:</b></span>
+                    </label>
+                    <input name="{{ form.destination.name }}" class="form-control" type="text" />
+                </div>
+                <input class="form-control btn btn-primary" type="submit" value="Place order">
+                {% csrf_token %}
+            </form>
+        </div>
     </div>
-    <form action="{% url 'order_create' %}" method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Place order"></p>
-        {% csrf_token %}
-    </form>
+</div>
+
 {% endblock %}

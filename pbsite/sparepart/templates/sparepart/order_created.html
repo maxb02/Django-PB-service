@@ -1,13 +1,25 @@
 {% extends "main/base.html" %}
 {% block body %}
-Thank you
 
-<h1>Thank you</h1>
-<p>Your order has been successfully completed. Your order number is
-<strong>{{ order.id }}</strong>.</p>
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header text-center">
+            <h1>Thank you!</h1>
+        </div>
+        <div class="card-body text-center font-weight-bold">
+            <h6>Your order has been successfully completed. Your order number is
+                <span class="badge badge-success">{{ order.id }}</span>
+            </h6>
 
-   Order destination: {{ order.destination }}
-<br>
-    Our manager will contact you.<br>
-    You can follow orders on <a href="{% url 'order_list' %}">orders list page</a>
+            <h4 class="py-4">Order destination: <br>
+                {{ order.destination }}
+            </h4>
+            <h6>
+                Our manager will contact you.<br>
+                You can follow orders on orders list page
+            </h6>
+            <a href="{% url 'order_list' %}" class="form-control btn btn-primary mt-3 w-50">Go to order list</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
