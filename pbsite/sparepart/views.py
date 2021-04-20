@@ -88,7 +88,7 @@ class OrderCreateView(LoginRequiredMixin,
 class OrderCreatedView(LoginRequiredMixin,
                        UserServiceCenterObjectOnlyMixin,
                        DetailView):
-    user_field = 'order__created_by'
+    user_field = 'created_by'
     model = Order
     template_name = 'sparepart/order_created.html'
 
