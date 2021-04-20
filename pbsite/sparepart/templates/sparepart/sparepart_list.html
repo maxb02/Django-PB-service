@@ -58,7 +58,9 @@
                                                     <tr>
                                                         <td colspan="2">{{ spare_part.description }}</td>
                                                     </tr>
+                                                    {% if perms.sparepart.can_add_order %}
                                                     <tr>
+
                                                         <td colspan="2">
                                                             <form action="{% url 'cart_add' spare_part.id %}" class="form-inline" method="post">
                                                                 <div class="input-group input-group-sm">
@@ -73,6 +75,7 @@
                                                                 {% csrf_token %}
                                                             </form>
                                                         </td>
+                                                        {% endif %}
                                                     </tr>
                                                 </table>
                                             </div>
