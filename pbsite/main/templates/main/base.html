@@ -149,7 +149,7 @@
                     &nbsp;</a>
             </li>
         {% endif %}
-        {% if perms.sparepart.can_add_order %}
+        {% if perms.sparepart.add_order%}
             <li class="nav-item">
                 <a class="nav-link text-light text-lg-left"
                    href="{% url 'order_list' %}"><i class="fas fa-dolly-flatbed"></i>{% trans 'Spare Parts Order' %}
