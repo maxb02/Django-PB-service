@@ -88,6 +88,7 @@ class OrderCreateView(LoginRequiredMixin,
 class OrderCreatedView(LoginRequiredMixin,
                        UserServiceCenterObjectOnlyMixin,
                        DetailView):
+    user_field = 'created_by'
     model = Order
     template_name = 'sparepart/order_created.html'
 
@@ -95,6 +96,7 @@ class OrderCreatedView(LoginRequiredMixin,
 class OrderSupplierDetailView(LoginRequiredMixin,
                               UserServiceCenterObjectOnlyMixin,
                               DetailView):
+    user_field = 'created_by'
     model = OrderSupplier
     template_name = 'sparepart/order_detail.html'
 
@@ -102,6 +104,7 @@ class OrderSupplierDetailView(LoginRequiredMixin,
 class OrderSupplierListView(LoginRequiredMixin,
                             UserServiceCenterObjectOnlyMixin,
                             ListView):
+    user_field = 'created_by'
     model = OrderSupplier
     template_name = 'sparepart/order_list.html'
 
