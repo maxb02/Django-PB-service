@@ -105,6 +105,7 @@ class OrderSupplierListView(LoginRequiredMixin,
                             UserServiceCenterObjectOnlyMixin,
                             ListView):
     user_field = 'order__created_by'
+    user_field = 'order__created_by'
     model = OrderSupplier
     template_name = 'sparepart/order_list.html'
 
