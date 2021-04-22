@@ -24,17 +24,16 @@ class Cart:
             self.cart[spare_part_id]['quantity'] = quantity
         else:
             self.cart[spare_part_id]['quantity'] += quantity
-        self.save()
+        self.__save()
 
-    def save(self):
+    def __save(self):
         self.session.modified = True
 
     def remove(self, spare_part):
         spare_part_id = str(spare_part.id)
         if spare_part_id in self.cart:
             del self.cart[spare_part_id]
-            self.save()
-
+            self.__save()
 
     def __iter__(self):
 
@@ -58,7 +57,7 @@ class Cart:
 
     def clear(self):
         del self.session[settings.SPARE_PARTS_CART_SESSION_ID]
-        self.save()
+        self.__save()
 
     def get_items_by_supplier(self):
         d = defaultdict(list)
