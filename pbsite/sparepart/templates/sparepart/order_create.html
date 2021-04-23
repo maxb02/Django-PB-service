@@ -1,39 +1,48 @@
 {% extends 'main/base.html' %}
 
 {% block body %}
-<div class="container py-4">
-    <div class="card">
-        <div class="card-header text-center">
-            <h2>Create order</h2>
-        </div>
-        <div class="card-body order-info">
-            {% for supplier, spare_parts in cart.get_items_by_supplier.items %}
-            <h3>{{ supplier }}:</h3>
-            <table class="table table-borderless table-striped">
-                {% for item in spare_parts %}
-                {% with spare_part=item.spare_part %}
-                <tr class="border-bottom">
-                    <th scope="row" width="90%">{{ item.spare_part.name }}</th>
-                    <td class="text-center">x{{ item.quantity }}</td>
-                    <td class="text-center"><b>${{ item.total_price }}</b></td>
-                </tr>
-                {% endwith %}
+    <div class="container py-4">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Create order</h2>
+            </div>
+            <div class="card-body order-info">
+                {% for supplier, spare_parts in cart.get_items_by_supplier.items %}
+                    <h3>{{ supplier }}:</h3>
+                    <table class="table table-borderless table-striped">
+                        {% for item in spare_parts %}
+                            {% with spare_part=item.spare_part %}
+                                <tr class="border-bottom">
+                                    <th scope="row" width="90%">{{ item.spare_part.name }}</th>
+                                    <td class="text-center">x{{ item.quantity }}</td>
+                                    <td class="text-center"><b>${{ item.total_price }}</b></td>
+                                </tr>
+                            {% endwith %}
+                        {% endfor %}
+                    </table>
                 {% endfor %}
-            </table>
-            {% endfor %}
-            <h5 class="text-right">Total: ${{ cart.get_total_price }}</h5><hr />
-            <form action="{% url 'order_create' %}" method="post" class="order-form">
-                <div class="input-group mb-3">
-                    <label class="input-group-prepend">
-                        <span class="input-group-text bg-transparent"><b>{{ form.destination.label }}:</b></span>
-                    </label>
-                    <input name="{{ form.destination.name }}" class="form-control" type="text" />
-                </div>
-                <input class="form-control btn btn-primary" type="submit" value="Place order">
-                {% csrf_token %}
-            </form>
+                <h5 class="text-right">Total: ${{ cart.get_total_price }}</h5>
+                <hr/>
+                <form action="{% url 'order_create' %}" method="post" class="order-form">
+                    <div class="input-group mb-3">
+                        <label class="input-group-prepend">
+                            <span class="input-group-text bg-transparent"><b>{{ form.destination.label }}:</b></span>
+                        </label>
+                        <input name="{{ form.destination.name }}" class="form-control" type="text"/>
+                    </div>
+                    <input {% if not cart %}disabled{% endif %} class="form-control btn btn-primary" type="submit"
+                           value="Place order">
+                    {% csrf_token %}
+                </form>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

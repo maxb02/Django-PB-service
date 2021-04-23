@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, View, ListView
 
@@ -11,7 +12,7 @@ from users.mixins import UserServiceCenterObjectOnlyMixin
 from .cart import Cart
 from .forms import CartAddSparePartForm, OrderCreateForm
 from .models import SparePart, Order, OrderSupplier
-from .order import create_order, get_supplier_order_file_response
+from .order import create_order, get_supplier_order_file_response, CartIsEmptyException
 
 
 class SparePartDetail(LoginRequiredMixin, DetailView):
@@ -74,7 +75,11 @@ def cart_detail(request):
 class OrderCreateView(LoginRequiredMixin,
                       View):
     def post(self, request):
-        order = create_order(request)
+        try:
+            order = create_order(request)
+        except CartIsEmptyException:
+            messages.error(request, 'Your cart is empty. Please add spare parts to the cart and try again')
+            return self.get(request)
         return HttpResponseRedirect(reverse('order_created', kwargs={'pk': order.pk}))
 
     def get(self, request):
