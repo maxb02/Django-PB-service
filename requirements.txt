@@ -11,5 +11,5 @@ django-filebrowser==3.9.2
 PyPDF2==1.26.0
 reportlab==3.5.9
 requests==2.18.4
-django-debug-toolbar==2.2
+django-debug-toolbar==2.2.1
 openpyxl
