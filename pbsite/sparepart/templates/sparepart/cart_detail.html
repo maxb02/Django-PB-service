@@ -22,7 +22,7 @@
                                             <div class="col-md-4 p-2 align-self-center">
                                                 <a href="{{ spare_part.get_absolute_url }}">
                                                     <img src="
-                                                            {% if spare_part.image %}{{ spare_part.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                                                            {% if spare_part.image %}{{ spare_part.image.url }}{% else %}{% static 'no-image.svg' %}{% endif %}"
                                                          class="img-fluid" alt="{{ photo }}">
                                                 </a>
                                             </div>

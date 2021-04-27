@@ -1,3 +1,4 @@
+{% load static %}
 {% if cart %}
 {% load i18n %}
 
@@ -10,7 +11,7 @@
         <ul class="dropdown-menu" width role="menu">
             {% for item in cart %}
             <li class="dropdown-item px-3">
-                <img class="mr-2" src="{% if item.spare_part.image %}{{ item.spare_part.image.url }}{% endif %}" width="40px" alt=""/>
+                <img class="mr-2" src="{% if item.spare_part.image %}{{ item.spare_part.image.url }}{% else %}{% static 'no-image.svg' %}{% endif %}" width="40px" alt=""/>
                 <span class="text-light text-lg-left mr-5">
                     {{ item.spare_part.name }}
                     <span class="badge badge-light">{{ item.quantity }}</span>
