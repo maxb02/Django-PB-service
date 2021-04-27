@@ -33,14 +33,35 @@ def create_order(request):
 
 
 def get_supplier_order_file_response(supplier_order):
+    supplier_order = supplier_order.select_related('supplier')
     file_name = '{}_{}_order_{}.xls'.format(supplier_order.supplier.name, supplier_order.id, supplier_order.update_date)
     wb = Workbook()
     ws1 = wb.active
     ws1.title = 'order'
-    ws1.append(('Part Number', 'Name', 'Quantity'))
+    ws1.h(('Part Number',
+           'Name',
+           'Quantity',
+           'Devices',
+           'Weight',
+           'Size',
+           'Description',
+           'Manufacturer',
+           'Price',
+           'Comment'))
 
     for item in supplier_order.order_items.all():
-        ws1.append((str(item.spare_part.sku), str(item.spare_part.name), str(item.quantity)))
+        ws1.append((str(item.spare_part.sku),
+                    str(item.spare_part.name),
+                    str(item.quantity),
+                    ' '.join(device.model_number for device in item.spare_part.device.all()),
+                    str(item.spare_part.weight),
+                    str(item.spare_part.size),
+                    str(item.spare_part.description),
+                    str(item.spare_part.manufacturer),
+                    str(item.spare_part.purchase_price),
+                    str(item.spare_part.comment),
+
+                    ))
 
     response = HttpResponse(save_virtual_workbook(wb), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="{}"'.format(file_name)
