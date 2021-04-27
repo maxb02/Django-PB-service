@@ -29,6 +29,7 @@
                             <span class="input-group-text bg-transparent"><b>{{ form.destination.label }}:</b></span>
                         </label>
                         <input name="{{ form.destination.name }}" class="form-control" type="text"/>
+                        {{ form.destination.errors }}
                     </div>
                     <input {% if not cart %}disabled{% endif %} class="form-control btn btn-primary" type="submit"
                            value="Place order">
