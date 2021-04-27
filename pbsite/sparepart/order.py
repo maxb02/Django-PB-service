@@ -3,7 +3,7 @@ from openpyxl import Workbook
 from openpyxl.writer.excel import save_virtual_workbook
 from sparepart.cart import Cart
 from sparepart.forms import OrderCreateForm
-from sparepart.models import OrderSupplier, Supplier, OrderItem
+from sparepart.models import OrderSupplier, Supplier, OrderItem, Order
 
 
 class CartIsEmptyException(Exception):
@@ -33,12 +33,11 @@ def create_order(request):
 
 
 def get_supplier_order_file_response(supplier_order):
-    supplier_order = supplier_order.select_related('supplier')
     file_name = '{}_{}_order_{}.xls'.format(supplier_order.supplier.name, supplier_order.id, supplier_order.update_date)
     wb = Workbook()
     ws1 = wb.active
     ws1.title = 'order'
-    ws1.h(('Part Number',
+    ws1.append(('Part Number',
            'Name',
            'Quantity',
            'Devices',
@@ -66,4 +65,3 @@ def get_supplier_order_file_response(supplier_order):
     response = HttpResponse(save_virtual_workbook(wb), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="{}"'.format(file_name)
     return response
-
