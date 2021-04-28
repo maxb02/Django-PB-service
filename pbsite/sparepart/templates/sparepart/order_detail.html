@@ -4,72 +4,76 @@
 {% block body %}
     {% load humanize %}
     {% load staticfiles %}
-<div class="container py-4">
-    <div class="card">
-        <div class="card-header text-center">
-            <h3>Spare parts order # {{ object.id }}</h3>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-4 mb-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="">{% trans 'Spareparts:' %}</h5>
-                            <table class="table table-sm table-borderless">
-                                <tr class="border-bottom">
-                                    <th width="40%">{% trans 'Supplier' %}</th>
-                                    <td>{{ object.supplier }}</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <th>{% trans 'Destination' %}</th>
-                                    <td>{{ object.order.destination }}</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <th>{% trans 'Status' %}</th>
-                                    <td>{{ object.get_status_display }}</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <th>{% trans 'Estimated delivery date' %}</th>
-                                    <td>{{ object.estimated_delivery_date | default:'-' }}</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <th>{% trans 'Update date' %}</th>
-                                    <td>{{ object.update_date | default:'-' }}</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <th>{% trans 'Post Service' %}</th>
-                                    <td>{{ object.post_service | default:'-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>{% trans 'Track number' %}</th>
-                                    <td>{{ object.track_number | default:'-' }}</td>
-                                </tr>
-                            </table>
+    <div class="container py-4">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>Spare parts order # {{ object.id }}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4 mb-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="">{% trans 'Spareparts:' %}</h5>
+                                <table class="table table-sm table-borderless">
+                                    <tr class="border-bottom">
+                                        <th width="40%">{% trans 'Supplier' %}</th>
+                                        <td>{{ object.supplier }}</td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th>{% trans 'Destination' %}</th>
+                                        <td>{{ object.order.destination }}</td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th>{% trans 'Status' %}</th>
+                                        <td>{{ object.get_status_display }}</td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th>{% trans 'Estimated delivery date' %}</th>
+                                        <td>{{ object.estimated_delivery_date | default:'-' }}</td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th>{% trans 'Update date' %}</th>
+                                        <td>{{ object.update_date | default:'-' }}</td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th>{% trans 'Post Service' %}</th>
+                                        <td>{{ object.post_service | default:'-' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{% trans 'Track number' %}</th>
+                                        <td>{{ object.track_number | default:'-' }}</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-8 mb-0">
-                    <div class="card">
-                        <div class="card-body px-0">
-                            <h5 class="px-3">{% trans 'Spareparts:' %}</h5>
-                            <table class="table table-borderless table-striped">
-                                <tr class="table-primary">
-                                    <th class="pl-3">{% trans 'SKU' %}</th>
-                                    <th>{% trans 'Quantity' %}</th>
-                                </tr>
-                            {% for item in object.order_items.all %}
-                                <tr>
-                                    <th class="pl-3">{{ item.spare_part.sku }}</th>
-                                    <td>{{ item.quantity }}</td>
-                                </tr>
-                            {% endfor %}
-                            </table>
+                    <div class="col-8 mb-0">
+                        <div class="card">
+                            <div class="card-body px-0">
+                                <h5 class="px-3">{% trans 'Spareparts:' %}</h5>
+                                <table class="table table-borderless table-striped">
+                                    <tr class="table-primary">
+                                        <th class="pl-3">{% trans 'SKU' %}</th>
+                                        <th>{% trans 'Devices' %}</th>
+                                        <th>{% trans 'Quantity' %}</th>
+                                    </tr>
+                                    {% for item in object.order_items.all %}
+                                        <tr>
+                                            <th class="pl-3">{{ item.spare_part.sku }}</th>
+                                            <th>{% for device in item.spare_part.device.all %}
+                                                {{ device.model_number }}{% if not forloop.last %},
+                                                {% endif %}{% endfor %}</th>
+                                            <td>{{ item.quantity }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
