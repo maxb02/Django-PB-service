@@ -1,9 +1,10 @@
 from collections import defaultdict
+
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, View, ListView
 
@@ -75,12 +76,17 @@ def cart_detail(request):
 class OrderCreateView(LoginRequiredMixin,
                       View):
     def post(self, request):
-        try:
-            order = create_order(request)
-        except CartIsEmptyException:
-            messages.error(request, 'Your cart is empty. Please add spare parts to the cart and try again')
-            return self.get(request)
-        return HttpResponseRedirect(reverse('order_created', kwargs={'pk': order.pk}))
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            cart = Cart(request)
+            user = request.user
+            destination = form.cleaned_data['destination']
+            try:
+                order = create_order(cart, user, destination)
+            except CartIsEmptyException:
+                messages.error(request, 'Your cart is empty. Please add spare parts to the cart and try again')
+                return self.get(request)
+            return HttpResponseRedirect(reverse('order_created', kwargs={'pk': order.pk}))
 
     def get(self, request):
         cart = Cart(request)
