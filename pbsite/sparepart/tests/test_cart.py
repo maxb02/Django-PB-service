@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.test import TestCase
 from sparepart.cart import Cart
 from sparepart.models import SparePart, Supplier, Manufacturer
@@ -12,11 +14,13 @@ class CartTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        supplier1 = Supplier.objects.create(name='Supplier1')
-        supplier2 = Supplier.objects.create(name='Supplier2')
+        cls.supplier1_id = Supplier.objects.create(name='Supplier1').id
+        cls.supplier2_id = Supplier.objects.create(name='Supplier2').id
         manufacturer = Manufacturer.objects.create(name='Manufacturer')
+        supplier1 = Supplier.objects.get(id=cls.supplier1_id)
+        supplier2 = Supplier.objects.get(id=cls.supplier2_id)
 
-        SparePart.objects.create(
+        cls.spare_part1_id = SparePart.objects.create(
             name='SparePart1',
             weight=100,
             size='22x33',
@@ -25,9 +29,9 @@ class CartTest(TestCase):
             supplier=supplier1,
             manufacturer=manufacturer,
             purchase_price=9.99
-        )
+        ).id
 
-        SparePart.objects.create(
+        cls.spare_part2_id = SparePart.objects.create(
             name='SparePart2',
             weight=100,
             size='22x33',
@@ -36,7 +40,7 @@ class CartTest(TestCase):
             supplier=supplier2,
             manufacturer=manufacturer,
             purchase_price=19.99
-        )
+        ).id
 
     def test_cart_is_empty_when_created(self):
         cart = Cart(self.request)
@@ -44,7 +48,7 @@ class CartTest(TestCase):
 
     def test_add_to_cart(self):
         cart = Cart(self.request)
-        spare_part = SparePart.objects.first()
+        spare_part = SparePart.objects.get(id=self.spare_part1_id)
         cart.add(spare_part)
         self.assertEquals(len(cart.cart), 1)
         self.assertIn(str(spare_part.id), cart.cart)
@@ -53,7 +57,7 @@ class CartTest(TestCase):
 
     def test_add_item_twice(self):
         cart = Cart(self.request)
-        spare_part = SparePart.objects.first()
+        spare_part = SparePart.objects.get(id=self.spare_part1_id)
         cart.add(spare_part)
         cart.add(spare_part, quantity=5)
         self.assertEquals(len(cart.cart), 1)
@@ -61,7 +65,7 @@ class CartTest(TestCase):
 
     def test_add_update_quantity(self):
         cart = Cart(self.request)
-        spare_part = SparePart.objects.first()
+        spare_part = SparePart.objects.get(id=self.spare_part1_id)
         cart.add(spare_part)
         self.assertEquals(cart.cart['1']['quantity'], 1)
         cart.add(spare_part, quantity=3, update_quantity=True)
@@ -69,8 +73,8 @@ class CartTest(TestCase):
 
     def test_add_two_items(self):
         cart = Cart(self.request)
-        spare_part1 = SparePart.objects.get(id=1)
-        spare_part2 = SparePart.objects.get(id=2)
+        spare_part1 = SparePart.objects.get(id=self.spare_part1_id)
+        spare_part2 = SparePart.objects.get(id=self.spare_part2_id)
         cart.add(spare_part1)
         cart.add(spare_part2)
         self.assertEquals(len(cart.cart), 2)
@@ -81,8 +85,8 @@ class CartTest(TestCase):
 
     def test_remove(self):
         cart = Cart(self.request)
-        spare_part1 = SparePart.objects.get(id=1)
-        spare_part2 = SparePart.objects.get(id=2)
+        spare_part1 = SparePart.objects.get(id=self.spare_part1_id)
+        spare_part2 = SparePart.objects.get(id=self.spare_part2_id)
         cart.add(spare_part1)
         cart.add(spare_part2)
         cart.remove(spare_part2)
@@ -93,28 +97,28 @@ class CartTest(TestCase):
 
     def test_len(self):
         cart = Cart(self.request)
-        spare_part1 = SparePart.objects.get(id=1)
-        spare_part2 = SparePart.objects.get(id=2)
+        spare_part1 = SparePart.objects.get(id=self.spare_part1_id)
+        spare_part2 = SparePart.objects.get(id=self.spare_part2_id)
         cart.add(spare_part1)
         cart.add(spare_part2, quantity=3)
         self.assertEquals(len(cart), 4)
 
     def test_get_total_price(self):
         cart = Cart(self.request)
-        spare_part1 = SparePart.objects.get(id=1)
-        spare_part2 = SparePart.objects.get(id=2)
+        spare_part1 = SparePart.objects.get(id=self.spare_part1_id)
+        spare_part2 = SparePart.objects.get(id=self.spare_part2_id)
         cart.add(spare_part1)
         cart.add(spare_part2)
         total_price = spare_part1.purchase_price + spare_part2.purchase_price
-        self.assertEquals(cart.get_total_price(), total_price)
-        cart.add(spare_part2, quantity=3)
-        total_price += spare_part2.purchase_price * 3
-        self.assertEquals(cart.get_total_price(), total_price)
+        self.assertAlmostEqual(cart.get_total_price(), Decimal(total_price,), 2)
+        cart.add(spare_part2, quantity=2)
+        total_price += spare_part2.purchase_price * 2
+        self.assertAlmostEqual(cart.get_total_price(), Decimal(total_price), 2)
 
     def test_clear(self):
         cart = Cart(self.request)
-        spare_part1 = SparePart.objects.get(id=1)
-        spare_part2 = SparePart.objects.get(id=2)
+        spare_part1 = SparePart.objects.get(id=self.spare_part1_id)
+        spare_part2 = SparePart.objects.get(id=self.spare_part2_id)
         cart.add(spare_part1)
         cart.add(spare_part2)
         cart.clear()
@@ -122,13 +126,13 @@ class CartTest(TestCase):
 
     def test_iter(self):
         cart = Cart(self.request)
-        spare_part1 = SparePart.objects.get(id=1)
-        spare_part2 = SparePart.objects.get(id=2)
+        spare_part1 = SparePart.objects.get(id=self.spare_part1_id)
+        spare_part2 = SparePart.objects.get(id=self.spare_part2_id)
         cart.add(spare_part1)
         cart.add(spare_part2)
         cart.add(spare_part2)
         self.assertListEqual(
-            [i for i in cart],
+            list(cart),
             [{'spare_part': spare_part1,
               'quantity': 1,
               'price': spare_part1.purchase_price,
@@ -142,8 +146,8 @@ class CartTest(TestCase):
 
     def test_get_items_by_supplier(self):
         cart = Cart(self.request)
-        spare_part1 = SparePart.objects.get(id=1)
-        spare_part2 = SparePart.objects.get(id=2)
+        spare_part1 = SparePart.objects.get(id=self.spare_part1_id)
+        spare_part2 = SparePart.objects.get(id=self.spare_part2_id)
         cart.add(spare_part1)
         cart.add(spare_part2)
         self.assertDictEqual(cart.get_items_by_supplier(),
